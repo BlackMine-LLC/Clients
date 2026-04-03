@@ -268,6 +268,46 @@ body::before {
 /* ── HIDDEN GHL FORM ── */
 #ghf { display:none; position:absolute; }
 
+
+/* ── TCPA CONSENT ── */
+.tcpa-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.tcpa-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+.tcpa-chk {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--emerald);
+  cursor: pointer;
+}
+.tcpa-lbl {
+  font-size: 12px;
+  color: var(--ink-4);
+  line-height: 1.55;
+  font-family: var(--font-b);
+}
+.tcpa-lbl strong {
+  color: var(--ink-3);
+  font-weight: 600;
+}
+.tcpa-link {
+  color: var(--emerald);
+  text-decoration: underline;
+}
+.tcpa-link:hover {
+  color: var(--emerald-dk);
+}
+
 /* ── MOBILE ── */
 @media (max-width:759px) {
   .quiz-wrap { padding:72px 16px 40px; }
@@ -384,6 +424,19 @@ body::before {
   <div class="fg"><label class="fl" for="fp">Phone <span style="color:var(--emerald)">*</span></label><input class="fi" type="tel" id="fp" placeholder="(305) 000-0000" autocomplete="tel"></div>
 
   <div class="rule"></div>
+
+  <!-- TCPA CONSENT -->
+  <div class="tcpa-wrap">
+    <label class="tcpa-item">
+      <input type="checkbox" id="tcpa-sms" class="tcpa-chk">
+      <span class="tcpa-lbl">By checking this box, I consent to receive non-marketing text messages from <strong>The Tax Team</strong> about tax strategy and financial services. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out. Reply HELP for assistance. View our <a href="https://www.gotaxteam.com/privacy-policy-terms" target="_blank" class="tcpa-link">Privacy Policy &amp; Terms</a>.</span>
+    </label>
+    <label class="tcpa-item">
+      <input type="checkbox" id="tcpa-mkt" class="tcpa-chk">
+      <span class="tcpa-lbl">By checking this box, I consent to receive marketing and promotional messages including special offers and tax strategy insights from <strong>The Tax Team</strong> at the phone number provided. Frequency may vary. Message &amp; data rates may apply. Reply STOP to opt out. View our <a href="https://www.gotaxteam.com/privacy-policy-terms" target="_blank" class="tcpa-link">Privacy Policy &amp; Terms</a>.</span>
+    </label>
+  </div>
+
   <button class="btn btn-green" onclick="captureAndContinue()">→ Continue to My Results</button>
   <p class="micro">🔒 100% confidential. No spam. Ever.</p>
   <button class="back-btn" onclick="goTo(3)">← Back</button>
@@ -553,6 +606,8 @@ function finalSubmit() {
     last_name:              document.getElementById('fl2').value.trim(),
     email:                  document.getElementById('fe').value.trim(),
     phone:                  document.getElementById('fp').value.trim(),
+    tcpa_sms_consent:       document.getElementById('tcpa-sms')?.checked ? 'Yes' : 'No',
+    tcpa_marketing_consent: document.getElementById('tcpa-mkt')?.checked ? 'Yes' : 'No',
     pain_point:             A.pain_point             || '',
     current_cpa_engagement: A.current_cpa_engagement || '',
     tax_paid_range:         A.tax_paid_range         || '',
@@ -573,8 +628,6 @@ function finalSubmit() {
     setTimeout(() => redirect(A.current_income), 2200);
   });
 }
-
-
 
 function redirect(income) {
   // $400K+ hard line — all go to Aileen (variantC)
