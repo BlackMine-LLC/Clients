@@ -460,16 +460,6 @@ body::before {
 </div><!-- /slides-container -->
 </div><!-- /quiz-wrap -->
 
-<!-- GHL FORM — hidden iframe submission -->
-<div style="display:none;position:absolute;left:-9999px;top:-9999px;">
-  <iframe 
-    id="ghl-form-iframe"
-    src="https://brand.gotaxteam.com/widget/form/i09YaDFj0y66doJJlKCM"
-    style="width:1px;height:1px;border:none;"
-    scrolling="no">
-  </iframe>
-</div>
-
 <script>
 /* ── REDIRECTS — swap these ── */
 const R = {
@@ -555,61 +545,35 @@ function finalSubmit() {
   const em = document.getElementById('fe').value.trim();
   const ph = document.getElementById('fp').value.trim();
 
-  // Build form data string matching GHL's expected format
-  const fields = [
-    ['first_name',              fn],
-    ['last_name',               ln],
-    ['email',                   em],
-    ['phone',                   ph],
-    ['pain_point',              A.pain_point || ''],
-    ['current_cpa_engagement',  A.current_cpa_engagement || ''],
-    ['tax_paid_range',          A.tax_paid_range || ''],
-    ['business_type',           A.business_type || ''],
-    ['last_year_income',        A.last_year_income || ''],
-    ['current_income',          A.current_income || ''],
-    ['formId',                  'i09YaDFj0y66doJJlKCM'],
-    ['location_id',             '4HkogPO0ghTsjhHcnQBO'],
-  ];
+  // Post to Vercel proxy — forwards to GHL server-side (no CORS)
+  const payload = {
+    formId:                 'i09YaDFj0y66doJJlKCM',
+    location_id:            '4HkogPO0ghTsjhHcnQBO',
+    first_name:             document.getElementById('ff').value.trim(),
+    last_name:              document.getElementById('fl2').value.trim(),
+    email:                  document.getElementById('fe').value.trim(),
+    phone:                  document.getElementById('fp').value.trim(),
+    pain_point:             A.pain_point             || '',
+    current_cpa_engagement: A.current_cpa_engagement || '',
+    tax_paid_range:         A.tax_paid_range         || '',
+    business_type:          A.business_type          || '',
+    last_year_income:       A.last_year_income        || '',
+    current_income:         A.current_income          || '',
+  };
 
-  // Wait for iframe to load then submit via postMessage
-  const iframe = document.getElementById('ghl-form-iframe');
-  
-  function sendToGHL() {
-    try {
-      iframe.contentWindow.postMessage({
-        type: 'form-submission',
-        data: Object.fromEntries(fields)
-      }, 'https://brand.gotaxteam.com');
-    } catch(e) {}
+  fetch('/api/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  .then(r => r.json())
+  .then(data => console.log('GHL response:', data))
+  .catch(err => console.error('Submit error:', err))
+  .finally(() => {
+    setTimeout(() => redirect(A.current_income), 2200);
+  });
 
-    // Also try direct form field injection
-    try {
-      const iDoc = iframe.contentDocument || iframe.contentWindow.document;
-      fields.forEach(([name, val]) => {
-        const el = iDoc.querySelector(`[name="${name}"]`);
-        if (el) {
-          el.value = val;
-          el.dispatchEvent(new Event('input', {bubbles:true}));
-          el.dispatchEvent(new Event('change', {bubbles:true}));
-        }
-      });
-      // Find and click submit
-      const submitBtn = iDoc.querySelector('button[type="submit"], input[type="submit"], .submit-btn');
-      if (submitBtn) submitBtn.click();
-    } catch(e) {}
 
-    // Redirect after 2.5s regardless
-    setTimeout(() => redirect(A.current_income), 2500);
-  }
-
-  if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-    sendToGHL();
-  } else {
-    iframe.onload = sendToGHL;
-    // Fallback if onload already fired
-    setTimeout(sendToGHL, 1500);
-  }
-}
 
 function redirect(income) {
   // $400K+ hard line — all go to Aileen (variantC)
