@@ -439,10 +439,8 @@ body::before {
   <p class="q-sub">(Personal + business combined — this calculates your exact savings range)</p>
   <div class="opts" id="o7" data-field="current_income">
     <div class="opt" data-value="Under $100,000"><span class="chk"></span><span class="opt-lbl">Under $100,000</span></div>
-    <div class="opt" data-value="$100,000 – $400,000"><span class="chk"></span><span class="opt-lbl">$100,000 – $400,000</span></div>
-    <div class="opt" data-value="$400,000 – $700,000"><span class="chk"></span><span class="opt-lbl">$400,000 – $700,000</span></div>
-    <div class="opt" data-value="$700,000 – $1,000,000"><span class="chk"></span><span class="opt-lbl">$700,000 – $1,000,000</span></div>
-    <div class="opt" data-value="$1,000,000+"><span class="chk"></span><span class="opt-lbl">$1,000,000+</span></div>
+    <div class="opt" data-value="$100,000 – $399,999"><span class="chk"></span><span class="opt-lbl">$100,000 – $399,999</span></div>
+    <div class="opt" data-value="$400,000+"><span class="chk"></span><span class="opt-lbl">$400,000+</span></div>
   </div>
   <button class="btn btn-ink" id="nx7" onclick="finalSubmit()" disabled>→ Show My Savings Estimate</button>
   <button class="back-btn" onclick="goTo(6)">← Back</button>
@@ -462,21 +460,15 @@ body::before {
 </div><!-- /slides-container -->
 </div><!-- /quiz-wrap -->
 
-<!-- HIDDEN GHL SURVEY FORM -->
-<form id="ghf">
-  <input type="hidden" name="location_id" value="4HkogPO0ghTsjhHcnQBO">
-  <input type="hidden" name="formId"      value="i09YaDFj0y66doJJlKCM">
-  <input type="hidden" id="gf-fn"   name="first_name">
-  <input type="hidden" id="gf-ln"   name="last_name">
-  <input type="hidden" id="gf-em"   name="email">
-  <input type="hidden" id="gf-ph"   name="phone">
-  <input type="hidden" id="gf-pain" name="pain_point">
-  <input type="hidden" id="gf-cpa"  name="current_cpa_engagement">
-  <input type="hidden" id="gf-tax"  name="tax_paid_range">
-  <input type="hidden" id="gf-biz"  name="business_type">
-  <input type="hidden" id="gf-ly"   name="last_year_income">
-  <input type="hidden" id="gf-cur"  name="current_income">
-</form>
+<!-- GHL FORM — hidden iframe submission -->
+<div style="display:none;position:absolute;left:-9999px;top:-9999px;">
+  <iframe 
+    id="ghl-form-iframe"
+    src="https://brand.gotaxteam.com/widget/form/i09YaDFj0y66doJJlKCM"
+    style="width:1px;height:1px;border:none;"
+    scrolling="no">
+  </iframe>
+</div>
 
 <script>
 /* ── REDIRECTS — swap these ── */
@@ -556,44 +548,76 @@ function captureAndContinue() {
 
 /* ── FINAL SUBMIT ── */
 function finalSubmit() {
-  goTo(8); // show calculating
+  goTo(8); // show calculating screen
 
-  // populate hidden form
   const fn = document.getElementById('ff').value.trim();
   const ln = document.getElementById('fl2').value.trim();
-  document.getElementById('gf-fn').value   = fn;
-  document.getElementById('gf-ln').value   = ln;
-  document.getElementById('gf-em').value   = document.getElementById('fe').value.trim();
-  document.getElementById('gf-ph').value   = document.getElementById('fp').value.trim();
-  document.getElementById('gf-pain').value = A.pain_point || '';
-  document.getElementById('gf-cpa').value  = A.current_cpa_engagement || '';
-  document.getElementById('gf-tax').value  = A.tax_paid_range || '';
-  document.getElementById('gf-biz').value  = A.business_type || '';
-  document.getElementById('gf-ly').value   = A.last_year_income || '';
-  document.getElementById('gf-cur').value  = A.current_income || '';
+  const em = document.getElementById('fe').value.trim();
+  const ph = document.getElementById('fp').value.trim();
 
-  const payload = {};
-  new FormData(document.getElementById('ghf')).forEach((v,k) => payload[k]=v);
+  // Build form data string matching GHL's expected format
+  const fields = [
+    ['first_name',              fn],
+    ['last_name',               ln],
+    ['email',                   em],
+    ['phone',                   ph],
+    ['pain_point',              A.pain_point || ''],
+    ['current_cpa_engagement',  A.current_cpa_engagement || ''],
+    ['tax_paid_range',          A.tax_paid_range || ''],
+    ['business_type',           A.business_type || ''],
+    ['last_year_income',        A.last_year_income || ''],
+    ['current_income',          A.current_income || ''],
+    ['formId',                  'i09YaDFj0y66doJJlKCM'],
+    ['location_id',             '4HkogPO0ghTsjhHcnQBO'],
+  ];
 
-  fetch(GHL, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify(payload)
-  })
-  .catch(()=>{})
-  .finally(()=>{
-    setTimeout(()=>redirect(A.current_income), 2200);
-  });
+  // Wait for iframe to load then submit via postMessage
+  const iframe = document.getElementById('ghl-form-iframe');
+  
+  function sendToGHL() {
+    try {
+      iframe.contentWindow.postMessage({
+        type: 'form-submission',
+        data: Object.fromEntries(fields)
+      }, 'https://brand.gotaxteam.com');
+    } catch(e) {}
+
+    // Also try direct form field injection
+    try {
+      const iDoc = iframe.contentDocument || iframe.contentWindow.document;
+      fields.forEach(([name, val]) => {
+        const el = iDoc.querySelector(`[name="${name}"]`);
+        if (el) {
+          el.value = val;
+          el.dispatchEvent(new Event('input', {bubbles:true}));
+          el.dispatchEvent(new Event('change', {bubbles:true}));
+        }
+      });
+      // Find and click submit
+      const submitBtn = iDoc.querySelector('button[type="submit"], input[type="submit"], .submit-btn');
+      if (submitBtn) submitBtn.click();
+    } catch(e) {}
+
+    // Redirect after 2.5s regardless
+    setTimeout(() => redirect(A.current_income), 2500);
+  }
+
+  if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+    sendToGHL();
+  } else {
+    iframe.onload = sendToGHL;
+    // Fallback if onload already fired
+    setTimeout(sendToGHL, 1500);
+  }
 }
 
 function redirect(income) {
+  // $400K+ hard line — all go to Aileen (variantC)
   switch(income) {
-    case 'Under $100,000':           window.location.href = R.disqualify;   break;
-    case '$100,000 – $400,000':      window.location.href = R.nonQualified; break;
-    case '$400,000 – $700,000':      window.location.href = R.variantA;     break;
-    case '$700,000 – $1,000,000':    window.location.href = R.variantB;     break;
-    case '$1,000,000+':              window.location.href = R.variantC;     break;
-    default:                         window.location.href = R.variantA;
+    case 'Under $100,000':    window.location.href = R.disqualify;   break;
+    case '$100,000 – $399,999': window.location.href = R.nonQualified; break;
+    case '$400,000+':         window.location.href = R.variantC;     break;
+    default:                  window.location.href = R.nonQualified;
   }
 }
 
