@@ -320,7 +320,6 @@ body::before {
   .trust-item:last-child { border-bottom:none; }
 }
 </style>
-<script src="https://www.google.com/recaptcha/enterprise.js?render=6LeDBFwpAAAAAJe8ux9-imrqZ2ueRsEtdiWoDDpX" async defer></script>
 </head>
 <body>
 
@@ -599,41 +598,34 @@ function finalSubmit() {
   const em = document.getElementById('fe').value.trim();
   const ph = document.getElementById('fp').value.trim();
 
-  // Post to Vercel proxy — forwards to GHL server-side (no CORS)
   const payload = {
-    formId:                 'i09YaDFj0y66doJJlKCM',
-    location_id:            '4HkogPO0ghTsjhHcnQBO',
-    first_name:             document.getElementById('ff').value.trim(),
-    last_name:              document.getElementById('fl2').value.trim(),
-    email:                  document.getElementById('fe').value.trim(),
-    phone:                  document.getElementById('fp').value.trim(),
-    tcpa_sms_consent:       document.getElementById('tcpa-sms')?.checked ? 'Yes' : 'No',
-    tcpa_marketing_consent: document.getElementById('tcpa-mkt')?.checked ? 'Yes' : 'No',
-    pain_point:             A.pain_point             || '',
-    current_cpa_engagement: A.current_cpa_engagement || '',
-    tax_paid_range:         A.tax_paid_range         || '',
-    business_type:          A.business_type          || '',
-    last_year_income:       A.last_year_income        || '',
-    current_income:         A.current_income          || '',
+    first_name: fn,
+    last_name:  ln,
+    email:      em,
+    phone:      ph,
+    pain_point:             A['pain_point']             || '',
+    current_cpa_engagement: A['current_cpa_engagement'] || '',
+    tax_paid_range:         A['tax_paid_range']         || '',
+    business_type:          A['business_type']          || '',
+    last_year_income:       A['last_year_income']       || '',
+    current_income:         A['current_income']         || '',
+    tcpa_sms_consent:       true,
+    tcpa_marketing_consent: true,
   };
 
-  // Get reCAPTCHA enterprise token, then submit to proxy
-  (typeof grecaptcha !== 'undefined'
-    ? new Promise(resolve => { try { grecaptcha.enterprise.ready(() => grecaptcha.enterprise.execute('6LeDBFwpAAAAAJe8ux9-imrqZ2ueRsEtdiWoDDpX', {action:'submit'}).then(resolve).catch(() => resolve(''))); } catch(e) { resolve(''); } })
-    : Promise.resolve('')
-  ).then(recaptchaToken => {
-    payload.recaptchaToken = recaptchaToken || '';
-    return fetch('/api/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+  fetch('/api/submit', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload),
   })
   .then(r => r.json())
-  .then(data => console.log('GHL response:', data))
-  .catch(err => console.error('Submit error:', err))
-  .finally(() => {
-    setTimeout(() => redirect(A.current_income), 2200);
+  .then(data => {
+    console.log('GHL submit:', data);
+    goTo(9); // show results screen
+  })
+  .catch(err => {
+    console.error('Submit error:', err);
+    goTo(9); // still show results even if submission fails
   });
 }
 
