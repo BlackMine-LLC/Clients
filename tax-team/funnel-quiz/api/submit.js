@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     if (body.last_year_income)        customFields.push({ key: 'last_year_income',         field_value: body.last_year_income });
     if (body.current_income)          customFields.push({ key: 'current_income',           field_value: body.current_income });
 
-    const payload = {
+    const contactPayload = {
       locationId:  LOCATION_ID,
       firstName:   body.first_name   || '',
       lastName:    body.last_name    || '',
@@ -41,6 +41,7 @@ export default async function handler(req, res) {
       customFields,
     };
 
+    // Step 1: Create (or update) the contact
     const ghlRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
       method: 'POST',
       headers: {
@@ -49,13 +50,41 @@ export default async function handler(req, res) {
         'Content-Type':   'application/json',
         'Accept':         'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(contactPayload),
     });
 
     const ghlText = await ghlRes.text();
     let ghlData;
     try { ghlData = JSON.parse(ghlText); }
     catch { ghlData = { raw: ghlText }; }
+
+    // Step 2: If contact was created/found, add a note with the full quiz answers
+    const contactId = ghlData?.contact?.id;
+    if (contactId && ghlRes.ok) {
+      const noteBody = [
+        '📋 Quiz Funnel Submission',
+        '',
+        `Pain point: ${body.pain_point || '—'}`,
+        `Current CPA engagement: ${body.current_cpa_engagement || '—'}`,
+        `Tax paid range: ${body.tax_paid_range || '—'}`,
+        `Business type: ${body.business_type || '—'}`,
+        `Last year income: ${body.last_year_income || '—'}`,
+        `Current income: ${body.current_income || '—'}`,
+        `SMS consent: ${body.tcpa_sms_consent}`,
+        `Marketing consent: ${body.tcpa_marketing_consent}`,
+      ].join('\n');
+
+      // Fire-and-forget note creation (don't block the response)
+      fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/notes`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GHL_API_KEY}`,
+          'Version':        '2021-07-28',
+          'Content-Type':   'application/json',
+        },
+        body: JSON.stringify({ body: noteBody, userId: '' }),
+      }).catch(err => console.error('Note creation failed:', err));
+    }
 
     return res.status(ghlRes.status).json({
       success: ghlRes.ok,
