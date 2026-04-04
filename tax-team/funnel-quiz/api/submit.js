@@ -1,70 +1,70 @@
 export default async function handler(req, res) {
-          if (req.method === 'OPTIONS') {
-                      res.setHeader('Access-Control-Allow-Origin', '*');
-                      res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-                      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-                      return res.status(200).end();
-          }
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    return res.status(200).end();
+  }
 
   res.setHeader('Access-Control-Allow-Origin', '*');
-          res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-          res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method !== 'POST') {
-              return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-              const body = req.body;
+    const body = req.body;
 
-            // Build form-encoded payload for GHL — include reCAPTCHA token if provided
-            const params = new URLSearchParams({
-                          formId:                 body.formId                  || 'i09YaDFj0y66doJJlKCM',
-                          location_id:            body.location_id             || '4HkogPO0ghTsjhHcnQBO',
-                          first_name:             body.first_name              || '',
-                          last_name:              body.last_name               || '',
-                          email:                  body.email                   || '',
-                          phone:                  body.phone                   || '',
-                          pain_point:             body.pain_point              || '',
-                          current_cpa_engagement: body.current_cpa_engagement  || '',
-                          tax_paid_range:         body.tax_paid_range          || '',
-                          business_type:          body.business_type           || '',
-                          last_year_income:       body.last_year_income        || '',
-                          current_income:         body.current_income          || '',
-                          tcpa_sms_consent:       String(body.tcpa_sms_consent        || false),
-                          tcpa_marketing_consent: String(body.tcpa_marketing_consent  || false),
-            });
+    // GHL API v2 — server-to-server, no Cloudflare WAF issues
+    const GHL_API_KEY = 'pit-3e1dcd27-51f1-4319-99c8-6e28625b7d6d';
+    const LOCATION_ID = '4HkogPO0ghTsjhHcnQBO';
 
-            // Include reCAPTCHA token if the browser sent one
-            if (body.recaptchaToken) {
-                          params.set('g-recaptcha-response', body.recaptchaToken);
-            }
+    // Build custom fields array for quiz answers
+    const customFields = [];
+    if (body.pain_point)              customFields.push({ key: 'pain_point',              field_value: body.pain_point });
+    if (body.current_cpa_engagement)  customFields.push({ key: 'current_cpa_engagement',  field_value: body.current_cpa_engagement });
+    if (body.tax_paid_range)          customFields.push({ key: 'tax_paid_range',           field_value: body.tax_paid_range });
+    if (body.business_type)           customFields.push({ key: 'business_type',            field_value: body.business_type });
+    if (body.last_year_income)        customFields.push({ key: 'last_year_income',         field_value: body.last_year_income });
+    if (body.current_income)          customFields.push({ key: 'current_income',           field_value: body.current_income });
 
-            const ghlRes = await fetch('https://backend.leadconnectorhq.com/forms/submit', {
-                          method: 'POST',
-                          headers: {
-                                          'Content-Type': 'application/x-www-form-urlencoded',
-                                          'Accept': 'application/json, text/plain, */*',
-                                          'Referer': 'https://tax-team-quiz.vercel.app/',
-                                          'Origin': 'https://tax-team-quiz.vercel.app',
-                                          'User-Agent': req.headers['user-agent'] || 'Mozilla/5.0',
-                          },
-                          body: params.toString(),
-            });
+    const payload = {
+      locationId:  LOCATION_ID,
+      firstName:   body.first_name   || '',
+      lastName:    body.last_name    || '',
+      email:       body.email        || '',
+      phone:       body.phone        || '',
+      source:      'Quiz Funnel',
+      tags:        ['quiz-lead'],
+      customFields,
+    };
 
-            const ghlText = await ghlRes.text();
-              let ghlData;
-              try { ghlData = JSON.parse(ghlText); }
-              catch { ghlData = { raw: ghlText }; }
+    const ghlRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GHL_API_KEY}`,
+        'Version':        '2021-07-28',
+        'Content-Type':   'application/json',
+        'Accept':         'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-            return res.status(ghlRes.status).json({
-                          success: ghlRes.ok,
-                          status:  ghlRes.status,
-                          ghl:     ghlData,
-            });
+    const ghlText = await ghlRes.text();
+    let ghlData;
+    try { ghlData = JSON.parse(ghlText); }
+    catch { ghlData = { raw: ghlText }; }
+
+    return res.status(ghlRes.status).json({
+      success: ghlRes.ok,
+      status:  ghlRes.status,
+      ghl:     ghlData,
+    });
 
   } catch (err) {
-              console.error('Proxy error:', err);
-              return res.status(500).json({ error: err.message });
+    console.error('Proxy error:', err);
+    return res.status(500).json({ error: err.message });
   }
 }
