@@ -619,13 +619,10 @@ function finalSubmit() {
     body:    JSON.stringify(payload),
   })
   .then(r => r.json())
-  .then(data => {
-    console.log('GHL submit:', data);
-    goTo(9); // show results screen
-  })
-  .catch(err => {
-    console.error('Submit error:', err);
-    goTo(9); // still show results even if submission fails
+  .then(data => console.log('GHL submit:', data))
+  .catch(err => console.error('Submit error:', err))
+  .finally(() => {
+    setTimeout(() => redirect(A['current_income']), 2200);
   });
 }
 
