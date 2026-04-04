@@ -8,7 +8,7 @@
 <style>
 :root {
   --emerald:   #00C389;
-  --emerald-dk:#009E6E;
+  --emerald-dk:#009E6E;h
   --gold:      #B8955A;
   --ink:       #16150D;
   --ink-2:     #2C2B1E;
@@ -320,6 +320,7 @@ body::before {
   .trust-item:last-child { border-bottom:none; }
 }
 </style>
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6LeDBFwpAAAAAJe8ux9-imrqZ2ueRsEtdiWoDDpX" async defer></script>
 </head>
 <body>
 
@@ -616,10 +617,17 @@ function finalSubmit() {
     current_income:         A.current_income          || '',
   };
 
-  fetch('/api/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+  // Get reCAPTCHA enterprise token, then submit to proxy
+  (typeof grecaptcha !== 'undefined'
+    ? new Promise(resolve => { try { grecaptcha.enterprise.ready(() => grecaptcha.enterprise.execute('6LeDBFwpAAAAAJe8ux9-imrqZ2ueRsEtdiWoDDpX', {action:'submit'}).then(resolve).catch(() => resolve(''))); } catch(e) { resolve(''); } })
+    : Promise.resolve('')
+  ).then(recaptchaToken => {
+    payload.recaptchaToken = recaptchaToken || '';
+    return fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
   })
   .then(r => r.json())
   .then(data => console.log('GHL response:', data))
