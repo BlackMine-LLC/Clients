@@ -88,384 +88,215 @@ h1,h2,h3,h4,.hero-hl,.h2,.h3{font-size:revert}
 .nav-cta:hover{background:var(--ink-2)}
 .nav-cta.lit{background:var(--emerald);color:var(--ink);box-shadow:0 0 0 4px rgba(0,195,137,.2)}
 
-/* ════════════════════════════════
-   HERO — split-screen layout
-
-   Desktop: two equal columns side by side,
-   full viewport height.
-   LEFT = ink panel, headline reversed cream.
-   RIGHT = cream panel, CTA + proof.
-   The vertical dividing line between them
-   is the only "decoration" needed.
-
-   Mobile: stacks vertically.
-   Ink panel first (headline), cream second (CTA).
-════════════════════════════════ */
+/* ══════════════════════════════════════════════════
+   S1 — HERO
+   Asymmetric split: massive headline left-dominant,
+   VSL right. Grain texture overlay. No bottom padding.
+   ══════════════════════════════════════════════════ */
 #hero{
+  background:var(--cream);
+  padding-top:var(--nav-h);
+  min-height:100svh;
   display:grid;
   grid-template-columns:1fr;
-  grid-template-rows:auto auto;
-  min-height:100svh;
-  padding-top:56px; /* nav height */
-}
-@media(min-width:720px){
-  #hero{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:1fr;
-    height:100svh;
-    padding-top:56px;
-  }
-}
-
-/* ── INK PANEL (left / top-mobile) ── */
-.ink-panel{
-  background:var(--ink);
   position:relative;
-  display:flex;flex-direction:column;
-  justify-content:flex-end; /* pushes headline to bottom */
   overflow:hidden;
-  min-height:55vw;
 }
-@media(min-width:720px){
-  .ink-panel{min-height:unset;height:100%}
+@media(min-width:900px){
+  #hero{grid-template-columns:1fr 1fr;min-height:100svh}
 }
 
-/* Grain on ink */
-.ink-panel::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
+/* Grain overlay — adds texture depth */
+#hero::before{
+  content:'';position:absolute;inset:0;z-index:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size:256px;opacity:.07;
-}
-/* Emerald radial — subtle warmth top */
-.ink-panel::after{
-  content:'';position:absolute;
-  top:-30%;right:-20%;
-  width:70%;height:70%;
-  background:radial-gradient(circle,rgba(0,195,137,.08) 0%,transparent 65%);
-  border-radius:50%;pointer-events:none;
+  pointer-events:none;
 }
 
-/* ── HEADLINE ───────────────────
-   Anchored to bottom of ink panel.
-   Font size fills the column width.
-   Uses viewport-width units so it
-   always looks intentional, never
-   accidental.
-────────────────────────────── */
-.ink-copy{
+/* LEFT — headline column */
+.hero-left{
   position:relative;z-index:1;
-  padding:clamp(24px,4vw,40px) clamp(24px,4vw,40px) clamp(28px,5vw,44px);
+  padding:clamp(48px,8vw,96px) var(--pad);
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:none;
 }
-.ink-label{
-  font-family:var(--H);font-weight:700;
-  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
-  color:rgba(245,240,232,.35);
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:clamp(16px,3vw,24px);
-}
-.ink-label::before{
-  content:'';width:18px;height:1px;
-  background:var(--gold);flex-shrink:0;
-}
-.hero-h1{
-  font-family:var(--D);font-weight:400;
-  /* Scale to fill column: on mobile ~45vw, on desktop ~45vw */
-  font-size:clamp(38px,8.5vw,88px);
-  line-height:.88;letter-spacing:-.025em;
-  text-transform:uppercase;
-  color:var(--cream);
-  margin-bottom:0;
-}
-/* Highlight — ink panel means we invert:
-   emerald text on a cream-ish background block.
-   This matches the reference image exactly.
-   Background is --tan (#E6E0D4) — clearly
-   visible against the ink background. */
-.hero-h1 mark{
-  background:none;
-  color:var(--em);
-  display:inline;
-  text-decoration:underline;
-  text-decoration-color:var(--em);
-  text-decoration-thickness:4px;
-  text-underline-offset:6px;
-  padding:0;
-  border-radius:0;
+@media(min-width:900px){
+  .hero-left{border-right:1px solid var(--rule)}
 }
 
-/* Gold hairline separator at bottom of ink panel */
-.ink-line{
-  height:3px;
-  background:linear-gradient(90deg,var(--gold),transparent);
-  flex-shrink:0;
-  position:relative;z-index:1;
-}
-
-/* ── CREAM PANEL (right / bottom-mobile) ── */
-.cream-panel{
-  background:var(--cream);
-  display:flex;flex-direction:column;
-  justify-content:center;
-  padding:clamp(32px,5vw,56px) clamp(24px,4vw,48px);
-  border-left:0;
-  position:relative;
-}
-@media(min-width:720px){
-  .cream-panel{
-    border-left:1px solid rgba(24,24,15,.1);
-  }
-}
-
-/* ── DECK ──
-   Copywriting skill: specific outcome,
-   not vague promise. Leads with contrast
-   ("Most CPAs file. We reduce.") */
-.c-deck{
-  font-family:var(--B);
-  font-size:clamp(17px,2.8vw,20px);
-  line-height:1.65;font-weight:300;
-  color:rgba(24,24,15,.65);
-  max-width:420px;
-  margin-bottom:clamp(28px,4vw,40px);
-}
-.c-deck strong{
-  font-family:var(--H);font-weight:700;
-  color:var(--ink);
-}
-
-/* ── PRIMARY CTA ──
-   Copywriting: action verb + specific outcome.
-   Full-width so it's unmissable on mobile.
-   Ink background — highest contrast on cream. */
-.c-cta{
-  display:flex;align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  width:100%;max-width:400px;
-  font-family:var(--H);font-weight:700;
-  font-size:clamp(11px,2vw,13px);
-  letter-spacing:.16em;text-transform:uppercase;
-  background:var(--ink);color:var(--cream);
-  padding:clamp(16px,3vw,20px) clamp(20px,3.5vw,28px);
-  border:none;cursor:pointer;
-  transition:background .15s,transform .12s,box-shadow .15s;
-  margin-bottom:12px;
-}
-.c-cta:hover{
-  background:#32321F;
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(24,24,15,.18);
-}
-.c-cta-arr{
-  font-family:var(--S);font-size:20px;font-weight:700;
-  line-height:1;flex-shrink:0;
-  transition:transform .12s;
-}
-.c-cta:hover .c-cta-arr{transform:translateX(5px)}
-
-/* ── OBJECTION LINE ── */
-.c-checks{
-  display:flex;align-items:center;gap:14px;
-  flex-wrap:wrap;
-  margin-bottom:clamp(28px,4.5vw,44px);
-}
-.c-check{
-  font-family:var(--S);font-size:17px;font-weight:600;
-  color:var(--muted);font-style:italic;
-  display:flex;align-items:center;gap:5px;
-}
-.c-check-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--em);flex-shrink:0;
-}
-
-/* ── PROOF STRIP ──
-   Three numbers separated by gold dots.
-   Clean, specific, no borders needed. */
-.c-proof{
-  display:flex;align-items:flex-start;
-  gap:clamp(16px,3.5vw,28px);
-  padding:clamp(18px,3vw,24px) 0;
-  border-top:1px solid rgba(24,24,15,.1);
-  border-bottom:1px solid rgba(24,24,15,.1);
-  margin-bottom:clamp(20px,3.5vw,28px);
-  flex-wrap:wrap;
-}
-.c-stat{display:flex;flex-direction:column;gap:3px}
-.c-stat-n{
-  font-family:var(--D);font-weight:400;
-  font-size:clamp(24px,4.5vw,36px);
-  line-height:1;letter-spacing:-.02em;color:var(--ink);
-}
-.c-stat-l{
-  font-family:var(--S);font-size:15px;font-weight:600;
-  color:var(--muted);font-style:italic;line-height:1.2;
-}
-.c-dot{
-  width:4px;height:4px;border-radius:50%;
-  background:var(--gold);opacity:.6;
-  align-self:center;flex-shrink:0;
-  margin-top:-2px;
-}
-
-/* ── ADVISORS ── */
-.c-advisors{
-  display:flex;flex-direction:column;gap:10px;
-}
-.c-advisor{
+.hero-kicker{
   display:flex;align-items:center;gap:12px;
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:clamp(20px,3vw,32px);
+  font-style:italic;
 }
-.c-av{
-  width:clamp(36px,5vw,44px);
-  height:clamp(36px,5vw,44px);
-  border-radius:50%;
-  border:1.5px solid var(--gold);
-  background:var(--tan);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--H);font-size:11px;font-weight:700;
-  color:var(--muted);flex-shrink:0;overflow:hidden;
-  transition:border-color .2s,transform .2s;
+.hero-kicker::before{content:'';width:28px;height:1px;background:var(--gold);flex-shrink:0}
+.hero-kicker-num{font-size:10px;color:var(--gold);font-style:normal}
+
+/* THE headline — BGBlack, full width, no max-width */
+.hero-hl{
+  font-family:var(--font-d);font-weight:400;
+  font-size:clamp(34px,6.5vw,96px);
+  line-height:.86;
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:clamp(20px,3vw,36px);
+  width:100%;
 }
-.c-av:hover{border-color:var(--em);transform:scale(1.05)}
-.c-av img{width:100%;height:100%;object-fit:cover}
-.c-av-n{
-  font-family:var(--H);font-size:12px;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;
-  color:var(--ink);display:block;
-}
-.c-av-r{
-  font-family:var(--S);font-size:15px;
-  color:var(--muted);font-style:italic;
+.hero-hl em{
+  font-style:normal;
+  /* Gold highlight bar behind "Is Now" */
+  background:linear-gradient(transparent 52%,var(--gold-lt) 52%);
+  color:var(--emerald);
 }
 
-/* ════════════════════════════════
-   ANIMATIONS — one entrance, done
-════════════════════════════════ */
-@keyframes riseUp{
-  from{opacity:0;transform:translateY(22px)}
-  to  {opacity:1;transform:translateY(0)}
-}
-.a{opacity:0}
-.a.go{animation:riseUp .6s cubic-bezier(.22,1,.36,1) forwards}
-.d0{animation-delay:.05s}
-.d1{animation-delay:.14s}
-.d2{animation-delay:.23s}
-.d3{animation-delay:.32s}
-.d4{animation-delay:.42s}
-.d5{animation-delay:.52s}
-.d6{animation-delay:.62s}
-
-/* ── CENTER ALL TEXT ≤ 460px ─────────────────────────
-   Every element in both panels centers on phones/tablets.
-───────────────────────────────────────────────────── */
-@media(max-width:460px){
-  /* Ink panel */
-  .ink-copy{
-    align-items:center;
-    text-align:center;
-  }
-  .ink-label{
-    justify-content:center;
-  }
-  .ink-label::before{
-    display:none;
-  }
-  .hero-h1{
-    text-align:center;
-  }
-  /* Cream panel */
-  .cream-panel{
-    align-items:center;
-    text-align:center;
-  }
-  .c-deck{
-    text-align:center;
-    max-width:none;
-  }
-  .c-cta{
-    max-width:none;
-    width:100%;
-    justify-content:center;
-  }
-  .c-checks{
-    justify-content:center;
-  }
-  .c-proof{
-    justify-content:center;
-  }
-  .c-stat{
-    align-items:center;
-  }
-  .c-advisors{
-    align-items:center;
-  }
-  .c-advisor{
-    flex-direction:column;
-    align-items:center;
-    gap:6px;
-    text-align:center;
-  }
+.hero-rule{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,var(--gold),var(--rule));
+  margin-bottom:clamp(20px,3vw,32px);
+  flex-shrink:0;
 }
 
-/* ── ADVISOR PHOTOS — full width ── */
-.c-advisors{{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  width:100%;
-  margin-top:4px;
-}}
-.c-advisor{{
-  display:flex;flex-direction:column;
-}}
-/* Real photo — drop-in class */
-.advisor-photo{{
-  width:100%;
-  height:clamp(140px,20vw,200px);
-  object-fit:cover;
-  object-position:top;
-  display:block;
-}}
-/* Placeholder until photos uploaded */
-.advisor-photo-ph{{
-  width:100%;
-  height:clamp(140px,20vw,200px);
-  background:rgba(24,24,15,.06);
-  border:1px dashed rgba(24,24,15,.2);
-  display:flex;align-items:flex-end;
+.hero-deck{
+  font-size:clamp(15px,2.2vw,19px);
+  color:var(--ink-2);
+  line-height:1.7;
+  font-weight:300;
+  max-width:480px;
+  margin-bottom:clamp(28px,4vw,44px);
   position:relative;
-  overflow:hidden;
-}}
-.advisor-ph-label{{
-  padding:10px 14px;
-  background:rgba(24,24,15,.06);
-  width:100%;
-}}
-.advisor-ph-name{{
-  font-family:var(--H);font-weight:700;
-  font-size:12px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--ink);display:block;
-}}
-.advisor-ph-role{{
-  font-family:var(--S);font-size:14px;
-  color:var(--muted);font-style:italic;display:block;
-}}
+}
+/* Arrow annotation on deck */
+.hero-deck::before{
+  content:'→';
+  font-family:var(--font-s);
+  font-size:18px;
+  color:var(--gold);
+  margin-right:8px;
+  font-weight:600;
+}
 
-/* ── MOBILE CENTER ≤460px ── */
-@media(max-width:460px){{
-  .ink-copy{{text-align:center;align-items:center;display:flex;flex-direction:column}}
-  .ink-label{{justify-content:center}}
-  .hero-h1{{text-align:center}}
-  .cream-panel{{align-items:center;text-align:center}}
-  .c-deck{{text-align:center;margin-inline:auto}}
-  .c-cta{{margin-inline:auto}}
-  .c-checks{{justify-content:center}}
-  .c-proof{{justify-content:center}}
-  .c-stat{{align-items:center}}
-  .c-advisors{{align-items:center}}
-  .c-advisor{{flex-direction:column;text-align:center;gap:8px}}
-  .c-av-n,.c-av-r{{display:block;text-align:center}}
-}}
+/* Face CTA */
+.face-cta{
+  display:inline-flex;align-items:center;gap:14px;
+  background:var(--ink);
+  padding:14px 20px;
+  cursor:pointer;
+  transition:background .2s,transform .15s;
+  text-decoration:none;
+  max-width:440px;
+}
+.face-cta:hover{background:var(--ink-2);transform:translateY(-2px)}
+.face-av{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--emerald);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-family:var(--font-h);font-size:13px;font-weight:700;
+  color:var(--white);
+  letter-spacing:.04em;
+}
+.face-txt{display:flex;flex-direction:column;gap:3px}
+.face-name{
+  font-family:var(--font-h);font-weight:700;
+  font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--white) !important;line-height:1;
+}
+.face-sub{
+  font-size:14px;
+  color:var(--cream) !important;
+  font-family:var(--font-s);font-weight:400;
+  line-height:1.2;
+}
+.face-note{
+  font-size:14px;color:var(--ink-4);
+  letter-spacing:.04em;margin-top:10px;
+}
+
+/* RIGHT — VSL column */
+.hero-right{
+  position:relative;z-index:1;
+  background:var(--ink);
+  min-height:clamp(320px,50vw,100%);
+  display:flex;flex-direction:column;
+}
+
+/* VSL fills the right column */
+.vsl-main{
+  flex:1;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#1a1a10,#1c3733);
+}
+/* Radial glow inside VSL */
+.vsl-main::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 55% 45%,rgba(184,149,90,.07),transparent 65%);
+  pointer-events:none;
+}
+.vsl-play-wrap{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:18px;z-index:2;
+}
+.vsl-btn{
+  width:76px;height:76px;border-radius:50%;
+  background:rgba(245,240,232,.1);
+  border:1px solid rgba(245,240,232,.3);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s,transform .2s;
+}
+.vsl-btn:hover{background:rgba(245,240,232,.2);transform:scale(1.06)}
+.vsl-btn svg{width:28px;height:28px;fill:var(--cream);margin-left:4px}
+.vsl-label{
+  font-family:var(--font-h);font-size:14px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(245,240,232,.65);
+}
+.vsl-sub{
+  font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(245,240,232,.35);
+  font-family:var(--font-b);
+}
+
+/* Sticky note — overlaps corner of VSL */
+.sticky{
+  position:absolute;top:24px;right:24px;z-index:10;
+  background:#F5F0D0;
+  padding:18px 20px 22px;
+  width:clamp(160px,22vw,210px);
+  box-shadow:3px 6px 24px rgba(0,0,0,.25),0 1px 0 rgba(255,255,255,.15);
+  transform:rotate(2.5deg);
+  font-family:var(--font-s);
+}
+.sticky::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:rgba(0,0,0,.07);
+}
+.sticky-lbl{
+  font-size:14px;font-weight:600;color:rgba(24,24,15,.5);
+  margin-bottom:8px;letter-spacing:.02em;
+}
+.sticky-num{
+  font-family:var(--font-d);font-size:38px;font-weight:400;
+  color:var(--forest);line-height:1;margin:6px 0 8px;
+}
+.sticky-body{font-size:15px;color:var(--ink);line-height:1.45;font-weight:400}
+
+/* VSL bar */
+.vsl-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;
+  background:rgba(24,24,15,.6);
+  backdrop-filter:blur(8px);
+  border-top:1px solid rgba(245,240,232,.06);
+  flex-shrink:0;
+}
+.vsl-bar-l{
+  font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(245,240,232,.5);font-family:var(--font-h);font-weight:700;
+}
+.vsl-bar-r{font-size:14px;color:rgba(245,240,232,.35);font-family:var(--font-s);font-weight:400}
+
 /* ══════════════════════════════════════════════════
    S2 — PROOF
    Dark band: 3 stat pills + scrolling reviews
@@ -943,105 +774,65 @@ h1,h2,h3,h4,.hero-hl,.h2,.h3{font-size:revert}
 </a>
 
 <!-- ══ S1: HERO ════════════════════════════════════ -->
-<!-- HERO -->
-<main id="hero">
+<section id="hero">
 
-  <!-- LEFT/TOP: ink panel — headline -->
-  <section class="ink-panel" aria-labelledby="hero-h1">
-    <div class="ink-copy">
-
-      <div class="ink-label a d0">
-        For $400K–$2M+ Business Owners
-      </div>
-
-      <h1 class="hero-h1 a d1" id="hero-h1">
-        The Best Time<br>
-        to Cut Your<br>
-        Tax Bill Was<br>
-        January.<br>
-        <mark>The Second<br>Best Time<br>Is Now.</mark>
-      </h1>
-
+  <!-- LEFT: headline -->
+  <div class="hero-left">
+    <div class="hero-kicker anim d1">
+      <span class="hero-kicker-num">I.</span>
+      The private firm standard
     </div>
-    <div class="ink-line a d2"></div>
-  </section>
 
-  <!-- RIGHT/BOTTOM: cream panel — CTA + proof -->
-  <section class="cream-panel" aria-label="Take action">
+    <h1 class="hero-hl anim d2">
+      The Best Time<br>
+      to Cut Your<br>
+      Tax Bill Was<br>
+      January.<br>
+      <em>The Second<br>Best Time<br>Is Now.</em>
+    </h1>
 
-    <p class="c-deck a d2">
-      <strong>Most CPAs file. We reduce.</strong> We work year-round with high earners to find the money their CPA never looked for — before April, not after.
+    <div class="hero-rule anim d2"></div>
+
+    <p class="hero-deck anim d3">
+      Filing is not a strategy. We work with $400K–$2M+ earners year-round — so when April comes, the work is already done.
     </p>
 
-    <a href="https://tax-team-quiz.vercel.app/"
-       class="c-cta a d3"
-       aria-label="Take the free 2-minute quiz to find your hidden tax savings">
-      <span>Find My Hidden Savings</span>
-      <span class="c-cta-arr" aria-hidden="true">→</span>
-    </a>
-
-    <div class="c-checks a d3">
-      <span class="c-check">
-        <span class="c-check-dot" aria-hidden="true"></span>
-        Free
-      </span>
-      <span class="c-check">
-        <span class="c-check-dot" aria-hidden="true"></span>
-        2 minutes
-      </span>
-      <span class="c-check">
-        <span class="c-check-dot" aria-hidden="true"></span>
-        No sales pitch
-      </span>
-    </div>
-
-    <div class="c-proof a d4" role="list" aria-label="Credentials">
-      <div class="c-stat" role="listitem">
-        <span class="c-stat-n">$50K</span>
-        <span class="c-stat-l">avg. found<br>in year one</span>
-      </div>
-      <div class="c-dot" aria-hidden="true"></div>
-      <div class="c-stat" role="listitem">
-        <span class="c-stat-n">10K+</span>
-        <span class="c-stat-l">clients<br>since 2009</span>
-      </div>
-      <div class="c-dot" aria-hidden="true"></div>
-      <div class="c-stat" role="listitem">
-        <span class="c-stat-n">5.0★</span>
-        <span class="c-stat-l">Google<br>rating</span>
-      </div>
-    </div>
-
-    <div class="c-advisors a d5" role="group" aria-label="Your advisors">
-      <div class="c-advisor">
-        <!--
-          UPLOAD PHOTO: Replace this entire div with:
-          <img src="aileen-guillen.jpg" alt="Aileen Guillen, Founder and CEO of The Tax Team"
-               class="advisor-photo" width="400" height="240"/>
-        -->
-        <div class="advisor-photo-ph" aria-label="Aileen Guillen photo — upload to replace">
-          <div class="advisor-ph-label">
-            <span class="advisor-ph-name">Aileen Guillen</span>
-            <span class="advisor-ph-role">Founder &amp; CEO</span>
-          </div>
+    <div class="anim d4" style="display:flex;flex-direction:column;align-items:flex-start;gap:0;width:100%">
+      <a href="#apply" class="face-cta">
+        <div class="face-av">AG</div>
+        <div class="face-txt">
+          <span class="face-name">Apply for a Tax Strategy Call →</span>
+          <span class="face-sub">30 min with Aileen · No pitch, just your numbers</span>
         </div>
-      </div>
-      <div class="c-advisor">
-        <!--
-          UPLOAD PHOTO: Replace this entire div with:
-          <img src="mike-darna.jpg" alt="Mike Darna, Vice President of The Tax Team"
-               class="advisor-photo" width="400" height="240"/>
-        -->
-        <div class="advisor-photo-ph" aria-label="Mike Darna photo — upload to replace">
-          <div class="advisor-ph-label">
-            <span class="advisor-ph-name">Mike Darna</span>
-            <span class="advisor-ph-role">Vice President</span>
-          </div>
+      </a>
+      <p class="face-note">We review every application · $400K+ earners only</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: VSL -->
+  <div class="hero-right">
+    <div class="vsl-main">
+      <div class="vsl-play-wrap">
+        <div class="vsl-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         </div>
+        <span class="vsl-label">Watch — Swap with VSL</span>
+        <span class="vsl-sub">Aileen Guillen · CEO, The Tax Team</span>
+      </div>
+      <!-- Sticky note -->
+      <div class="sticky">
+        <div class="sticky-lbl">On record</div>
+        <div class="sticky-num">$50K</div>
+        <div class="sticky-body">Found in 90 days. 6-year CPA never looked.</div>
       </div>
     </div>
+    <div class="vsl-bar">
+      <span class="vsl-bar-l">The Tax Team · Miami, FL</span>
+      <span class="vsl-bar-r">3 min · Your numbers, your strategy</span>
+    </div>
+  </div>
 
-  </section>
+</section>
 
 <!-- ══ S2: PROOF ════════════════════════════════════ -->
 <section id="proof">
