@@ -1,6 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<!-- Meta Pixel Code — The Tax Team Funnel Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1472135817800681');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1472135817800681&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Base Pixel -->
+
+<!-- Lead Event — fires when quiz form is submitted -->
+<script>
+function fireLeadEvent() {
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Lead');
+  }
+}
+</script>
+
+<!-- Schedule Event — fires when contact lands on thank you page -->
+<script>
+function fireScheduleEvent() {
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Schedule');
+  }
+}
+</script>
+<!-- End Meta Pixel Code -->
+  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tax Strategy Quiz — The Tax Team</title>
@@ -622,8 +660,9 @@ function finalSubmit() {
   .then(data => console.log('GHL submit:', data))
   .catch(err => console.error('Submit error:', err))
   .finally(() => {
-    setTimeout(() => redirect(A['current_income']), 2200);
-  });
+  fireLeadEvent();
+  setTimeout(() => redirect(A['current_income']), 2200);
+});
 }
 
 function redirect(income) {
