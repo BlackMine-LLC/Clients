@@ -1,1 +1,1733 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ad Research Hub for Aileen — Meta Ad Library</title>
+<style>
+:root {
+  --bg: #FAF7F2;
+  --paper: #FFFFFF;
+  --ink: #111827;
+  --muted: #6B7280;
+  --line: #E5E7EB;
+  --accent: #B7791F;        /* warm gold */
+  --accent-soft: #FEF3C7;
+  --green: #166534;
+  --green-soft: #DCFCE7;
+  --red: #B91C1C;
+  --red-soft: #FEE2E2;
+  --navy: #1F2937;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 12px rgba(0,0,0,.04);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--navy); color: #fff;
+  border-bottom: 1px solid #0d141f;
+}
+.topbar__inner {
+  max-width: 1180px; margin: 0 auto; padding: 14px 28px;
+  display: flex; gap: 28px; align-items: center; justify-content: space-between;
+  flex-wrap: wrap;
+}
+.topbar__brand { font-weight: 700; font-size: 15px; letter-spacing: .02em; }
+.topbar__brand small { font-weight: 400; color: #9ca3af; margin-left: 8px; font-size: 12px; }
+.topnav { display: flex; gap: 4px; flex-wrap: wrap; }
+.topnav a {
+  color: #d1d5db; padding: 6px 10px; font-size: 13px; border-radius: 6px;
+}
+.topnav a:hover { background: rgba(255,255,255,.08); color: #fff; text-decoration: none; }
+
+/* ---------- hero ---------- */
+.hero {
+  max-width: 1180px; margin: 0 auto; padding: 60px 28px 24px;
+}
+.hero h1 {
+  font-size: 44px; line-height: 1.1; margin: 0 0 12px; font-weight: 800;
+  letter-spacing: -.02em;
+}
+.hero .kicker {
+  display: inline-block; padding: 4px 10px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent); font-size: 12px;
+  font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px;
+}
+.hero p.lede { font-size: 18px; color: var(--muted); max-width: 760px; margin: 0; }
+
+/* ---------- how to use ---------- */
+.howto {
+  max-width: 1180px; margin: 32px auto 8px; padding: 0 28px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;
+}
+.howto__card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+  padding: 18px; box-shadow: var(--shadow);
+}
+.howto__num {
+  font-size: 12px; font-weight: 800; color: var(--accent); letter-spacing: .12em;
+}
+.howto__card h3 { margin: 6px 0 6px; font-size: 16px; }
+.howto__card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* ---------- aileen priority callout ---------- */
+.priority {
+  max-width: 1180px; margin: 32px auto 0; padding: 24px 28px;
+  background: linear-gradient(180deg, #FEF7E6 0%, #FEF3C7 100%);
+  border: 1px solid #FCD34D; border-radius: 14px;
+  display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start;
+}
+.priority__icon {
+  font-size: 28px; padding-top: 4px;
+}
+.priority h2 { margin: 0 0 6px; font-size: 20px; }
+.priority p { margin: 0 0 10px; color: #4B3502; }
+.priority ol { margin: 0 0 0 18px; padding: 0; color: #4B3502; }
+.priority ol li { margin-bottom: 4px; }
+
+/* ---------- sections ---------- */
+.section {
+  max-width: 1180px; margin: 56px auto 0; padding: 0 28px; scroll-margin-top: 80px;
+}
+.section__header {
+  border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 22px;
+}
+.section__title {
+  font-size: 26px; margin: 0 0 4px; font-weight: 800; letter-spacing: -.01em;
+}
+.section__subtitle { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* ---------- chips ---------- */
+.chips { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.chip {
+  font: inherit; cursor: pointer;
+  padding: 6px 14px; border-radius: 999px;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--line); font-size: 13px; font-weight: 500;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip-active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.chip-active:hover { color: #fff; border-color: var(--navy); }
+
+/* ---------- cards grid ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 18px;
+}
+.ad-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  position: relative; transition: transform .12s ease, box-shadow .12s ease;
+}
+.ad-card:hover { transform: translateY(-2px); box-shadow: 0 4px 18px rgba(0,0,0,.08); }
+.ad-card[data-tag="long-runner"]::before {
+  content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+  background: var(--green); border-radius: 14px 0 0 14px;
+}
+.ad-card[data-tag="high-income"]::before {
+  content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+  background: var(--accent); border-radius: 14px 0 0 14px;
+}
+.ad-card[data-tag="real-estate"]::before {
+  content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+  background: #94A3B8; border-radius: 14px 0 0 14px;
+}
+.ad-card__header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 10px; margin-bottom: 8px;
+}
+.ad-card__advertiser { font-weight: 700; font-size: 14px; }
+.ad-card__meta { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.4; }
+.ad-card__meta span { display: block; }
+
+.ad-card__badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 12px; }
+.badge {
+  font-size: 11px; padding: 3px 8px; border-radius: 999px; font-weight: 600;
+  letter-spacing: .02em;
+}
+.badge-long { background: var(--green-soft); color: var(--green); }
+.badge-icp { background: var(--accent-soft); color: var(--accent); }
+.badge-skip { background: var(--red-soft); color: var(--red); }
+.badge-brand { background: #E0E7FF; color: #3730A3; }
+.badge-event { background: #FCE7F3; color: #9D174D; }
+.badge-evergreen { background: #DBEAFE; color: #1E40AF; }
+.badge-recent { background: #F3F4F6; color: #374151; }
+.badge-audience { background: #ECFDF5; color: #065F46; }
+
+.ad-card__hook {
+  font-size: 17px; font-weight: 700; line-height: 1.35;
+  margin: 0 0 10px; color: var(--ink);
+}
+.ad-card__body {
+  font-size: 14px; color: #374151; margin: 0 0 14px;
+}
+.ad-card__details {
+  display: grid; grid-template-columns: 110px 1fr; column-gap: 10px; row-gap: 4px;
+  font-size: 12.5px; margin: 6px 0 14px;
+}
+.ad-card__details dt { color: var(--muted); }
+.ad-card__details dd { margin: 0; color: var(--ink); }
+.ad-card__note { color: #4B5563; font-style: italic; }
+.ad-card__footer { margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--line); }
+.ad-link {
+  display: inline-block; padding: 6px 12px; font-size: 13px;
+  font-weight: 600; color: var(--accent);
+  border: 1px solid var(--accent); border-radius: 8px;
+}
+.ad-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
+.ad-link-disabled { color: var(--muted); border-color: var(--line); cursor: default; }
+.ad-link-disabled:hover { background: transparent; color: var(--muted); }
+
+/* ---------- insights ---------- */
+.insights {
+  display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 6px;
+}
+.insight {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px; box-shadow: var(--shadow); display: grid;
+  grid-template-columns: auto 1fr; gap: 18px; align-items: start;
+}
+.insight__num {
+  font-size: 32px; font-weight: 900; color: var(--accent); line-height: 1;
+  width: 48px; text-align: center;
+}
+.insight__title { margin: 0 0 4px; font-size: 18px; }
+.insight__lede { margin: 0 0 10px; color: var(--muted); }
+.insight__examples { margin: 0 0 12px; padding-left: 18px; }
+.insight__examples li { margin-bottom: 4px; font-size: 14px; }
+.insight__for-aileen {
+  margin: 8px 0 0; padding: 12px 14px; background: var(--accent-soft);
+  border-left: 3px solid var(--accent); border-radius: 4px; font-size: 14px;
+}
+
+/* ---------- footer ---------- */
+.foot {
+  max-width: 1180px; margin: 64px auto 40px; padding: 24px 28px 0;
+  border-top: 1px solid var(--line); color: var(--muted); font-size: 13px;
+}
+.foot p { margin: 0 0 8px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 720px) {
+  .hero h1 { font-size: 32px; }
+  .topnav { gap: 0; }
+  .topnav a { padding: 6px 8px; }
+  .priority { grid-template-columns: 1fr; }
+  .ad-card__details { grid-template-columns: 1fr; }
+  .ad-card__details dt { color: var(--muted); margin-top: 4px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar__brand">Ad Research Hub <small>· Prepared for Aileen · 2026-04-28</small></div>
+    <div class="topnav">
+      <a href="#how">How to use</a>
+      <a href="#priority">Priority</a>
+      <a href="#karlton">Karlton</a>
+      <a href="#codie">Codie</a>
+      <a href="#natalie">Natalie</a>
+      <a href="#kw-strategist">KW: strategist</a>
+      <a href="#kw-planning">KW: planning</a>
+      <a href="#kw-savetaxes">KW: save on taxes</a>
+      <a href="#insights">Insights</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="kicker">Meta Ad Library · Competitive Research</span>
+  <h1>What's already working in Aileen's space.</h1>
+  <p class="lede">Pulled from the live Meta Ad Library. Every ad below has been paying for itself long enough to keep running — many for 200, 400, even 900+ days. The patterns repeat. This page lays them out so we can borrow what works.</p>
+</header>
+
+<section id="how" class="howto">
+  <div class="howto__card">
+    <div class="howto__num">01</div>
+    <h3>Skim the priority list</h3>
+    <p>The yellow callout below is the 60-second version: 5 ads to study, in order, before anything else.</p>
+  </div>
+  <div class="howto__card">
+    <div class="howto__num">02</div>
+    <h3>Open each section</h3>
+    <p>Three creators, three keyword scrapes. Each section has filter chips for narrowing by audience or pattern.</p>
+  </div>
+  <div class="howto__card">
+    <div class="howto__num">03</div>
+    <h3>Click "View on Meta Ad Library"</h3>
+    <p>Each card links to the live ad. Watch the actual creative, not just the copy.</p>
+  </div>
+  <div class="howto__card">
+    <div class="howto__num">04</div>
+    <h3>Read the Insights tab last</h3>
+    <p>5 patterns repeating across long-runners, with a one-line "for Aileen" application of each.</p>
+  </div>
+</section>
+
+<aside id="priority" class="priority">
+  <div class="priority__icon">★</div>
+  <div>
+    <h2>If Aileen reads only 5 ads in this doc, make it these.</h2>
+    <p>Each one is a long-runner (live 200+ days) <em>and</em> aligns with her ICP — high income earners, not real estate.</p>
+    <ol>
+      <li><strong>Karlton Dennis · "NEW! For High-Income Professionals & Business Owners Paying Over $100k/Year In Taxes"</strong> — same offer category as Aileen, identical ICP. <em>Library 970857415422690.</em></li>
+      <li><strong>EthicsPro Accounting · "$50,000 in tax savings, guaranteed — or $100 in your pocket"</strong> — 300 days live. The reverse-risk guarantee model. <em>Library 1397927444808864.</em></li>
+      <li><strong>Codie Sanchez · "3 businesses I would never buy… Let me tell you why"</strong> — 620+ days live on IG. The lowest-friction first ad to test in Aileen's voice.</li>
+      <li><strong>Natalie Dawson · "You built a beautiful business. And somehow you're still the one doing everything…"</strong> — closest tonal match to Aileen.</li>
+      <li><strong>Kyle Slagle · "Attention Physicians! Paying over $100K to the IRS?"</strong> — 380 days live. Profession-niched-down hook = the template to swap in Aileen's exact buyer.</li>
+    </ol>
+  </div>
+</aside>
+
+
+    <section id="karlton" class="section">
+      <div class="section__header">
+        <h2 class="section__title">Karlton Dennis · Tax Alchemy + Uplevel Entrepreneur</h2>
+        <p class="section__subtitle">~65 active ads on Karlton Dennis page · plus his sister page Uplevel Entrepreneur. Primary funnel: webinar → training (join.taxalchemy.com). The closest match to Aileen's offer in this set.</p>
+      </div>
+      <div class="chips" data-target="karlton"><button type="button" class="chip chip-active" data-filter="all">All</button><button type="button" class="chip" data-filter="high-income">Aileen ICP fit (high-income)</button>
+<button type="button" class="chip" data-filter="brand">Brand awareness</button>
+<button type="button" class="chip" data-filter="real-estate">Real estate (skip)</button></div>
+      <div class="cards" data-source="karlton">
+        
+    <article class="ad-card" data-tag="high-income" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 22, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">NEW! For High-Income Professionals &amp; Business Owners Paying Over $100k/Year In Taxes:</p>
+      <p class="ad-card__body">CPAs focus on filing returns, not saving you money. That&#x27;s why you need a Tax Strategist instead. The only difference between paying a fortune or saving a fortune is Tax Strategy.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Tax Alchemy / Strategist positioning</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>970857415422690</dd>
+        <dt>Note</dt><dd class="ad-card__note">★ THE Aileen template. Income-tier qualifier ($100k+) + reframe (CPA vs Strategist). 2 ads share creative.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=970857415422690" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="high-income" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 22, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">NEW! For High-Income Professionals &amp; Business Owners Paying Over $100k/Year In Taxes:</p>
+      <p class="ad-card__body">CPAs focus on filing returns, not saving you money. That&#x27;s why you need a Tax Strategist. The only difference between paying a fortune or saving a fortune is Tax Strategy.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Tax Alchemy / Strategist positioning</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>2178060783028498</dd>
+        <dt>Note</dt><dd class="ad-card__note">Identical hook to 970857415422690 — second variant for budget split-testing.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=2178060783028498" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="high-income" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 22, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">NEW! For High-Income Professionals Paying Over $100k/Year In Taxes:</p>
+      <p class="ad-card__body">CPAs focus on filing returns, not saving you money. That&#x27;s why you need a Tax Strategist instead. In fact, the only difference between paying a fortune or saving a fortune in taxes is Tax Strategy.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(In-video: $100k+ tax payer call-out)</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>2394039831388081</dd>
+        <dt>Note</dt><dd class="ad-card__note">2 ads use this creative. Slight body tweak vs. 970857415422690 — A/B body-copy test.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=2394039831388081" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="high-income" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 22, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">NEW! For High-Income Professionals Paying Over $100k/Year In Taxes:</p>
+      <p class="ad-card__body">(Same hook + body as 2394039831388081, different opener video.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(2 ads use this creative)</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>883713961356950</dd>
+        <dt>Note</dt><dd class="ad-card__note">Third variant on the $100k+ hook. Karlton is heavily testing this single message.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=883713961356950" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="high-income" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Uplevel Entrepreneur (Karlton sister page)</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 27, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">Maximizing wealth isn&#x27;t just about dollars, it&#x27;s about impact.</p>
+      <p class="ad-card__body">For those inclined towards charity but without a foundation, options like a Charitable Remainder Unit Trust (CRUT) offer a compelling alternative. This strategy allows individuals to contribute funds today for a future charitable donation while enjoying tax benefits.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Educational explainer — CRUT)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>(no LP)</dd>
+        <dt>Library ID</dt><dd>1485745796268225</dd>
+        <dt>Note</dt><dd class="ad-card__note">Pure-value educational ad. No CTA push. Builds authority + drives into the brand long-term.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1485745796268225" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="high-income" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Uplevel Entrepreneur (Karlton sister page)</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 27, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">💡 Three levers drive real tax savings.</p>
+      <p class="ad-card__body">High-income business owners, W-2 professionals, and real estate investors can generally pull three main levers when it comes to tax reduction. ✅ Deductions…</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(In-video: ✅ Deduction / lever framework)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>(no LP)</dd>
+        <dt>Library ID</dt><dd>(3 Levers — Uplevel)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Names Aileen&#x27;s ICP directly: &quot;high-income business owners, W-2 professionals&quot;. Use this hook structure verbatim.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="high-income" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Uplevel Entrepreneur (Karlton sister page)</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 27, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">Let&#x27;s Clear This Up Once and For All…</p>
+      <p class="ad-card__body">&quot;Only revocable trusts get a step-up in basis.&quot; That&#x27;s the myth. And here&#x27;s the truth: …</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>REVOCABLE / IRREVOCABLE</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>(no LP)</dd>
+        <dt>Library ID</dt><dd>(Trust Myth — Uplevel)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Myth → truth pattern. Pre-empts a misconception the prospect already holds — high engagement.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="high-income" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Uplevel Entrepreneur (Karlton sister page)</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 27, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">It&#x27;s tempting to get creative with tax strategies, but some things just don&#x27;t hold up when it comes to the IRS.</p>
+      <p class="ad-card__body">Even if you start a YouTube channel to showcase a Rolex as inventory, wearing it for personal use may trigger some serious tax penalties. Personal use equals a taxable event, and the IRS isn&#x27;t going to look the other way on that.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(In-video: ROLEX visual)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>(no LP)</dd>
+        <dt>Library ID</dt><dd>(Rolex / YouTube — Uplevel)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Pop-culture (Rolex) wrapped around a real warning. High curiosity click + perceived insider knowledge.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="brand" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Feb 4, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-brand">Brand awareness</span></div>
+      <p class="ad-card__hook">Discover how to maximize your wealth with Tax Alchemy Advisors.</p>
+      <p class="ad-card__body">(Brand-led; 1-line copy, video does the selling.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Talking-head testimonial)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>1445732447213868</dd>
+        <dt>Note</dt><dd class="ad-card__note">Brand-saturation play — DOZENS of slight video variants live with this same body copy.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1445732447213868" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="brand" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Feb 4, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-brand">Brand awareness</span></div>
+      <p class="ad-card__hook">Discover how to maximize your wealth with Tax Alchemy Advisors.</p>
+      <p class="ad-card__body">(Brand variant — different talking-head clip.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>—</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>868806026022194</dd>
+        <dt>Note</dt><dd class="ad-card__note">Variant #2 of the brand-saturation rollout.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=868806026022194" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="brand" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Feb 4, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-brand">Brand awareness</span></div>
+      <p class="ad-card__hook">Discover how to maximize your wealth with Tax Alchemy Advisors.</p>
+      <p class="ad-card__body">(Brand variant.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>—</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>260732440156335</dd>
+        <dt>Note</dt><dd class="ad-card__note">Variant #3.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=260732440156335" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="brand" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Feb 4, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-brand">Brand awareness</span></div>
+      <p class="ad-card__hook">Discover how to maximize your wealth with Tax Alchemy Advisors.</p>
+      <p class="ad-card__body">(Brand variant.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>—</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>2448963962186470</dd>
+        <dt>Note</dt><dd class="ad-card__note">Variant #4.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=2448963962186470" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="brand" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Feb 4, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-brand">Brand awareness</span></div>
+      <p class="ad-card__hook">Discover how to maximize your wealth with Tax Alchemy Advisors.</p>
+      <p class="ad-card__body">(Brand variant.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>—</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>1991812621366617</dd>
+        <dt>Note</dt><dd class="ad-card__note">Variant #5. &gt;80 days running.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1991812621366617" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="real-estate" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 8, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-skip">Not Aileen's lane</span></div>
+      <p class="ad-card__hook">Free Training TONIGHT at 8 PM EST reveals how to use Advanced Tax Strategies to offset your tax bill.</p>
+      <p class="ad-card__body">&quot;I&#x27;ve tried the whole real estate tax strategy thing before and it didn&#x27;t work well for me&quot; … Sounds familiar?</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Advanced Tax Strategies 101 For RE Investors!</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>880000398393276</dd>
+        <dt>Note</dt><dd class="ad-card__note">RE-specific — NOT Aileen&#x27;s lane, but the time-anchor (&quot;TONIGHT 8 PM EST&quot;) + objection-handling pattern is reusable.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=880000398393276" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="real-estate" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 8, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-skip">Not Aileen's lane</span></div>
+      <p class="ad-card__hook">Free Training TONIGHT at 8 PM EST reveals how to use Advanced Tax Strategies to offset your tax bill.</p>
+      <p class="ad-card__body">&quot;I&#x27;ve tried the whole real estate tax strategy thing before and it didn&#x27;t work well for me&quot; … Sounds familiar?</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Advanced Tax Strategies 101 For RE Investors!</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>1489836679399223</dd>
+        <dt>Note</dt><dd class="ad-card__note">RE-targeted variant.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1489836679399223" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="real-estate" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 8, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-skip">Not Aileen's lane</span></div>
+      <p class="ad-card__hook">Free Training TONIGHT at 8 PM EST reveals how to use Advanced Tax Strategies to offset your tax bill.</p>
+      <p class="ad-card__body">(Same body, third RE variant.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Advanced Tax Strategies 101 For RE Investors!</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>1489478426065753</dd>
+        <dt>Note</dt><dd class="ad-card__note">RE-targeted variant.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1489478426065753" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="real-estate" data-source="karlton">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Karlton Dennis</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 8, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-skip">Not Aileen's lane</span></div>
+      <p class="ad-card__hook">Free Training TONIGHT at 8 PM EST reveals how to use Advanced Tax Strategies to offset your tax bill.</p>
+      <p class="ad-card__body">(Same hook, fourth RE variant.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Advanced Tax Strategies 101 For RE Investors!</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>join.taxalchemy.com</dd>
+        <dt>Library ID</dt><dd>1670959510912447</dd>
+        <dt>Note</dt><dd class="ad-card__note">RE-targeted variant.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1670959510912447" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+      </div>
+    </section>
+    
+    <section id="codie" class="section">
+      <div class="section__header">
+        <h2 class="section__title">Codie Sanchez · Contrarian Thinking</h2>
+        <p class="section__subtitle">~88 active ads. Curiosity-gap IG ads + Main Street Millionaire event funnels. Tone Aileen referenced as a style match.</p>
+      </div>
+      <div class="chips" data-target="codie"><button type="button" class="chip chip-active" data-filter="all">All</button><button type="button" class="chip" data-filter="long-runner">Long-runners</button>
+<button type="button" class="chip" data-filter="evergreen">Evergreen</button>
+<button type="button" class="chip" data-filter="event">Event</button></div>
+      <div class="cards" data-source="codie">
+        
+    <article class="ad-card" data-tag="long-runner" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Aug 19, 2024</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span></div>
+      <p class="ad-card__hook">3 businesses I would never buy… Let me tell you why</p>
+      <p class="ad-card__body">(Listicle / teardown video — short body, curiosity gap drives the watch.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(In-video: HIGHEST FAILURE RATES)</dd>
+        <dt>CTA</dt><dd>Send message</dd>
+        <dt>Domain</dt><dd>(IG DM funnel)</dd>
+        <dt>Library ID</dt><dd>1236454277798678</dd>
+        <dt>Note</dt><dd class="ad-card__note">★ LONGEST-RUNNING ad in this whole research set — live since Aug 19, 2024 (~620 days). Pure curiosity-gap hook to DM CTA. The model Aileen should study most.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1236454277798678" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Aug 19, 2024</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span></div>
+      <p class="ad-card__hook">3 businesses I would never buy… Let me tell you why</p>
+      <p class="ad-card__body">(EU transparency variant.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>—</dd>
+        <dt>CTA</dt><dd>Send message</dd>
+        <dt>Domain</dt><dd>(IG DM funnel)</dd>
+        <dt>Library ID</dt><dd>496356566324540</dd>
+        <dt>Note</dt><dd class="ad-card__note">Co-running variant of the same hook. Confirms Codie has been milking this hook for 620+ days.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=496356566324540" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Aug 25, 2024</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span></div>
+      <p class="ad-card__hook">(Long-running IG curiosity ad — content variant.)</p>
+      <p class="ad-card__body">—</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>—</dd>
+        <dt>CTA</dt><dd>Send message</dd>
+        <dt>Domain</dt><dd>(IG DM funnel)</dd>
+        <dt>Library ID</dt><dd>525466756607463</dd>
+        <dt>Note</dt><dd class="ad-card__note">~610 days live. Same DM-funnel pattern.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=525466756607463" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="evergreen" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 2, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-evergreen">Evergreen</span></div>
+      <p class="ad-card__hook">Buying an established, profitable business is the better way to get started in ownership.</p>
+      <p class="ad-card__body">Join over 900 members of our Contrarian Community who have liberated themselves from their W2 jobs and failing businesses and built a legacy of wealth.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Talking-head video)</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>contrarianthinking.co</dd>
+        <dt>Library ID</dt><dd>2441023506322137</dd>
+        <dt>Note</dt><dd class="ad-card__note">Social-proof anchor (&quot;900 members&quot;) + identity reframe (W2 → owner).</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=2441023506322137" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="evergreen" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 2, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-evergreen">Evergreen</span></div>
+      <p class="ad-card__hook">Buying an established, profitable business is the better way to get started in ownership.</p>
+      <p class="ad-card__body">Book your call today and take the first step toward breaking free from the corporate grind.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Talking-head video)</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>contrarianthinking.co</dd>
+        <dt>Library ID</dt><dd>2628407567616450</dd>
+        <dt>Note</dt><dd class="ad-card__note">Same hook, swapped CTA: book-a-call vs. community. A/B variant on the same opener.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=2628407567616450" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="event" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 1, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-event">Event funnel</span></div>
+      <p class="ad-card__hook">3-Days: Learn To Find, Fund, &amp; Own a Cashflowing Business</p>
+      <p class="ad-card__body">(3 ads share this creative. Event funnel.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Buying a Business is The New Way to Start. Stop choosing between a family vacation or that big promotion — Learn how to buy a cashflowing business.</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>msm.live</dd>
+        <dt>Library ID</dt><dd>1985169719014984</dd>
+        <dt>Note</dt><dd class="ad-card__note">Triple alliteration: Find / Fund / Own. Event copy with concrete substitution promise.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1985169719014984" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="event" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 23, 2026</span>
+          <span class="ad-card__format">Static image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-event">Event funnel</span></div>
+      <p class="ad-card__hook">Don&#x27;t Build — Buy instead. Learn How with This 3-Day Event</p>
+      <p class="ad-card__body">Over 3 days, we&#x27;ll move you past theory towards actionable application — Join us for this virtual event.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Replace your 9 to 5. With a better 9 to 5. Or better yet, no 9 to 5.</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>msm.live</dd>
+        <dt>Library ID</dt><dd>936586088991346</dd>
+        <dt>Note</dt><dd class="ad-card__note">Pattern-interrupt copy. &quot;Better 9 to 5&quot; → &quot;no 9 to 5&quot; is reusable structure.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=936586088991346" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="event" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 20, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-event">Event funnel</span></div>
+      <p class="ad-card__hook">Catch the latest episode of Main Street Millionaire over on my YouTube channel.</p>
+      <p class="ad-card__body">🎙️ in my story</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Casual creator-style copy)</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>codiesanchez.com</dd>
+        <dt>Library ID</dt><dd>1932992663991947</dd>
+        <dt>Note</dt><dd class="ad-card__note">Native-IG voice. Reads like organic, runs as paid. Lowest-friction creative pattern.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1932992663991947" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="event" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 2, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-event">Event funnel</span></div>
+      <p class="ad-card__hook">Scaling isn&#x27;t about working harder. It&#x27;s about plugging into the right playbook.</p>
+      <p class="ad-card__body">That&#x27;s what you&#x27;ll get at Growth Accelerator. Austin. May 15 - 17…</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Event teaser)</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>(event LP)</dd>
+        <dt>Library ID</dt><dd>(Growth Accelerator — Austin)</dd>
+        <dt>Note</dt><dd class="ad-card__note">&quot;Work harder vs. plug into&quot; reframe. Geo-specific (Austin) drives event signups.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="event" data-source="codie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Codie Sanchez</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 23, 2026</span>
+          <span class="ad-card__format">Static image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-event">Event funnel</span></div>
+      <p class="ad-card__hook">Think small… but cashflowing.</p>
+      <p class="ad-card__body">(MSM event push.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Main Street Millionaire — June 18-20</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>codiesanchez.com</dd>
+        <dt>Library ID</dt><dd>(Think Small — MSM image)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Three-word hook. Earned-style copy reframing &quot;go big&quot; startup advice.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+      </div>
+    </section>
+    
+    <section id="natalie" class="section">
+      <div class="section__header">
+        <h2 class="section__title">Natalie Dawson · Cardone Ventures</h2>
+        <p class="section__subtitle">~42 active ads. Pain-point opener pattern aimed at scaling founders. Closest tonal match to Aileen's voice.</p>
+      </div>
+      <div class="chips" data-target="natalie"><button type="button" class="chip chip-active" data-filter="all">All</button><button type="button" class="chip" data-filter="long-runner">Long-runners</button>
+<button type="button" class="chip" data-filter="high-income">ICP fit</button>
+<button type="button" class="chip" data-filter="evergreen">Evergreen</button>
+<button type="button" class="chip" data-filter="event">Event</button></div>
+      <div class="cards" data-source="natalie">
+        
+    <article class="ad-card" data-tag="long-runner" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Aug 5, 2025</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span></div>
+      <p class="ad-card__hook">You&#x27;ve built something great. But now the same effort is producing half the results.</p>
+      <p class="ad-card__body">You&#x27;re constantly putting out fires. Your team can&#x27;t keep up. (Continues into pain-point storytelling for founders hitting a ceiling.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>You Built It—Now Untrap Yourself</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>2613699095645471</dd>
+        <dt>Note</dt><dd class="ad-card__note">★ ~265 days live. Pain-point hook tuned to scaling founders. Closest tonal match for Aileen&#x27;s voice.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=2613699095645471" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Sep 15, 2025</span>
+          <span class="ad-card__format">Static image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span></div>
+      <p class="ad-card__hook">You&#x27;ve built something great. But now the same effort is producing half the results.</p>
+      <p class="ad-card__body">You&#x27;re constantly putting out fires. Your team can&#x27;t keep up. …</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Business Expansion Training</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>2927198057480135</dd>
+        <dt>Note</dt><dd class="ad-card__note">Same hook, image variant. Hook is doing the heavy lifting.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=2927198057480135" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Aug 5, 2025</span>
+          <span class="ad-card__format">Static image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span></div>
+      <p class="ad-card__hook">You&#x27;ve built something great. But now the same effort is producing half the results.</p>
+      <p class="ad-card__body">(Same body — paid workshop offer.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>3 Day Business Accelerator Workshop — $497</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>605323422389453</dd>
+        <dt>Note</dt><dd class="ad-card__note">~265 days. Same hook converted into a $497 paid event — Aileen could ladder her own offer this way.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=605323422389453" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="high-income" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 7, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-icp">Aileen ICP fit</span></div>
+      <p class="ad-card__hook">If you own an e-commerce brand, Amazon store, or product based business online that&#x27;s doing over $1M per year and you&#x27;re looking to scale, listen closely.</p>
+      <p class="ad-card__body">$1M in e-commerce revenue with broken operations underneath it is not a business that scales. It&#x27;s a business that&#x27;s one bad quarter away from giving back…</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(In-video: $1M+ qualifier)</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>986950660429274</dd>
+        <dt>Note</dt><dd class="ad-card__note">★ Niche-qualifier opener — disqualifies most viewers up-front. Direct template for Aileen&#x27;s high-earner ICP.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=986950660429274" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="evergreen" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 5, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-evergreen">Evergreen</span></div>
+      <p class="ad-card__hook">You built a beautiful business. And somehow you&#x27;re still the one doing everything.</p>
+      <p class="ad-card__body">Covering shifts. Chasing down no-shows. Training the same person for the third time. Watching your best employee walk out the door and take clients with them…</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Your Blueprint To Scale</dd>
+        <dt>CTA</dt><dd>Sign Up</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>774470565736163</dd>
+        <dt>Note</dt><dd class="ad-card__note">★ Sensory pain-points. Specific moments &gt; abstract overwhelm. Best Aileen-tone match.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=774470565736163" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="evergreen" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 11, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-evergreen">Evergreen</span></div>
+      <p class="ad-card__hook">You built a beautiful business. And somehow you&#x27;re still the one doing everything.</p>
+      <p class="ad-card__body">(Same hook + body — variant rotation.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Your Blueprint To Scale</dd>
+        <dt>CTA</dt><dd>Sign Up</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>1611338160116648</dd>
+        <dt>Note</dt><dd class="ad-card__note">Variant of 774470565736163.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1611338160116648" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="event" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 19, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-event">Event funnel</span></div>
+      <p class="ad-card__hook">(3-Day Workshop event push — same body family.)</p>
+      <p class="ad-card__body">Book a call to reserve your ticket.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>3-Day Workshop - Get Tickets Now</dd>
+        <dt>CTA</dt><dd>Book Now</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>1559532469171936</dd>
+        <dt>Note</dt><dd class="ad-card__note">Event funnel — &quot;book a call&quot; middle-step before actual ticket purchase.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1559532469171936" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="evergreen" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 5, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-evergreen">Evergreen</span></div>
+      <p class="ad-card__hook">You built a beautiful business. And somehow you&#x27;re still the one doing everything.</p>
+      <p class="ad-card__body">Covering shifts. Chasing down no-shows…</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Your Blueprint To Scale</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>1901980220423898</dd>
+        <dt>Note</dt><dd class="ad-card__note">Same hook, Learn More CTA variant.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1901980220423898" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="event" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 5, 2026</span>
+          <span class="ad-card__format">Static image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-event">Event funnel</span></div>
+      <p class="ad-card__hook">What if the reason your business isn&#x27;t growing has nothing to do with how hard you&#x27;re working?</p>
+      <p class="ad-card__body">Most Business Owners and Founders think scaling means more hours, more hustle, more grind. But that&#x27;s not how you grow a business — that&#x27;s how you burn out.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Business Scaling Webinar - This Saturday</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>(Business Scaling Webinar)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Question-hook flips a held belief. Time-anchor (&quot;This Saturday&quot;) drives signup urgency.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="evergreen" data-source="natalie">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Natalie Dawson with Cardone Ventures</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 11, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-evergreen">Evergreen</span></div>
+      <p class="ad-card__hook">What if the reason your business isn&#x27;t growing has nothing to do with how hard you&#x27;re working?</p>
+      <p class="ad-card__body">(Same body — variant.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>—</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>cardoneventures.com</dd>
+        <dt>Library ID</dt><dd>1470588597753262</dd>
+        <dt>Note</dt><dd class="ad-card__note">Question-hook variant.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1470588597753262" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+      </div>
+    </section>
+    
+    <section id="kw-strategist" class="section">
+      <div class="section__header">
+        <h2 class="section__title">Keyword: &quot;tax strategist&quot;</h2>
+        <p class="section__subtitle">~330 active ads in the niche. Pulled the longest-runners + best hooks across advertisers.</p>
+      </div>
+      
+      <div class="cards" data-source="kw-strategist">
+        
+    <article class="ad-card" data-tag="long-runner" data-source="kw-strategist">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Kyle Slagle - Tax Reduction Strategist for Medical Professionals</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Apr 14, 2025</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span> <span class="badge badge-audience">Doctors / Physicians</span></div>
+      <p class="ad-card__hook">❗❗ Attention Physicians! ❗❗</p>
+      <p class="ad-card__body">Paying over $100K to the IRS? I can virtually guarantee you are overpaying. How can I say that?</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Talking-head video)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>1166162728164534</dd>
+        <dt>Note</dt><dd class="ad-card__note">★ ~380 days live. Niche-down by profession + bold guarantee + curiosity gap. Aileen-template.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1166162728164534" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="kw-strategist">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">EthicsPro Accounting</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Jul 3, 2025</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span> <span class="badge badge-audience">Real Estate Investors $100k+ taxes</span></div>
+      <p class="ad-card__hook">🏊 REIs Who Paid Over $100k in Taxes Last Year</p>
+      <p class="ad-card__body">Give me just 10 minutes and we will find at least $50,000 in tax savings... Guaranteed. If I can&#x27;t? I&#x27;ll personally cut you a check for $100 for wasting your time.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(In-video: dollar-amount guarantee)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>1397927444808864</dd>
+        <dt>Note</dt><dd class="ad-card__note">★ ~300 days. Reverse-risk guarantee ($100 check if no value found). Aileen could swap audience.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1397927444808864" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="kw-strategist">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Ed Lloyd &amp; Associates, PLLC</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Sep 6, 2025</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span> <span class="badge badge-audience">High-income filers</span></div>
+      <p class="ad-card__hook">Discover how to save up to 90% on your taxes with a customized tax plan</p>
+      <p class="ad-card__body">(Short copy. Video walks through a custom tax-plan promise.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(In-video: 90% savings claim)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>786173717206137</dd>
+        <dt>Note</dt><dd class="ad-card__note">~234 days. Specific number (&quot;90%&quot;) makes the promise concrete.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=786173717206137" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="recent" data-source="kw-strategist">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">(Tax Strategist firm)</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started (Recent)</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-recent">Recent</span> <span class="badge badge-audience">$500K+ HNW</span></div>
+      <p class="ad-card__hook">High Earners: Stop Overpaying on Taxes Now!</p>
+      <p class="ad-card__body">If you&#x27;re a high net worth individual earning over $500K and paying more than 13% in taxes, it&#x27;s time for a change. You&#x27;re not working with a true tax strategist — you&#x27;re …</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Are You Paying More Than 13% in Taxes ???   /   Stop Overpaying in Taxes</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>(High Earners — 13%)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Specific 13% threshold + dollar tier ($500K) — disqualifies wrong-fit viewers.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="recent" data-source="kw-strategist">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Terra Firma</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started (Recent)</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-recent">Recent</span> <span class="badge badge-audience">Doctors</span></div>
+      <p class="ad-card__hook">You didn&#x27;t go through all those years of med school just to hand a third of your income to the IRS.</p>
+      <p class="ad-card__body">At Terra Firma, we help doctors reclaim their wealth and freedom using proven, legal tax strategies. Imagine redirecting six figures from the IRS to your investments every single year.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Talking-head video)</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>(Terra Firma)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Empathy hook (&quot;all those years of med school&quot;) → dollar-impact reframe. 3-line story arc.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="recent" data-source="kw-strategist">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Mia Taylor (Enrolled Agent)</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started (Recent)</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-recent">Recent</span> <span class="badge badge-audience">Business owners</span></div>
+      <p class="ad-card__hook">As an enrolled agent with an LLM in tax law I have the same credentials as IRS agents… Except I&#x27;m on YOUR side.</p>
+      <p class="ad-card__body">Most business owners are overpaying by $50K-$500K annually …</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Meet Mia Taylor — Your Trusted Tax Advisor!  /  Enrolled Agent Exposes IRS Loopholes</dd>
+        <dt>CTA</dt><dd>Subscribe</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>(Mia Taylor — EA)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Authority-positioning hook. Subscribe CTA = list build instead of cold sales pull.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="recent" data-source="kw-strategist">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Kevin O&#x27;Leary</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Mar 27, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-recent">Recent</span> <span class="badge badge-audience">Business owners</span></div>
+      <p class="ad-card__hook">Do you know what one of your biggest business expenses is?</p>
+      <p class="ad-card__body">TAXES! And if you&#x27;re like many business owners, your hard-earned dollars are dying ... never to create any kind of return for you. And that&#x27;s why I&#x27;m personally inviting you to click here and answer a few quick questions abo…</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Talking-head — Kevin O&#x27;Leary)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>(Kevin O&#x27;Leary)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Question hook + celebrity authority. Self-segmenting (&quot;answer a few quick questions&quot;) = qualifier funnel.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="recent" data-source="kw-strategist">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Elite Consulting PC</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started (Recent)</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-recent">Recent</span> <span class="badge badge-audience">RE owners $1-5M profit</span></div>
+      <p class="ad-card__hook">(Quote/teardown opener) — profit reduce their tax bill — without cutting corners.</p>
+      <p class="ad-card__body">Book your free tax assessment and find out what you&#x27;re missing.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>We help real estate business owners earning $1-5M in profit reduce their tax bill — without cutting…  /  Real estate-focused tax savings. No fluff — just results.</dd>
+        <dt>CTA</dt><dd>Book now</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>(Elite Consulting PC)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Niche revenue band + free assessment offer. &quot;No fluff&quot; reframes against gurus.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+      </div>
+    </section>
+    
+    <section id="kw-planning" class="section">
+      <div class="section__header">
+        <h2 class="section__title">Keyword: &quot;tax planning&quot;</h2>
+        <p class="section__subtitle">~5,800 active ads. The longest runner observed (937 days, Fast Forward Academy) lives here.</p>
+      </div>
+      
+      <div class="cards" data-source="kw-planning">
+        
+    <article class="ad-card" data-tag="long-runner" data-source="kw-planning">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Fast Forward Academy</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Oct 5, 2023</span>
+          <span class="ad-card__format">Image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span> <span class="badge badge-audience">Tax pros / EAs (B2B)</span></div>
+      <p class="ad-card__hook">&quot;My clients needed more help than I could give them and NOW I am ready to take on anything. Thanks, Fast Forward Academy!&quot; — Linda K.</p>
+      <p class="ad-card__body">Get your AFSP or CE completed before the new year! Study topics to take your client service to the next level.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Testimonial photo)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>142258242301939</dd>
+        <dt>Note</dt><dd class="ad-card__note">★★ ALL-TIME LONGEST RUNNER — live since Oct 2023 (~937 days). Pure testimonial-led B2B ad.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=142258242301939" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="kw-planning">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Dvorak Financial Planning</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Jul 3, 2024</span>
+          <span class="ad-card__format">Image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span> <span class="badge badge-audience">Local — Cullman, AL</span></div>
+      <p class="ad-card__hook">Meet Jonathan Dvorak, the founder of Dvorak Financial Planning!</p>
+      <p class="ad-card__body">With a passion for personalized financial guidance and a commitment to prioritizing his clients&#x27; best interests, Jonathan launched his independent advisory firm in 2024 to serve Cullman, Alabama, and beyond. …</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Brand intro / portrait)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>2747112535439351</dd>
+        <dt>Note</dt><dd class="ad-card__note">~660+ days. A LOCAL advisor outlasting national brands proves you don&#x27;t need a big-name to win this niche.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=2747112535439351" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="kw-planning">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Craig Wear</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Jul 25, 2024</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span> <span class="badge badge-audience">IRA millionaires</span></div>
+      <p class="ad-card__hook">If you&#x27;re an IRA Millionaire, you might already have a game plan to convert your large IRAs (or you&#x27;re in the process of doing so).</p>
+      <p class="ad-card__body">But what if that plan is wrong? What if just one of the criteria used was faulty or incomplete? …</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Talking-head — IRA conversion focus)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>1161322968428859</dd>
+        <dt>Note</dt><dd class="ad-card__note">~640 days, 2 ads use creative. Doubt-injection hook (&quot;what if your plan is wrong?&quot;).</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1161322968428859" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="long-runner" data-source="kw-planning">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Yorkshire College Planning</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Aug 15, 2025</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span> <span class="badge badge-audience">Parents w/ college-bound kids</span></div>
+      <p class="ad-card__hook">Did you know that the FAFSA draws your taxes dated from 2 years ago, but takes your assets dated from today?</p>
+      <p class="ad-card__body">This timing difference may seem random, but it&#x27;s actually creating a massive opportunity that most families miss.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Cut Your SAI for $100k+ Families: LIVE WORKSHOP!</dd>
+        <dt>CTA</dt><dd>Learn more</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>1190558492904399</dd>
+        <dt>Note</dt><dd class="ad-card__note">~256 days. Educational &quot;did you know&quot; hook + dollar-tier targeting ($100k+ families).</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1190558492904399" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="recent" data-source="kw-planning">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">Empower</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started (Recent)</span>
+          <span class="ad-card__format">Image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-recent">Recent</span> <span class="badge badge-audience">Self-directed investors</span></div>
+      <p class="ad-card__hook">Make tax season less taxing when filing through the Empower Personal Dashboard.</p>
+      <p class="ad-card__body">(Fintech app — short copy, in-app screenshots in image.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>Tax strategy. Handled.  /  Tax strategies for investors</dd>
+        <dt>CTA</dt><dd>Learn More</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>(Empower)</dd>
+        <dt>Note</dt><dd class="ad-card__note">Three-word hook. Clean fintech positioning.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+      </div>
+    </section>
+    
+    <section id="kw-savetaxes" class="section">
+      <div class="section__header">
+        <h2 class="section__title">Keyword: &quot;save on taxes&quot;</h2>
+        <p class="section__subtitle">50,000+ active ads — biggest market keyword. Identity-first hooks (ER Doc Advisor) win here.</p>
+      </div>
+      
+      <div class="cards" data-source="kw-savetaxes">
+        
+    <article class="ad-card" data-tag="long-runner" data-source="kw-savetaxes">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">ER Doc Advisor</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Jan 19, 2025</span>
+          <span class="ad-card__format">Image</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-long">Long-runner</span> <span class="badge badge-audience">ER physicians</span></div>
+      <p class="ad-card__hook">Emergency physicians, you dedicate your life to saving others—let us save you time and money on your taxes.</p>
+      <p class="ad-card__body">Maximize your deductions, avoid costly mistakes, and plan for your financial future with our specialized tax services.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>You&#x27;re a real-life superhero saving lives. Let us save you when it comes to taxes.</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>6207046038201xx</dd>
+        <dt>Note</dt><dd class="ad-card__note">★ ~465 days. Identity-first hook (&quot;superhero saving lives&quot;) + niche-down to a single specialty.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <span class="ad-link ad-link-disabled">No direct link (multi-creative summary)</span>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="evergreen" data-source="kw-savetaxes">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">TaxQuotes</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Dec 16, 2025</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-evergreen">Evergreen</span> <span class="badge badge-audience">Mass-market filers</span></div>
+      <p class="ad-card__hook">Don&#x27;t fall for pie-in-the-sky promises from other tax companies.</p>
+      <p class="ad-card__body">Let TaxQuotes get you the help you need at a price you can afford. Click the link below to find out if we can help you.</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Talking-head testimonial)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>1137824744833231</dd>
+        <dt>Note</dt><dd class="ad-card__note">Differentiation hook — positions against the competition directly.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1137824744833231" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+
+    <article class="ad-card" data-tag="recent" data-source="kw-savetaxes">
+      <header class="ad-card__header">
+        <div class="ad-card__advertiser">TaxQuotes</div>
+        <div class="ad-card__meta">
+          <span class="ad-card__date">Started Feb 23, 2026</span>
+          <span class="ad-card__format">Video</span>
+        </div>
+      </header>
+      <div class="ad-card__badges"><span class="badge badge-recent">Recent</span> <span class="badge badge-audience">Mass-market filers</span></div>
+      <p class="ad-card__hook">Don&#x27;t fall for pie-in-the-sky promises from other tax companies.</p>
+      <p class="ad-card__body">(Same body — A/B image variant.)</p>
+      <dl class="ad-card__details">
+        <dt>Headline / on-creative</dt><dd>(Different testimonial face)</dd>
+        <dt>CTA</dt><dd>See ad details</dd>
+        <dt>Domain</dt><dd>—</dd>
+        <dt>Library ID</dt><dd>1453066836499728</dd>
+        <dt>Note</dt><dd class="ad-card__note">Same copy + new face. They&#x27;re rotating creative around a working hook.</dd>
+      </dl>
+      <footer class="ad-card__footer">
+        <a class="ad-link" href="https://www.facebook.com/ads/library/?id=1453066836499728" target="_blank" rel="noopener">View on Meta Ad Library →</a>
+      </footer>
+    </article>
+    
+      </div>
+    </section>
+    
+
+<section id="insights" class="section">
+  <div class="section__header">
+    <h2 class="section__title">5 Patterns That Repeat Across Long-Runners</h2>
+    <p class="section__subtitle">Pulled from ads live 200+ days. Each pattern includes example hooks and a one-line "for Aileen" application.</p>
+  </div>
+  <div class="insights">
+    
+    <article class="insight">
+      <div class="insight__num">1</div>
+      <div class="insight__body">
+        <h3 class="insight__title">Niche-Down Hooks</h3>
+        <p class="insight__lede">Open with the exact ICP — not a generic intro.</p>
+        <ul class="insight__examples"><li>Karlton Dennis: &quot;For High-Income Professionals &amp; Business Owners Paying Over $100k/Year In Taxes&quot;</li><li>Kyle Slagle: &quot;❗❗ Attention Physicians! ❗❗&quot; (380 days live)</li><li>EthicsPro: &quot;REIs Who Paid Over $100k in Taxes Last Year&quot; (300 days live)</li><li>Natalie Dawson: &quot;If you own an e-commerce brand… doing over $1M per year&quot;</li></ul>
+        <p class="insight__for-aileen"><strong>For Aileen:</strong> Open every ad by naming Aileen&#x27;s exact buyer — income tier, role, or revenue band. &quot;For business owners paying over $X in taxes&quot; beats &quot;tax season is here&quot; every time.</p>
+      </div>
+    </article>
+    
+
+    <article class="insight">
+      <div class="insight__num">2</div>
+      <div class="insight__body">
+        <h3 class="insight__title">Reverse-Risk Guarantees</h3>
+        <p class="insight__lede">Make a specific dollar promise + take the risk off the prospect.</p>
+        <ul class="insight__examples"><li>EthicsPro: &quot;Give me 10 minutes and we will find at least $50,000 in tax savings... Guaranteed. If I can&#x27;t? I&#x27;ll personally cut you a check for $100.&quot; (300 days live)</li><li>Ed Lloyd: &quot;Save up to 90% on your taxes with a customized tax plan.&quot;</li></ul>
+        <p class="insight__for-aileen"><strong>For Aileen:</strong> Bake a specific $-or-time guarantee into one variant. &quot;Find $X in savings or [what you&#x27;ll do]&quot; — concrete number always beats vague promise.</p>
+      </div>
+    </article>
+    
+
+    <article class="insight">
+      <div class="insight__num">3</div>
+      <div class="insight__body">
+        <h3 class="insight__title">Curiosity-Gap Listicles</h3>
+        <p class="insight__lede">A list teaser + DM/Subscribe CTA. The lowest-friction first ad to test.</p>
+        <ul class="insight__examples"><li>Codie Sanchez: &quot;3 businesses I would never buy… Let me tell you why&quot; (620+ days, IG, Send Message CTA)</li><li>Karlton/Uplevel: &quot;💡 Three levers drive real tax savings.&quot;</li></ul>
+        <p class="insight__for-aileen"><strong>For Aileen:</strong> Run something like &quot;3 deductions every [ICP] is missing&quot; or &quot;3 quarterly mistakes I see every year&quot; with a Send-Message or Subscribe CTA. No offer, no pricing, no urgency. Pure curiosity → DM.</p>
+      </div>
+    </article>
+    
+
+    <article class="insight">
+      <div class="insight__num">4</div>
+      <div class="insight__body">
+        <h3 class="insight__title">Pain-Point Opener with Sensory Detail</h3>
+        <p class="insight__lede">Specific moments &gt; abstract overwhelm.</p>
+        <ul class="insight__examples"><li>Natalie Dawson: &quot;You built a beautiful business. And somehow you&#x27;re still the one doing everything. Covering shifts. Chasing down no-shows. Training the same person for the third time.&quot;</li><li>Natalie Dawson: &quot;You&#x27;ve built something great. But now the same effort is producing half the results. You&#x27;re constantly putting out fires.&quot; (265 days live)</li></ul>
+        <p class="insight__for-aileen"><strong>For Aileen:</strong> Replace abstractions (&quot;you&#x27;re overwhelmed&quot;) with concrete moments (&quot;watching another quarterly estimate hit your account on a Friday afternoon&quot;). Aileen&#x27;s tonal lane.</p>
+      </div>
+    </article>
+    
+
+    <article class="insight">
+      <div class="insight__num">5</div>
+      <div class="insight__body">
+        <h3 class="insight__title">Reframe Hook (against a competing identity)</h3>
+        <p class="insight__lede">Give the buyer a new mental model to opt into.</p>
+        <ul class="insight__examples"><li>Karlton Dennis: &quot;CPAs focus on filing returns, not saving you money. That&#x27;s why you need a Tax Strategist instead.&quot;</li><li>Codie Sanchez: &quot;Don&#x27;t Build — Buy instead.&quot;</li><li>Natalie Dawson: &quot;Scaling isn&#x27;t about working harder. It&#x27;s about plugging into the right playbook.&quot;</li><li>Mia Taylor: &quot;Same credentials as IRS agents… Except I&#x27;m on YOUR side.&quot;</li></ul>
+        <p class="insight__for-aileen"><strong>For Aileen:</strong> Pick the closest competing identity — generic CPA, DIY tax software, the H&amp;R Block office, the bookkeeper-who-doesn&#x27;t-strategize — and reframe against it.</p>
+      </div>
+    </article>
+    
+  </div>
+</section>
+
+<footer class="foot">
+  <p><strong>Source:</strong> Meta Ad Library (https://www.facebook.com/ads/library) — Active ads only, US, sorted by total impressions. Pulled 2026-04-28.</p>
+  <p><strong>Caveat:</strong> Meta does not expose impression or spend data for non-political ads. "Top-performing" is inferred from Meta's total-impressions sort + ad longevity. Anything live 60+ days is paying for itself; 200+ days is a confirmed winner.</p>
+  <p><strong>Companion file:</strong> Meta_Ad_Library_Research_for_Aileen.xlsx (data tables version) sits in the same folder.</p>
+</footer>
+
+<script>
+(() => {
+  // chip-based filtering per source
+  document.querySelectorAll('.chips').forEach(chipBar => {
+    const target = chipBar.dataset.target;
+    const cards = document.querySelectorAll('.cards[data-source="' + target + '"] .ad-card');
+    chipBar.addEventListener('click', e => {
+      const btn = e.target.closest('.chip');
+      if (!btn) return;
+      chipBar.querySelectorAll('.chip').forEach(c => c.classList.remove('chip-active'));
+      btn.classList.add('chip-active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.tag === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
