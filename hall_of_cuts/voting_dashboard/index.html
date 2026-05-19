@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hall of Cuts — Awards Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:    #060608;
+  --bg:       #0A0A0F;
+  --surface:  #0F0F16;
+  --surface2: #141420;
+  --border:   rgba(255,255,255,0.06);
+  --border2:  rgba(255,255,255,0.10);
+  --gold:     #C9A86C;
+  --gold2:    #E8C87A;
+  --gold3:    #F5DFA0;
+  --red:      #CC2222;
+  --muted:    #4A4A60;
+  --muted2:   #6A6A85;
+  --text:     #D8D8E8;
+  --white:    #F0F0F8;
+  --green:    #34D399;
+  --purple:   #A78BFA;
+  --blue:     #60A5FA;
+}
+html, body { height: 100%; }
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  overflow-x: hidden;
+}
+
+/* ── NOISE LAYER ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+}
+
+/* ── AMBIENT ── */
+.ambient {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.orb {
+  position: absolute; border-radius: 50%; filter: blur(120px);
+}
+.orb-1 {
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(201,168,108,0.1) 0%, transparent 65%);
+  top: -400px; right: -200px;
+  animation: drift1 28s ease-in-out infinite alternate;
+}
+.orb-2 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(204,34,34,0.07) 0%, transparent 65%);
+  bottom: -200px; left: -100px;
+  animation: drift2 22s ease-in-out infinite alternate;
+}
+.orb-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,168,108,0.06) 0%, transparent 65%);
+  top: 40%; left: 30%;
+  animation: drift1 35s ease-in-out infinite alternate-reverse;
+}
+@keyframes drift1 { from{transform:translate(0,0)} to{transform:translate(-60px,50px)} }
+@keyframes drift2 { from{transform:translate(0,0)} to{transform:translate(50px,-40px)} }
+
+/* ── PIN SCREEN ── */
+#pin-screen {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+}
+.pin-wrap {
+  width: 100%; max-width: 320px;
+  padding: 0 24px;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.pin-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  letter-spacing: 4px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.pin-logo span { color: var(--gold); }
+.pin-tagline {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 52px;
+}
+.pin-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 20px;
+}
+.pin-dots {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  margin-bottom: 36px;
+}
+.pin-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  background: transparent;
+  transition: all 0.2s;
+}
+.pin-dot.filled {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 16px rgba(201,168,108,0.6);
+}
+.pin-dot.error {
+  background: var(--red);
+  border-color: var(--red);
+  animation: shake 0.35s ease;
+}
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+.pin-pad {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.pin-key {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.pin-key:hover { background: var(--surface2); border-color: var(--border2); }
+.pin-key:active { transform: scale(0.93); }
+.pin-key.wide { grid-column: span 2; }
+.pin-key.del { color: var(--muted2); font-size: 14px; }
+.pin-err { font-size: 11px; color: #F87171; margin-top: 14px; min-height: 16px; letter-spacing: 1px; }
+
+/* ── LAYOUT ── */
+.wrapper { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ── HEADER ── */
+.hdr {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,6,8,0.92);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.hdr-top {
+  padding: 0 32px;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.hdr-brand {
+  display: flex; align-items: baseline; gap: 10px;
+}
+.hdr-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: var(--white);
+}
+.hdr-logo span { color: var(--gold); }
+.hdr-divider { width: 1px; height: 16px; background: var(--border2); }
+.hdr-sub {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted2);
+}
+.hdr-right { display: flex; align-items: center; gap: 16px; }
+.hdr-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted2);
+  letter-spacing: 1px;
+}
+.live-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(52,211,153,0.08);
+  border: 1px solid rgba(52,211,153,0.2);
+  border-radius: 20px;
+  padding: 5px 12px 5px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.live-pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+/* TABS */
+.tabs {
+  display: flex;
+  padding: 0 32px;
+  border-top: 1px solid var(--border);
+  gap: 4px;
+}
+.tab {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  padding: 12px 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--gold2); border-bottom-color: var(--gold2); }
+
+/* PAGE */
+.page { padding: 24px 32px 80px; flex: 1; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeUp 0.25s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── STAT CARDS ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.2s;
+}
+.stat:hover { border-color: var(--border2); transform: translateY(-2px); }
+.stat::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,108,0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.stat:hover::after { opacity: 1; }
+.stat-icon-wrap {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: rgba(201,168,108,0.07);
+  border: 1px solid rgba(201,168,108,0.12);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.stat-icon-wrap svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 2; }
+.stat-lbl {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 6px;
+}
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  letter-spacing: 1px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-val .curr { color: var(--gold); font-size: 28px; }
+.stat-note {
+  font-size: 11px;
+  color: var(--muted2);
+}
+
+/* ── MAIN GRID ── */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.card-head {
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.card-sub {
+  font-size: 11px;
+  color: var(--muted2);
+  margin-top: 2px;
+}
+.card-badge {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--green);
+  background: rgba(52,211,153,0.06);
+  border: 1px solid rgba(52,211,153,0.15);
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+
+/* ── LEADERBOARD ── */
+.lb-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.lb-item:last-child { border-bottom: none; }
+.lb-item:hover { background: rgba(255,255,255,0.02); }
+.lb-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.lb-num.n1 { color: var(--gold3); }
+.lb-num.n2 { color: #A8A8B8; }
+.lb-num.n3 { color: #CD7F32; }
+.lb-num.nn { color: var(--muted); }
+.lb-ava {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.lb-ava svg { opacity: 0.12; width: 16px; height: 16px; fill: var(--text); }
+.lb-body { flex: 1; min-width: 0; }
+.lb-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.lb-cat {
+  font-size: 11px;
+  color: var(--muted2);
+  margin-top: 1px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.lb-right { text-align: right; flex-shrink: 0; }
+.lb-score {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--gold2);
+  line-height: 1;
+}
+.lb-score-lbl {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.lb-bar { width: 52px; height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; margin-top: 6px; margin-left: auto; }
+.lb-bar-fill { height: 100%; background: linear-gradient(to right, var(--gold), var(--gold3)); border-radius: 2px; }
+
+/* ── GLANCE ── */
+.glance-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 14px; }
+.glance-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.glance-lbl { font-size: 11px; color: var(--muted2); }
+.glance-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-align: right;
+  line-height: 1;
+}
+.glance-val.accent { color: var(--gold2); }
+.glance-sep { height: 1px; background: var(--border); }
+.glance-section { display: flex; align-items: center; gap: 8px; }
+.glance-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.glance-sec-lbl { font-size: 12px; color: var(--text); flex: 1; }
+.glance-sec-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--gold2);
+}
+
+/* ── CATEGORIES TABLE ── */
+.cat-tbl { width: 100%; border-collapse: collapse; }
+.cat-tbl thead th {
+  padding: 10px 22px;
+  text-align: left;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.cat-tbl tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+.cat-tbl tbody tr:last-child { border-bottom: none; }
+.cat-tbl tbody tr:hover { background: rgba(255,255,255,0.02); }
+.cat-tbl td { padding: 13px 22px; vertical-align: middle; }
+.cat-name { font-size: 13px; font-weight: 600; color: var(--white); }
+.cat-chip {
+  display: inline-block; font-size: 9px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 4px; margin-top: 3px;
+}
+.cat-chip.barber    { background: rgba(201,168,108,0.08); color: var(--gold); border: 1px solid rgba(201,168,108,0.15); }
+.cat-chip.beauty    { background: rgba(167,139,250,0.08); color: var(--purple); border: 1px solid rgba(167,139,250,0.15); }
+.cat-chip.specialty { background: rgba(96,165,250,0.08); color: var(--blue); border: 1px solid rgba(96,165,250,0.15); }
+.cat-votes {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; letter-spacing: 1px; color: var(--white);
+}
+.cat-bar { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; width: 80px; margin-top: 5px; }
+.cat-bar-fill { height: 100%; border-radius: 2px; }
+.cat-bar-fill.barber    { background: linear-gradient(to right, var(--gold), var(--gold3)); }
+.cat-bar-fill.beauty    { background: linear-gradient(to right, #7C3AED, var(--purple)); }
+.cat-bar-fill.specialty { background: linear-gradient(to right, #2563EB, var(--blue)); }
+.cat-leader {
+  font-size: 12px; font-weight: 600; color: var(--white);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 160px;
+}
+.cat-lv {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px; letter-spacing: 1px;
+}
+.cat-lv.barber { color: var(--gold); }
+.cat-lv.beauty { color: var(--purple); }
+.cat-lv.specialty { color: var(--blue); }
+
+/* ── FEED ── */
+.feed-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.feed-item:last-child { border-bottom: none; }
+.feed-item:hover { background: rgba(255,255,255,0.015); }
+.feed-pip { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+.feed-pip.paid { background: var(--gold); box-shadow: 0 0 8px rgba(201,168,108,0.5); }
+.feed-body { flex: 1; min-width: 0; }
+.feed-line { font-size: 13px; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feed-line strong { color: var(--gold2); font-weight: 600; }
+.feed-time { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+.feed-tag {
+  font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px; flex-shrink: 0;
+  background: rgba(255,255,255,0.04); color: var(--muted2); border: 1px solid var(--border);
+}
+
+/* ── REVENUE ── */
+.rev-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-bottom: 20px;
+}
+.rev-stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.25s;
+}
+.rev-stat:hover { border-color: var(--border2); }
+.rev-stat::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,108,0.25), transparent);
+}
+.rev-lbl { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--muted2); margin-bottom: 10px; }
+.rev-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px; letter-spacing: 1px; color: var(--white); line-height: 1;
+}
+.rev-val .curr { color: var(--gold); font-size: 30px; }
+.rev-sub { font-size: 11px; color: var(--muted2); margin-top: 8px; }
+.rev-packs { margin-bottom: 20px; }
+.rev-pack-row {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.rev-pack-row:first-child { border-radius: 12px 12px 0 0; }
+.rev-pack-row:last-child { border-bottom: none; border-radius: 0 0 12px 12px; }
+.rev-pack-row { border: 1px solid var(--border); }
+.rev-pack-row + .rev-pack-row { border-top: none; }
+.rev-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rev-pack-info { flex: 1; }
+.rev-pack-name { font-size: 13px; font-weight: 600; color: var(--white); }
+.rev-pack-note { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+.rev-pack-right { text-align: right; }
+.rev-pack-amt {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 1px; color: var(--gold2);
+}
+.rev-pack-cnt { font-size: 11px; color: var(--muted2); margin-top: 1px; }
+.rev-section-head {
+  font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted2); margin-bottom: 12px; display: flex; align-items: center; gap: 12px;
+}
+.rev-section-head::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.rev-buyer-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.rev-buyer-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.rev-buyer-row:last-child { border-bottom: none; }
+.rev-buyer-row:hover { background: rgba(255,255,255,0.02); }
+.rev-buyer-email { font-size: 13px; font-weight: 500; color: var(--white); }
+.rev-buyer-detail { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+.rev-buyer-credits {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 1px; color: var(--gold2);
+  text-align: right;
+}
+.rev-buyer-used { font-size: 10px; color: var(--muted); text-align: right; margin-top: 2px; }
+
+/* ── UTILS ── */
+.loading {
+  display: flex; align-items: center; justify-content: center;
+  padding: 48px 24px; gap: 10px;
+  color: var(--muted2); font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+}
+.spin {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--border2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to{ transform: rotate(360deg); } }
+.empty {
+  padding: 48px 24px; text-align: center;
+  color: var(--muted); font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+
+@media (max-width: 900px) {
+  .hdr-top { padding: 0 16px; }
+  .tabs { padding: 0 16px; }
+  .page { padding: 16px 16px 60px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .main-grid { grid-template-columns: 1fr; }
+  .rev-stats { grid-template-columns: 1fr; }
+  .hdr-date { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- AMBIENT -->
+<div class="ambient">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- PIN -->
+<div id="pin-screen">
+  <div class="pin-wrap">
+    <div class="pin-logo">Hall<span>.</span>of<span>.</span>Cuts</div>
+    <div class="pin-tagline">Awards 2026 · Dashboard</div>
+    <div class="pin-label">Enter Access PIN</div>
+    <div class="pin-dots">
+      <div class="pin-dot" id="pd0"></div>
+      <div class="pin-dot" id="pd1"></div>
+      <div class="pin-dot" id="pd2"></div>
+      <div class="pin-dot" id="pd3"></div>
+    </div>
+    <div class="pin-pad">
+      <div class="pin-key" onclick="pinPress('1')">1</div>
+      <div class="pin-key" onclick="pinPress('2')">2</div>
+      <div class="pin-key" onclick="pinPress('3')">3</div>
+      <div class="pin-key" onclick="pinPress('4')">4</div>
+      <div class="pin-key" onclick="pinPress('5')">5</div>
+      <div class="pin-key" onclick="pinPress('6')">6</div>
+      <div class="pin-key" onclick="pinPress('7')">7</div>
+      <div class="pin-key" onclick="pinPress('8')">8</div>
+      <div class="pin-key" onclick="pinPress('9')">9</div>
+      <div class="pin-key wide" onclick="pinPress('0')">0</div>
+      <div class="pin-key del" onclick="pinDel()">⌫</div>
+    </div>
+    <div class="pin-err" id="pin-err"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="wrapper">
+  <header class="hdr">
+    <div class="hdr-top">
+      <div class="hdr-brand">
+        <div class="hdr-logo">Hall<span>.</span>of<span>.</span>Cuts</div>
+        <div class="hdr-divider"></div>
+        <div class="hdr-sub">Awards 2026</div>
+      </div>
+      <div class="hdr-right">
+        <div class="hdr-date" id="live-date"></div>
+        <div class="live-badge"><div class="live-pulse"></div>Live</div>
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-tab="overview">Overview</button>
+      <button class="tab" data-tab="categories">Categories</button>
+      <button class="tab" data-tab="feed">Live Feed</button>
+      <button class="tab" data-tab="revenue">Revenue</button>
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- OVERVIEW -->
+    <div class="tab-panel active" id="tab-overview">
+      <div class="stats-grid" id="overview-stats">
+        <div class="loading"><div class="spin"></div>Loading</div>
+      </div>
+      <div class="main-grid">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Current Leaders</div>
+              <div class="card-sub">Top voted across all categories</div>
+            </div>
+            <div class="card-badge">Live</div>
+          </div>
+          <div id="leaderboard-list"><div class="loading"><div class="spin"></div>Loading</div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">At a Glance</div></div>
+          <div class="glance-body" id="glance-stats"><div class="loading"><div class="spin"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="tab-panel" id="tab-categories">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">All Categories</div>
+            <div class="card-sub">Vote totals and current leaders</div>
+          </div>
+          <div class="card-badge" id="cat-updated">Loading...</div>
+        </div>
+        <div id="categories-table"><div class="loading"><div class="spin"></div>Loading</div></div>
+      </div>
+    </div>
+
+    <!-- FEED -->
+    <div class="tab-panel" id="tab-feed">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Recent Votes</div>
+            <div class="card-sub">Latest activity · refreshes every 30s</div>
+          </div>
+          <div class="card-badge">Live</div>
+        </div>
+        <div id="feed-list"><div class="loading"><div class="spin"></div>Loading</div></div>
+      </div>
+    </div>
+
+    <!-- REVENUE -->
+    <div class="tab-panel" id="tab-revenue">
+      <div class="rev-stats">
+        <div class="rev-stat">
+          <div class="rev-lbl">Total Revenue</div>
+          <div class="rev-val"><span class="curr">$</span><span id="rev-total">0.00</span></div>
+          <div class="rev-sub" id="rev-total-sub">Loading...</div>
+        </div>
+        <div class="rev-stat">
+          <div class="rev-lbl">Paid Votes Sold</div>
+          <div class="rev-val" id="rev-votes-sold">0</div>
+          <div class="rev-sub" id="rev-votes-sub">Loading...</div>
+        </div>
+      </div>
+      <div class="rev-packs">
+        <div class="rev-pack-row">
+          <div class="rev-dot" style="background:var(--gold2)"></div>
+          <div class="rev-pack-info">
+            <div class="rev-pack-name">5-Vote Pack</div>
+            <div class="rev-pack-note">$5.00 per pack</div>
+          </div>
+          <div class="rev-pack-right">
+            <div class="rev-pack-amt" id="rev-5-amount">$0</div>
+            <div class="rev-pack-cnt" id="rev-5-count">0 sold</div>
+          </div>
+        </div>
+        <div class="rev-pack-row">
+          <div class="rev-dot" style="background:var(--gold)"></div>
+          <div class="rev-pack-info">
+            <div class="rev-pack-name">10-Vote Pack</div>
+            <div class="rev-pack-note">$10.00 per pack</div>
+          </div>
+          <div class="rev-pack-right">
+            <div class="rev-pack-amt" id="rev-10-amount">$0</div>
+            <div class="rev-pack-cnt" id="rev-10-count">0 sold</div>
+          </div>
+        </div>
+      </div>
+      <div class="rev-section-head">Top Paid Voters</div>
+      <div class="rev-buyer-card" id="rev-top-buyers">
+        <div class="loading"><div class="spin"></div>Loading</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://dhuepxwtwibmhtupegnu.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRodWVweHd0d2libWh0dXBlZ251Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2NTQ1ODcsImV4cCI6MjA4ODIzMDU4N30.aGt67RG6ZDcH_YffdxbW-4BFhRbaMm6sC59tncc4qvU";
+
+function getSection(name) {
+  const n = (name || "").toLowerCase();
+  if (n.includes("barber") || n.includes("rookie") || n.includes("smp")) return "barber";
+  if (n.includes("loctician") || n.includes("braid") || n.includes("color") || n.includes("nail") || n.includes("hair") || n.includes("beauty")) return "beauty";
+  return "specialty";
+}
+
+async function fetchVotes() {
+  let all = [], offset = 0;
+  const size = 1000;
+  while (true) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/votes?select=*&order=created_at.desc&limit=${size}&offset=${offset}`, {
+      headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
+    });
+    if (!res.ok) throw new Error("Fetch failed");
+    const page = await res.json();
+    all = all.concat(page);
+    if (page.length < size) break;
+    offset += size;
+  }
+  return all;
+}
+
+async function fetchRevenue() {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/vote_credits?select=*`, {
+    headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
+  });
+  if (!res.ok) return [];
+  return await res.json();
+}
+
+function processVotes(votes) {
+  const today = new Date().toISOString().split("T")[0];
+  const emails = new Set();
+  let todayCount = 0;
+  const catMap = {}, conMap = {};
+  votes.forEach(v => {
+    emails.add(v.email);
+    if (v.vote_date === today) todayCount++;
+    if (!catMap[v.category]) catMap[v.category] = {};
+    catMap[v.category][v.contestant] = (catMap[v.category][v.contestant] || 0) + 1;
+    const k = `${v.contestant}||${v.category}`;
+    if (!conMap[k]) conMap[k] = { name: v.contestant, category: v.category, votes: 0 };
+    conMap[k].votes++;
+  });
+  const categories = Object.entries(catMap).map(([name, cons]) => {
+    const total = Object.values(cons).reduce((a,b) => a+b, 0);
+    const sorted = Object.entries(cons).sort((a,b) => b[1]-a[1]);
+    return { name, total, leader: sorted[0]?.[0] || "—", leaderVotes: sorted[0]?.[1] || 0 };
+  }).sort((a,b) => b.total - a.total);
+  const leaderboard = Object.values(conMap).sort((a,b) => b.votes-a.votes).slice(0,8);
+  return { votes, categories, leaderboard, maxVotes: leaderboard[0]?.votes || 1, uniqueEmails: emails.size, todayCount, total: votes.length };
+}
+
+const personSVG = `<svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>`;
+
+function renderOverview(d) {
+  document.getElementById("overview-stats").innerHTML = `
+    <div class="stat">
+      <div class="stat-icon-wrap"><svg viewBox="0 0 24 24" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="stat-lbl">Total Votes</div>
+      <div class="stat-val">${d.total.toLocaleString()}</div>
+      <div class="stat-note">${d.todayCount.toLocaleString()} cast today</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon-wrap"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="stat-lbl">Unique Voters</div>
+      <div class="stat-val">${d.uniqueEmails.toLocaleString()}</div>
+      <div class="stat-note">All time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon-wrap"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="stat-lbl">Categories</div>
+      <div class="stat-val">${d.categories.length}</div>
+      <div class="stat-note">All live</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon-wrap"><svg viewBox="0 0 24 24" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="stat-lbl">Revenue</div>
+      <div class="stat-val"><span class="curr">$</span><span id="ov-rev">0</span></div>
+      <div class="stat-note" id="ov-rev-note">Packages live</div>
+    </div>`;
+
+  document.getElementById("leaderboard-list").innerHTML = d.leaderboard.map((c, i) => {
+    const rank = i + 1;
+    const cls = rank === 1 ? 'n1' : rank === 2 ? 'n2' : rank === 3 ? 'n3' : 'nn';
+    const pct = Math.round((c.votes / d.maxVotes) * 100);
+    return `
+      <div class="lb-item">
+        <div class="lb-num ${cls}">${rank}</div>
+        <div class="lb-ava">${personSVG}</div>
+        <div class="lb-body">
+          <div class="lb-name">${c.name}</div>
+          <div class="lb-cat">${c.category}</div>
+        </div>
+        <div class="lb-right">
+          <div class="lb-score">${c.votes.toLocaleString()}</div>
+          <div class="lb-score-lbl">votes</div>
+          <div class="lb-bar"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
+        </div>
+      </div>`;
+  }).join("");
+
+  // Glance
+  const barber = d.categories.filter(c => getSection(c.name) === "barber").reduce((a,b) => a + b.total, 0);
+  const beauty = d.categories.filter(c => getSection(c.name) === "beauty").reduce((a,b) => a + b.total, 0);
+  const specialty = d.categories.filter(c => getSection(c.name) === "specialty").reduce((a,b) => a + b.total, 0);
+  const leading = d.categories.sort((a,b) => b.total - a.total)[0];
+  document.getElementById("glance-stats").innerHTML = `
+    <div class="glance-row"><span class="glance-lbl">Leading category</span><span class="glance-val accent">${leading?.name || "—"}</span></div>
+    <div class="glance-row"><span class="glance-lbl">Today's votes</span><span class="glance-val">${d.todayCount}</span></div>
+    <div class="glance-sep"></div>
+    <div class="glance-section"><div class="glance-dot" style="background:var(--gold)"></div><span class="glance-sec-lbl">Barber</span><span class="glance-sec-val">${barber.toLocaleString()}</span></div>
+    <div class="glance-section"><div class="glance-dot" style="background:var(--purple)"></div><span class="glance-sec-lbl">Beauty</span><span class="glance-sec-val">${beauty.toLocaleString()}</span></div>
+    <div class="glance-section"><div class="glance-dot" style="background:var(--blue)"></div><span class="glance-sec-lbl">Specialty</span><span class="glance-sec-val">${specialty.toLocaleString()}</span></div>`;
+}
+
+function renderCategories(d) {
+  const maxCat = Math.max(...d.categories.map(c => c.total), 1);
+  document.getElementById("cat-updated").textContent = new Date().toLocaleTimeString("en-US", {hour:"2-digit", minute:"2-digit"});
+  document.getElementById("categories-table").innerHTML = `
+    <table class="cat-tbl">
+      <thead><tr>
+        <th>Category</th><th>Votes</th><th>Current Leader</th><th>Leader Votes</th>
+      </tr></thead>
+      <tbody>${d.categories.map(c => {
+        const sec = getSection(c.name);
+        const pct = Math.round((c.total / maxCat) * 100);
+        return `<tr>
+          <td><div class="cat-name">${c.name}</div><div class="cat-chip ${sec}">${sec}</div></td>
+          <td><div class="cat-votes">${c.total.toLocaleString()}</div><div class="cat-bar"><div class="cat-bar-fill ${sec}" style="width:${pct}%"></div></div></td>
+          <td><div class="cat-leader">${c.leader}</div></td>
+          <td><div class="cat-lv ${sec}">${c.leaderVotes.toLocaleString()}</div></td>
+        </tr>`;
+      }).join("")}</tbody>
+    </table>`;
+}
+
+function timeAgo(ts) {
+  const s = Math.floor((Date.now() - new Date(ts)) / 1000);
+  if (s < 60) return `${s}s ago`;
+  if (s < 3600) return `${Math.floor(s/60)}m ago`;
+  if (s < 86400) return `${Math.floor(s/3600)}h ago`;
+  return `${Math.floor(s/86400)}d ago`;
+}
+
+function renderFeed(d) {
+  document.getElementById("feed-list").innerHTML = d.votes.length
+    ? `<div class="feed-list">${d.votes.slice(0, 60).map(v => `
+        <div class="feed-item">
+          <div class="feed-pip${v.is_paid ? ' paid' : ''}"></div>
+          <div class="feed-body">
+            <div class="feed-line">Voted for <strong>${v.contestant}</strong> in ${v.category}</div>
+            <div class="feed-time">${timeAgo(v.created_at)}</div>
+          </div>
+          <div class="feed-tag">${getSection(v.category)}</div>
+        </div>`).join("")}</div>`
+    : `<div class="empty">No votes yet</div>`;
+}
+
+function renderRevenue(credits) {
+  let total5 = 0, total10 = 0, sold5 = 0, sold10 = 0;
+  credits.forEach(c => {
+    const t = c.credits_total || 0;
+    if (t <= 5) { sold5++; total5 += 5; }
+    else { sold10++; total10 += 10; }
+  });
+  const totalRev = total5 + total10;
+  const totalSold = sold5 + sold10;
+  const totalVotes = sold5 * 5 + sold10 * 10;
+
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  set('rev-total', totalRev.toFixed(2));
+  set('rev-total-sub', `${totalSold} order${totalSold !== 1 ? 's' : ''} total`);
+  set('rev-votes-sold', totalVotes.toLocaleString());
+  set('rev-votes-sub', `${totalSold} pack${totalSold !== 1 ? 's' : ''} purchased`);
+  set('rev-5-amount', `$${total5}`);
+  set('rev-5-count', `${sold5} sold`);
+  set('rev-10-amount', `$${total10}`);
+  set('rev-10-count', `${sold10} sold`);
+  set('ov-rev', totalRev.toFixed(0));
+  set('ov-rev-note', `${totalSold} pack${totalSold !== 1 ? 's' : ''} sold`);
+
+  const sorted = [...credits].sort((a,b) => (b.credits_total||0) - (a.credits_total||0)).slice(0,10);
+  const el = document.getElementById('rev-top-buyers');
+  if (el) {
+    el.innerHTML = sorted.length === 0
+      ? '<div class="empty">No paid votes yet</div>'
+      : sorted.map(c => `
+          <div class="rev-buyer-row">
+            <div>
+              <div class="rev-buyer-email">${c.email}</div>
+              <div class="rev-buyer-detail">${c.contestant} · ${c.category}</div>
+            </div>
+            <div>
+              <div class="rev-buyer-credits">${c.credits_total} votes</div>
+              <div class="rev-buyer-used">${c.credits_used} used</div>
+            </div>
+          </div>`).join('');
+  }
+}
+
+// TABS
+document.querySelectorAll(".tab").forEach(t => {
+  t.addEventListener("click", function() {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(x => x.classList.remove("active"));
+    this.classList.add("active");
+    document.getElementById("tab-"+this.dataset.tab).classList.add("active");
+  });
+});
+
+// PIN
+const PIN = "2026";
+let pinEntry = "";
+function pinPress(d) {
+  if (pinEntry.length >= 4) return;
+  pinEntry += d;
+  document.getElementById("pd"+(pinEntry.length-1)).classList.add("filled");
+  if (pinEntry.length === 4) {
+    setTimeout(() => {
+      if (pinEntry === PIN) {
+        document.getElementById("pin-screen").style.display = "none";
+        loadAll();
+      } else {
+        document.querySelectorAll(".pin-dot").forEach(d => { d.classList.remove("filled"); d.classList.add("error"); });
+        document.getElementById("pin-err").textContent = "Incorrect PIN — try again";
+        setTimeout(() => {
+          document.querySelectorAll(".pin-dot").forEach(d => { d.classList.remove("error"); });
+          document.getElementById("pin-err").textContent = "";
+          pinEntry = "";
+        }, 900);
+      }
+    }, 150);
+  }
+}
+function pinDel() {
+  if (!pinEntry.length) return;
+  document.getElementById("pd"+(pinEntry.length-1)).classList.remove("filled");
+  pinEntry = pinEntry.slice(0,-1);
+  document.getElementById("pin-err").textContent = "";
+}
+document.addEventListener("keydown", e => {
+  if (document.getElementById("pin-screen").style.display === "none") return;
+  if (e.key >= "0" && e.key <= "9") pinPress(e.key);
+  if (e.key === "Backspace") pinDel();
+});
+
+document.getElementById("live-date").textContent = new Date().toLocaleDateString("en-US", {weekday:"short", month:"short", day:"numeric"});
+
+async function loadAll() {
+  try {
+    const [votes, credits] = await Promise.all([fetchVotes(), fetchRevenue()]);
+    const data = processVotes(votes);
+    renderOverview(data);
+    renderCategories(data);
+    renderFeed(data);
+    renderRevenue(credits);
+    setInterval(async () => {
+      try {
+        const [votes, credits] = await Promise.all([fetchVotes(), fetchRevenue()]);
+        const data = processVotes(votes);
+        renderOverview(data);
+        renderCategories(data);
+        renderFeed(data);
+        renderRevenue(credits);
+      } catch(e){}
+    }, 30000);
+  } catch(e) {
+    console.error(e);
+    ["overview-stats","leaderboard-list","glance-stats","categories-table","feed-list"]
+      .forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = `<div class="empty">Could not load data</div>`; });
+  }
+}
+</script>
+</body>
+</html>
