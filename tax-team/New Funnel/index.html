@@ -79,7 +79,8 @@
   .form-card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px 20px;box-shadow:0 16px 44px -22px rgba(23,22,15,.28);max-width:560px;margin:34px auto 0;text-align:left}
   .form-card h2{font-size:22px}
   .form-card .sub{color:var(--muted);font-weight:500;margin:6px 0 18px;font-size:15px}
-  .ghl-mount{min-height:340px;border:1px dashed rgba(23,22,15,.18);border-radius:14px;display:grid;place-items:center;color:rgba(23,22,15,.4);font-weight:600;text-align:center;padding:20px}
+  .ghl-mount{min-height:340px}
+  .ghl-mount iframe{display:block;width:100%;min-height:600px}
   .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 
   .section{padding:56px 0}
@@ -204,9 +205,12 @@
 
     <div class="form-card reveal">
       <h2>Apply for your free strategy call</h2>
-      <div class="ghl-mount"><p class="sub">2 minutes · No sales pitch · We'll tell you what we'd do differently.</p>
-<iframe src="https://brand.gotaxteam.com/widget/survey/dN2LpIa9710njc1RSfln" style="border:none;width:100%;" scrolling="no" id="dN2LpIa9710njc1RSfln" title="survey"></iframe>
-<script src="https://brand.gotaxteam.com/js/form_embed.js"></script>/div>
+      <p class="sub">2 minutes · No sales pitch · We'll tell you what we'd do differently.</p>
+      <!-- GHL survey embed. ROUTING: $400K+ -> Aileen, <$400K -> Mike (configured inside GHL). -->
+      <div class="ghl-mount">
+        <iframe src="https://brand.gotaxteam.com/widget/survey/dN2LpIa9710njc1RSfln" style="border:none;width:100%;" scrolling="no" id="dN2LpIa9710njc1RSfln" title="survey"></iframe>
+        <script src="https://brand.gotaxteam.com/js/form_embed.js"></script>
+      </div>
     </div>
   </div>
 </section>
