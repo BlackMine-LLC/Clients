@@ -158,6 +158,17 @@ header.site{ position:sticky; top:0; z-index:60; padding:12px 0 0; }
 .nav .btn{ width:auto; padding:11px 12px 11px 20px; font-size:.9rem; }
 .nav .btn .ci{ width:26px; height:26px; }
 @media(max-width:520px){ .nav{ padding:0 8px 0 14px; height:54px; } .nav .btn{ padding:10px 10px 10px 15px; font-size:.82rem; gap:8px; } .brand-logo{ height:25px; } }
+/* call button + subtle pulse */
+.nav-cta{ display:flex; align-items:center; gap:10px; }
+.btn-call{ display:inline-flex; align-items:center; gap:9px; font-family:var(--sans); font-weight:700; font-size:.9rem; color:var(--ink);
+  padding:8px 15px 8px 9px; border-radius:999px; border:1.5px solid var(--line-2); background:#fff; position:relative;
+  transition:transform .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease); }
+.btn-call:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
+.btn-call .call-ic{ width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:rgba(30,99,224,.1); color:var(--accent); flex:none; position:relative; }
+.btn-call .call-ic svg{ width:15px; height:15px; }
+.btn-call .call-ic::after{ content:""; position:absolute; inset:0; border-radius:50%; border:2px solid var(--accent); animation:callpulse 2.6s var(--ease) infinite; }
+@keyframes callpulse{ 0%{ transform:scale(1); opacity:.55; } 70%{ transform:scale(1.6); opacity:0; } 100%{ transform:scale(1.6); opacity:0; } }
+@media(max-width:640px){ .btn-call .call-num{ display:none; } .btn-call{ padding:8px; gap:0; } }
 
 /* =========================================================
    HERO — asymmetric split, max 4 text elements
@@ -196,11 +207,11 @@ header.site{ position:sticky; top:0; z-index:60; padding:12px 0 0; }
    ========================================================= */
 .empathy{ background:var(--paper); }
 .empathy-intro{ display:grid; gap:20px; align-items:start; }
-@media(min-width:880px){ .empathy-intro{ grid-template-columns:minmax(0,1fr) 300px; gap:52px; } }
+@media(min-width:880px){ .empathy-intro{ grid-template-columns:minmax(0,1fr) 360px; gap:48px; } }
 /* Denny: hidden on mobile (floated awkwardly between text and list); on desktop
-   he drops to sit on the first divider line above "i did everything right" */
+   the peeking pose grips the first divider line above "i did everything right" */
 .crew-fig{ display:none; margin:0; }
-@media(min-width:880px){ .crew-fig{ display:block; position:relative; z-index:3; width:300px; justify-self:end; align-self:end; top:54px; } }
+@media(min-width:880px){ .crew-fig{ display:block; position:relative; z-index:3; width:360px; justify-self:end; align-self:end; top:70px; } }
 .crew-fig::before{ content:""; position:absolute; inset:0; z-index:0;
   background:radial-gradient(56% 52% at 50% 46%, rgba(30,99,224,.16), transparent 72%); transform:scale(1.3); filter:blur(4px); }
 .crew-fig img{ position:relative; z-index:1; width:100%; height:auto; filter:drop-shadow(0 22px 26px rgba(10,30,60,.16)); }
@@ -277,7 +288,8 @@ header.site{ position:sticky; top:0; z-index:60; padding:12px 0 0; }
   -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   -webkit-mask:linear-gradient(transparent, #000 52%); mask:linear-gradient(transparent, #000 52%); }
 .persona .pbody h3{ position:relative; }
-.persona .pbody p{ font-size:.96rem; color:rgba(255,255,255,.92); line-height:1.5; position:relative; }
+.persona .pbody p{ font-size:.96rem; color:rgba(255,255,255,.92); line-height:1.5; position:relative;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; line-clamp:3; overflow:hidden; min-height:4.5em; }
 
 /* =========================================================
    CALCULATOR — interactive panel (distinct)
@@ -324,6 +336,9 @@ header.site{ position:sticky; top:0; z-index:60; padding:12px 0 0; }
 .price-card .fee{ font-size:.92rem; color:rgba(255,255,255,.64); }
 .price-card .btn{ margin-top:24px; }
 .price-card .microcopy{ margin-top:16px; font-size:.86rem; color:rgba(255,255,255,.6); }
+.price-card .referral{ margin-top:18px; padding:15px 16px; border:1px solid rgba(30,99,224,.35); border-radius:var(--r-sm); background:rgba(30,99,224,.14); font-size:.9rem; color:rgba(255,255,255,.86); line-height:1.5; }
+.price-card .referral strong{ display:block; color:#fff; margin-bottom:3px; }
+.price-card .referral b{ color:var(--sky); }
 
 /* =========================================================
    PROOF — dark dashboard (real proof foregrounded)
@@ -430,8 +445,12 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
 
 /* sticky mobile CTA */
 .sticky-cta{ position:fixed; left:0; right:0; bottom:0; z-index:70; padding:10px 16px calc(10px + env(safe-area-inset-bottom));
-  background:rgba(5,18,42,.9); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid var(--line-d); }
-.sticky-cta .btn{ width:100%; }
+  background:rgba(5,18,42,.9); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid var(--line-d);
+  display:flex; align-items:center; gap:10px; }
+.sticky-cta .btn{ flex:1; width:auto; }
+.sticky-call{ flex:none; width:52px; height:52px; border-radius:999px; background:#fff; color:var(--accent); display:grid; place-items:center; position:relative; box-shadow:0 10px 24px -12px rgba(0,0,0,.6); }
+.sticky-call svg{ width:21px; height:21px; }
+.sticky-call::after{ content:""; position:absolute; inset:0; border-radius:999px; border:2px solid #fff; animation:callpulse 2.6s var(--ease) infinite; }
 @media(min-width:800px){ .sticky-cta{ display:none; } footer.site{ padding-bottom:44px; } }
 
 /* reveal */
@@ -454,7 +473,10 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
   <div class="wrap">
     <div class="nav">
       <a href="#top" aria-label="The Credit Repair Team, home"><img src="assets/logo/logo-blue.png" alt="The Credit Repair Team" class="brand-logo"></a>
-      <a class="btn" href="#book">book free review <span class="ci"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <div class="nav-cta">
+        <a class="btn-call" href="tel:+13052698447" aria-label="Call us at (305) 269-8447"><span class="call-ic"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.5 9 4l1 3.6-1.8 1.4a12 12 0 0 0 5.9 5.9L15.4 15l3.6 1 .5 2.5a2 2 0 0 1-2.2 2.3A16.5 16.5 0 0 1 4.2 6.2 2 2 0 0 1 6.5 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="call-num">(305) 269-8447</span></a>
+        <a class="btn" href="#book">book free review <span class="ci"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
     </div>
   </div>
 </header>
@@ -489,7 +511,7 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
 
   <div class="trustbar">
     <div class="wrap">
-      <span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> $120/mo simple pricing</span>
+      <span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> $150/mo simple pricing</span>
       <span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> IdentityIQ monitoring</span>
       <span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> full client portal</span>
       <span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> real human support</span>
@@ -507,8 +529,8 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
         <p class="sub mt2">you didn't come here to learn what credit is. you already feel it every time you get told "no." so let's start with the part most companies skip: what you've actually been through.</p>
       </div>
       <figure class="crew-fig reveal" aria-hidden="true">
-        <img src="assets/crew/denny.png" alt="" width="300" height="300" loading="lazy"
-          onerror="this.closest('.crew-fig').style.display='none'">
+        <img src="assets/crew/denny-peek.png" alt="" width="360" height="240" loading="lazy"
+          onerror="this.onerror=null;this.src='assets/crew/denny.png'">
       </figure>
     </div>
     <div class="obj-list">
@@ -669,7 +691,7 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
   <div class="wrap">
     <div class="measure reveal">
       <h2 class="h2">one clear plan. everything handled. no surprises.</h2>
-      <p class="sub mt2">what you get for $120 a month, laid out in full, before you decide anything.</p>
+      <p class="sub mt2">what you get for $150 a month, laid out in full, before you decide anything.</p>
     </div>
     <div class="plan-grid">
       <div class="reveal">
@@ -692,9 +714,10 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
         <div class="pc-core">
           <span class="rail"></span>
           <div class="tag">for people ready to move forward, not people hoping their score fixes itself.</div>
-          <div class="amt">$120<span>/mo</span><span class="was">$395</span></div>
-          <div class="fee">plus a one-time onboarding fee. cancel anytime.</div>
+          <div class="amt">$150<span>/mo</span></div>
+          <div class="fee">first-time guests. plus a one-time onboarding fee, cancel anytime.</div>
           <a class="btn" href="#book">book your free review <span class="ci"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <div class="referral"><strong>referred by a member? your rate is <b>$125/mo</b>.</strong>and when someone you refer stays 3 months, your next month is on us.</div>
           <div class="microcopy">see your report, see the plan, then decide if it makes sense.</div>
         </div>
       </aside>
@@ -748,8 +771,8 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
       </div>
     </div>
 
-    <div class="block-head reveal"><h3 class="h3">real deletions from real client reports</h3>
-      <p>actual results pulled from client credit reports: accounts marked deleted, collections removed, lates corrected.</p></div>
+    <div class="block-head reveal"><h3 class="h3">real results from real client reports</h3>
+      <p>actual screenshots from client credit reports: accounts deleted, collections removed, and real score increases.</p></div>
     <div class="shots reveal" id="shots"></div>
 
     <div class="block-head reveal"><h3 class="h3">5-star reviews from people who once felt stuck</h3>
@@ -768,7 +791,7 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
 <!-- ============ REFRAME (no eyebrow) ============ -->
 <section class="section" id="value">
   <div class="wrap">
-    <div class="measure reveal"><h2 class="h2">let's put $120 a month in perspective</h2>
+    <div class="measure reveal"><h2 class="h2">let's put $150 a month in perspective</h2>
       <p class="sub mt2">same money, two very different outcomes.</p></div>
     <div class="compare">
       <div class="cc cost reveal">
@@ -782,7 +805,7 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
         </ul>
       </div>
       <div class="cc value reveal">
-        <h4>what your $120 builds instead</h4>
+        <h4>what your $150 builds instead</h4>
         <p class="lead">a real team, working the problem with you.</p>
         <ul>
           <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8.5 15 16 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> a live consultation with real people</li>
@@ -842,7 +865,10 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
 </footer>
 
 <!-- sticky mobile CTA -->
-<div class="sticky-cta"><a class="btn" href="#book">book your free review <span class="ci"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+<div class="sticky-cta">
+  <a class="sticky-call" href="tel:+13052698447" aria-label="Call us at (305) 269-8447"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.5 9 4l1 3.6-1.8 1.4a12 12 0 0 0 5.9 5.9L15.4 15l3.6 1 .5 2.5a2 2 0 0 1-2.2 2.3A16.5 16.5 0 0 1 4.2 6.2 2 2 0 0 1 6.5 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></a>
+  <a class="btn" href="#book">book your free review <span class="ci"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+</div>
 
 <script>
 (function(){
@@ -850,14 +876,14 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
 
   /* ---------- personas carousel ---------- */
   var personas=[
-    {t:"home buyers",c:"tick",b:"your pre-approval window is closing and your score isn't ready. we prioritize what actually moves the needle before it expires."},
-    {t:"car buyers",c:"nova",b:"you need reliable transportation now, without a brutal interest rate quietly eating your monthly budget."},
-    {t:"recently denied",c:"denny",b:"you were told to come back when your score is higher. we turn that vague no into a plan with a real timeline."},
-    {t:"student-loan lates",c:"blush",b:"late payments just hit your report and dragged everything down. we address them through a structured, compliant process."},
-    {t:"collections and charge-offs",c:"buri",b:"old debt keeps following you everywhere you apply. we dispute inaccurate and unverifiable items the right way."},
-    {t:"scammed before",c:"doubt",b:"you paid someone who disappeared. live consults, a real portal, and direct comms mean you always see the work being done."},
-    {t:"tried it alone",c:"solo",b:"you tried credit karma, youtube, and a stack of ai letters. it barely moved. we bring the structure that actually gets items removed."},
-    {t:"ready to rebuild",c:"sunny",b:"you're done feeling stuck and ready to build something real. we hand you the plan and the momentum to finally get there."}
+    {t:"home buyers",c:"tick",b:"your pre-approval window is closing and your score isn't ready. we fix what matters most, first."},
+    {t:"car buyers",c:"nova",b:"you need reliable transportation now, without a brutal rate eating your monthly budget."},
+    {t:"recently denied",c:"denny",b:"you were told to come back when your score is higher. we turn that no into a real plan."},
+    {t:"student-loan lates",c:"blush",b:"late payments hit your report and dragged your score down. we handle them the compliant way."},
+    {t:"collections and charge-offs",c:"buri",b:"old debt follows you everywhere you apply. we dispute inaccurate and unverifiable items."},
+    {t:"scammed before",c:"doubt",b:"you paid someone who vanished. live consults and a real portal mean you always see the work."},
+    {t:"tried it alone",c:"solo",b:"you tried credit karma and ai letters and nothing moved. we bring the structure that works."},
+    {t:"ready to rebuild",c:"sunny",b:"you're done feeling stuck and ready to build. we hand you the plan and momentum to get there."}
   ];
   var hues=[["#2E7BE6","#0B3FA8"],["#16A0E6","#0E4FD6"],["#1B53E6","#0a2a7a"],["#1E6FE0","#0C3DB0"],["#1597D6","#0E4FD6"],["#3360E6","#091f5e"]];
   var caro=document.getElementById('caro');
@@ -885,8 +911,9 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
 
   /* ---------- proof images ---------- */
   var shots=document.getElementById('shots');
-  for(var i=1;i<=27;i++){ var s=document.createElement('div'); s.className='shot';
-    s.innerHTML='<img loading="lazy" width="184" height="250" src="assets/results/result-'+i+'.jpg" alt="client credit-report result '+i+'"><div class="cap">verified deletion</div>'; shots.appendChild(s); }
+  var resultCaps=["verified deletion","score increase","score increase","real progress","verified deletion","verified deletion","real progress","score increase","score increase","real progress","verified deletion","real progress","verified deletion","real progress","verified deletion","verified deletion","score increase","verified deletion","score increase","verified deletion","verified deletion","score increase","real progress","score increase","verified deletion","real progress","verified deletion"];
+  for(var i=1;i<=27;i++){ var s=document.createElement('div'); s.className='shot'; var cap=resultCaps[i-1]||"verified result";
+    s.innerHTML='<img loading="lazy" width="184" height="250" src="assets/results/result-'+i+'.jpg" alt="client credit result '+i+', '+cap+'"><div class="cap">'+cap+'</div>'; shots.appendChild(s); }
   var yelp=document.getElementById('yelp');
   for(var j=1;j<=10;j++){ var c=document.createElement('div'); c.className='rcard';
     c.innerHTML='<img loading="lazy" src="assets/reviews/yelp-'+j+'.jpg" alt="5-star Yelp review from a Credit Repair Team client">'; yelp.appendChild(c); }
@@ -999,8 +1026,8 @@ footer .legal{ max-width:700px; line-height:1.6; font-size:.74rem; letter-spacin
   document.getElementById('yr').textContent=new Date().getFullYear();
 
   /* ===== CALENDLY HOOK ===== */
-  var CALENDLY_URL=""; // e.g. "https://calendly.com/the-credit-repair-team/strategy-call"
-  if(CALENDLY_URL){ document.querySelectorAll('a[href="#book"], #finalCta, .sticky-cta a').forEach(function(a){
+  var CALENDLY_URL="https://calendly.com/gotaxteamkarin/credit-repair-consultation-virtual"; // Karin (Credit Repair Team consultant, parent co = The Tax Team)
+  if(CALENDLY_URL){ document.querySelectorAll('a[href="#book"], #finalCta').forEach(function(a){
     a.setAttribute('href',CALENDLY_URL); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener'); }); }
 })();
 </script>
