@@ -667,7 +667,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
 <section class="filmscroll" data-filmscroll>
   <div class="fs-pin" data-fspin>
     <div class="fs-media">
-      <video class="filmscroll-video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" data-src="assets/0817-1080p.mp4"></video>
+      <video class="filmscroll-video" muted loop playsinline webkit-playsinline autoplay preload="none" poster="assets/hero-poster.jpg" data-src="assets/0817-1080p.mp4"></video>
       <div class="fs-tint" data-fstint></div>
       <img class="fs-coin" src="assets/decor/member-coin-v2.png" width="512" height="500" alt="" decoding="async" aria-hidden="true">
     </div>
@@ -1017,7 +1017,21 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
       requestAnimationFrame(function(){ requestAnimationFrame(disarm); });
       setTimeout(disarm,200);
     }
-    if(fsVideo && !prefersReduced){ fsVideo.src=fsVideo.dataset.src; var fp=fsVideo.play(); if(fp&&fp.catch)fp.catch(function(){}); }
+    if(fsVideo && !prefersReduced){
+      // iOS-safe autoplay: muted + playsinline must be set as PROPERTIES (not
+      // just attributes) at play time; play() is retried on canplay and, if the
+      // browser still blocks it (e.g. iOS Low Power Mode), on the first tap.
+      fsVideo.muted = true; fsVideo.playsInline = true; fsVideo.setAttribute("muted","");
+      if(fsVideo.dataset.src && !fsVideo.src) fsVideo.src = fsVideo.dataset.src;
+      var tryPlay = function(){ var p = fsVideo.play(); if(p && p.catch) p.catch(function(){}); };
+      fsVideo.addEventListener("canplay", tryPlay, { once:true });
+      fsVideo.addEventListener("loadeddata", tryPlay, { once:true });
+      tryPlay();
+      var kick = function(){ tryPlay(); };
+      ["touchstart","pointerdown","click","scroll"].forEach(function(ev){
+        window.addEventListener(ev, kick, { once:true, passive:true });
+      });
+    }
   }
 
   /* smooth scroll */
