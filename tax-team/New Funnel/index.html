@@ -441,9 +441,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
 
 /* client marquee — auto loop */
 .marquee{overflow:hidden;padding:44px 0 12px;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
-.marquee-track{display:flex;gap:16px;width:max-content;animation:marq 44s linear infinite}
+.marquee-track{display:flex;flex-wrap:nowrap;gap:16px;width:max-content;animation:marq var(--marq-dur,44s) linear infinite;will-change:transform;transform:translateZ(0);backface-visibility:hidden}
 .marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes marq{to{transform:translateX(calc(-50% - 8px))}}
+/* distance is set in px by JS (--marq-x) so iOS doesn't mis-resolve the % of a max-content track */
+@keyframes marq{to{transform:translate3d(var(--marq-x,calc(-50% - 8px)),0,0)}}
 
 /* cognito form slot */
 .cognito{max-width:520px;margin:30px auto 0;background:#fff;border:2px dashed rgba(0,146,95,.5);border-radius:20px;padding:24px 22px;text-align:left}
@@ -913,6 +914,29 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
     return '<article class="ccard"><img src="'+esc(c.img)+'" alt="'+esc(c.name)+'"><div class="ccard-meta"><span class="ccard-tag">Client</span><div class="ccard-name">'+esc(c.name)+'</div><div class="ccard-cat">'+esc(c.cat)+'</div></div></article>';
   }).join("");
   fill("[data-clients]", clientCards + clientCards); // duplicated for seamless marquee loop
+  // Drive the marquee with a measured PIXEL distance + fixed speed so it loops
+  // reliably and reads at a steady pace on every device (iOS mis-resolves the
+  // % translate of a max-content track — it ran fast and stopped after one set).
+  (function initMarquee(){
+    var tr = document.querySelector(".marquee-track");
+    if(!tr) return;
+    function size(){
+      var half = tr.scrollWidth / 2; if(!half) return;
+      var dist = half + 8;                                  // + half a gap = seamless join
+      tr.style.setProperty("--marq-x", "-" + dist + "px");
+      tr.style.setProperty("--marq-dur", Math.max(30, dist / 34).toFixed(1) + "s"); // ~34px/s, readable
+    }
+    var imgs = Array.prototype.slice.call(tr.querySelectorAll("img"));
+    var left = imgs.length;
+    if(!left){ size(); }
+    else imgs.forEach(function(im){
+      var done = function(){ if(--left <= 0) size(); };
+      if(im.complete && im.naturalWidth) done();
+      else { im.addEventListener("load", done, {once:true}); im.addEventListener("error", done, {once:true}); }
+    });
+    window.addEventListener("resize", size);
+    window.addEventListener("load", size);
+  })();
   fill("[data-steps]",'<div class="spine-line reveal" aria-hidden="true"></div>'+steps.map(function(s,i){
     return '<div class="spine-row reveal"><div class="spine-num" aria-hidden="true">0'+(i+1)+'</div><div class="spine-body"><div class="spine-t">'+esc(s.t)+'</div><p class="spine-d">'+esc(s.d)+'</p></div></div>';
   }).join(""));
