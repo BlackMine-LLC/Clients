@@ -627,6 +627,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
 .etesti-meta .f .v{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
 .etesti-disc{max-width:62ch;margin:clamp(44px,6vw,64px) auto 0;text-align:center;font-style:italic;color:var(--muted);font-size:13.5px;line-height:1.55}
 @media(max-width:760px){.etesti{grid-template-columns:1fr;gap:20px}.etesti.flip .etesti-media{order:0}}
+
 </style>
 </head>
 <body>
@@ -850,6 +851,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
   </div>
 </footer>
 
+
+
 <script>
 (function(){
   "use strict";
@@ -1061,18 +1064,24 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
   /* smooth scroll */
   document.addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(b){e.preventDefault();var t=document.querySelector(b.dataset.go);if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-10,behavior:prefersReduced?"auto":"smooth"});}});
 
-  /* GHL survey — every CTA opens the survey, carrying ad attribution across */
-  var SURVEY="https://brand.gotaxteam.com/widget/survey/dN2LpIa9710njc1RSfln";
+  /* Every CTA hands off to the funnel's Start page, carrying the ad attribution
+     across so the click can still be traced back to the ad that paid for it.
+     The fork (send a return / answer questions) lives on that page now, not here. */
+  var START = "https://start.gotaxteam.com/start";
   (function(){
-    var keep=["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"];
-    var incoming=new URLSearchParams(location.search), pass=new URLSearchParams();
-    keep.forEach(function(k){var val=incoming.get(k); if(val) pass.set(k,val);});
-    try{ keep.forEach(function(k){ if(!pass.get(k)){ var s=localStorage.getItem("tt_"+k); if(s) pass.set(k,s); } }); }catch(_){}
-    try{ pass.forEach(function(val,k){ localStorage.setItem("tt_"+k,val); }); }catch(_){}
-    var url=SURVEY+(pass.toString()?"?"+pass.toString():"");
+    var keep = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"];
+    var incoming = new URLSearchParams(location.search), pass = new URLSearchParams();
+    keep.forEach(function(k){ var v = incoming.get(k); if (v) pass.set(k, v); });
+    /* fall back to anything stored on an earlier visit, then re-store */
+    try{ keep.forEach(function(k){ if(!pass.get(k)){ var st = localStorage.getItem("tt_"+k); if(st) pass.set(k, st); } }); }catch(_){}
+    try{ pass.forEach(function(v,k){ localStorage.setItem("tt_"+k, v); }); }catch(_){}
+
+    var q = pass.toString();
+    var url = START + (q ? "?" + q : "");
+
     document.querySelectorAll("[data-survey]").forEach(function(el){
-      if(el.tagName==="A") el.setAttribute("href",url);
-      el.addEventListener("click",function(e){ e.preventDefault(); window.location.href=url; });
+      if (el.tagName === "A") el.setAttribute("href", url);
+      el.addEventListener("click", function(e){ e.preventDefault(); window.location.href = url; });
     });
   })();
   /* vsl */
