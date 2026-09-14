@@ -13,6 +13,134 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>document.documentElement.className+=" js";</script>
+<!-- ===== Tax Team Consent (portable · Google Consent Mode v2 · GPC-aware) ===== -->
+<script>
+(function(){
+  if (window.__ttkConsent) return;                 // idempotent (safe if injected twice)
+  window.__ttkConsent = true;
+
+  var COOKIE='ttk_consent', DAYS=180, DOMAIN='.gotaxteam.com';
+  var POLICY='https://www.gotaxteam.com/privacy-policy-terms';
+
+  // ---- Consent Mode v2 bootstrap (must run before any tag) ----
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = window.gtag || gtag;
+
+  function read(){
+    try{
+      var m=document.cookie.split('; ').find(function(r){return r.indexOf(COOKIE+'=')===0;});
+      if(m) return JSON.parse(decodeURIComponent(m.split('=').slice(1).join('=')));
+      var ls=localStorage.getItem(COOKIE); if(ls) return JSON.parse(ls);
+    }catch(e){}
+    return null;
+  }
+  function write(o){
+    o.ts=Date.now();
+    var v=encodeURIComponent(JSON.stringify(o));
+    var sec=location.protocol==='https:'?'; Secure':'';
+    var host=location.hostname.indexOf('gotaxteam.com')>-1 ? ('; domain='+DOMAIN) : '';
+    document.cookie=COOKIE+'='+v+'; Max-Age='+(DAYS*86400)+'; Path=/; SameSite=Lax'+host+sec;
+    try{localStorage.setItem(COOKIE,JSON.stringify(o));}catch(e){}
+  }
+  function apply(o){
+    gtag('consent','update',{
+      analytics_storage:      o.a?'granted':'denied',
+      ad_storage:             o.m?'granted':'denied',
+      ad_user_data:           o.m?'granted':'denied',
+      ad_personalization:     o.m?'granted':'denied',
+      personalization_storage:o.p?'granted':'denied'
+    });
+    window.dataLayer.push({event:'ttk_consent_update', consent:o});
+  }
+
+  var gpc = (navigator.globalPrivacyControl===true);
+  var saved = read();
+
+  // Defaults: everything non-essential DENIED until the visitor chooses.
+  gtag('consent','default',{
+    analytics_storage:'denied', ad_storage:'denied', ad_user_data:'denied',
+    ad_personalization:'denied', personalization_storage:'denied',
+    functionality_storage:'granted', security_storage:'granted',
+    wait_for_update: 500
+  });
+  if (saved) apply(saved);           // returning visitor: honor their prior choice
+
+  // ---- UI ----
+  var CSS='.ttk-cc,.ttk-cc *{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}'
+   +'.ttk-cc{position:fixed;z-index:2147483000;left:16px;right:16px;bottom:16px;max-width:560px;margin:0 auto;background:#fff;color:#17160F;border:1px solid rgba(23,22,15,.12);border-radius:16px;box-shadow:0 24px 60px -24px rgba(23,22,15,.5);padding:20px 22px}'
+   +'.ttk-cc h3{margin:0 0 6px;font-size:16px;font-weight:800}'
+   +'.ttk-cc p{margin:0;font-size:13.5px;line-height:1.55;color:#43423A}'
+   +'.ttk-cc a{color:#00925F;font-weight:600;text-decoration:underline}'
+   +'.ttk-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}'
+   +'.ttk-btn{flex:1 1 auto;min-width:120px;border:0;border-radius:10px;padding:11px 16px;font-size:14px;font-weight:700;cursor:pointer}'
+   +'.ttk-accept{background:#00925F;color:#fff}.ttk-accept:hover{background:#007d51}'
+   +'.ttk-reject{background:#EDE9E0;color:#17160F}.ttk-reject:hover{background:#e3ded2}'
+   +'.ttk-manage{background:transparent;color:#17160F;text-decoration:underline;flex:0 0 auto;min-width:0;padding:11px 6px}'
+   +'.ttk-cats{margin-top:14px;display:none}.ttk-cats.open{display:block}'
+   +'.ttk-cat{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid rgba(23,22,15,.08)}'
+   +'.ttk-cat b{font-size:13.5px}.ttk-cat span{display:block;font-size:12px;color:#77756C;margin-top:2px}'
+   +'.ttk-sw{position:relative;width:44px;height:26px;flex:0 0 auto;border-radius:999px;background:#CFC9BC;border:0;cursor:pointer;transition:background .15s}'
+   +'.ttk-sw[aria-checked="true"]{background:#00925F}.ttk-sw[disabled]{opacity:.5;cursor:not-allowed}'
+   +'.ttk-sw i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .15s}'
+   +'.ttk-sw[aria-checked="true"] i{left:21px}'
+   +'.ttk-prefbtn{position:fixed;z-index:2147482000;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:7px;background:#221f18;color:#F6F5F1;border:0;border-radius:11px;padding:9px 13px;font-size:12.5px;font-weight:600;cursor:pointer;box-shadow:0 10px 26px rgba(23,22,15,.3);font-family:-apple-system,sans-serif}'
+   +'@media(max-width:520px){.ttk-btn{flex:1 1 100%}.ttk-manage{flex:1 1 100%;order:3}}';
+
+  function el(html){var d=document.createElement('div');d.innerHTML=html.trim();return d.firstChild;}
+  function injectCSS(){ if(document.getElementById('ttk-cc-css'))return; var s=document.createElement('style'); s.id='ttk-cc-css'; s.textContent=CSS; document.head.appendChild(s); }
+
+  var banner, prefBtn;
+  function sw(id,checked){return '<button class="ttk-sw" role="switch" aria-checked="'+(checked?'true':'false')+'" data-cat="'+id+'"><i></i></button>';}
+
+  function buildBanner(pre){
+    injectCSS();
+    var c = pre || {a:false,m:false,p:false};
+    banner = el(
+      '<div class="ttk-cc" role="dialog" aria-live="polite" aria-label="Cookie consent">'
+      +'<h3>Your privacy, your choice</h3>'
+      +'<p>We use cookies to run this site and — only with your consent — to measure traffic and improve our ads. Nothing non-essential runs until you say yes. See our <a href="'+POLICY+'#cookie-policy" target="_blank" rel="noopener">Cookie Policy</a>.</p>'
+      +'<div class="ttk-cats" id="ttk-cats">'
+        +'<div class="ttk-cat"><div><b>Essential</b><span>Required for the site to work. Always on.</span></div><button class="ttk-sw" role="switch" aria-checked="true" disabled><i></i></button></div>'
+        +'<div class="ttk-cat"><div><b>Analytics</b><span>Measures visits and how the page is used.</span></div>'+sw('a',c.a)+'</div>'
+        +'<div class="ttk-cat"><div><b>Marketing</b><span>Ad measurement &amp; retargeting (Google Ads).</span></div>'+sw('m',c.m)+'</div>'
+        +'<div class="ttk-cat"><div><b>Personalization</b><span>Tailors content to how you use the site.</span></div>'+sw('p',c.p)+'</div>'
+      +'</div>'
+      +'<div class="ttk-row">'
+        +'<button class="ttk-btn ttk-reject" data-act="reject">Reject all</button>'
+        +'<button class="ttk-btn ttk-manage" data-act="manage">Manage</button>'
+        +'<button class="ttk-btn ttk-accept" data-act="accept">Accept all</button>'
+      +'</div></div>');
+    banner.addEventListener('click',function(e){
+      var b=e.target.closest('[data-act],[data-cat]'); if(!b)return;
+      if(b.dataset.cat){ b.setAttribute('aria-checked', b.getAttribute('aria-checked')==='true'?'false':'true'); return; }
+      var act=b.dataset.act;
+      if(act==='manage'){ var cats=banner.querySelector('#ttk-cats'); cats.classList.toggle('open');
+        banner.querySelector('[data-act="manage"]').textContent = cats.classList.contains('open')?'Save choices':'Manage';
+        if(!cats.classList.contains('open')){ save(collect()); } return; }
+      if(act==='accept') return save({a:true,m:true,p:true});
+      if(act==='reject') return save({a:false,m:false,p:false});
+    });
+    document.body.appendChild(banner);
+  }
+  function collect(){var o={a:false,m:false,p:false};banner.querySelectorAll('.ttk-sw[data-cat]').forEach(function(s){o[s.dataset.cat]=s.getAttribute('aria-checked')==='true';});return o;}
+  function save(o){ write(o); apply(o); if(banner){banner.remove();banner=null;} showPrefBtn(); }
+  function showPrefBtn(){
+    if(prefBtn) return; injectCSS();
+    prefBtn = el('<button class="ttk-prefbtn" aria-label="Cookie preferences / Do Not Sell or Share">🍪 Cookie preferences</button>');
+    prefBtn.addEventListener('click',function(){ if(banner)return; buildBanner(read()||{a:false,m:false,p:false}); banner.querySelector('#ttk-cats').classList.add('open'); banner.querySelector('[data-act="manage"]').textContent='Save choices'; });
+    document.body.appendChild(prefBtn);
+  }
+
+  function boot(){
+    if(saved){ showPrefBtn(); return; }        // already decided -> just the reopen control
+    if(gpc){ save({a:false,m:false,p:false}); return; } // honor Global Privacy Control automatically
+    buildBanner();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
+})();
+</script>
+<!-- ===== /Tax Team Consent ===== -->
 <style>
 :root{
   --ink:#17160F;--ink-soft:#221f18;--paper:#F6F5F1;--paper-2:#F5F0E8;--paper-green:#E9F2E4;--card:#fff;
