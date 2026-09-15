@@ -766,7 +766,6 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
 
 
 /* proof section — single portrait + worked-example figure card */
-.etesti-cap.span2{grid-column:1/-1}
 .etesti-cap{margin-top:12px;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .ework-fig{background:var(--ink);padding:clamp(30px,4.4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:12px;min-height:clamp(260px,32vw,360px)}
 .ework-fig .k{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.60);font-weight:700}
@@ -779,6 +778,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.022em;text-wr
 .etesti.flip .ework-fig{order:2}
 @media(max-width:700px){.etesti.flip .ework-fig{order:0}}
 .ework .etesti-quote{font-size:clamp(19px,2.4vw,27px)}
+.ework-amt{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.ework-amt .k{flex:0 0 100%;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.ework-amt .n{font-family:var(--serif);font-weight:600;font-size:clamp(38px,5.4vw,58px);line-height:1;letter-spacing:-.035em;color:var(--green);font-variant-numeric:tabular-nums}
+.ework-amt .s{font-size:13.5px;color:var(--muted);font-weight:500}
 .ework-rows{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:18px}
 .ework-row{display:grid;grid-template-columns:120px 1fr;gap:0 20px}
 .ework-row .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;padding-top:4px}
@@ -946,7 +949,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="etesti-media">
         <img class="im-person" src="assets/testi-dental.png" alt="" loading="lazy" decoding="async">
         <img class="im-biz" src="assets/biz-dental.png" alt="" loading="lazy" decoding="async">
-        <span class="etesti-cap span2">Illustrative photography</span>
       </div>
       <div class="etesti-body">
         <div class="etesti-top"><span class="etesti-mark"><img class="etm" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAPNSURBVHgBxZdraBRXFMf/987sbrLpppsmtbhVE60WMaXGttimobRaaonYh9D90A9thX4pilC/FPSDaWqlUoSoKD5AEAVBQRHFBF8E8RnfIiK+YvAZDZvsurqbnZ17r2c2uMlmZ+MQk+wPZnbnnHPPuXPmztxzGJzSWFcMwWtRVFgDJT+Gxt/VwUvBmSakCCkl70HgAjR2CqcvN2Lx9i4nbtkrLQ6tGAel/oBLW0DWxXCCkFG49F0QyXrMWNyGQU1gTa0HlV/+TXe0gMx8GAyc3AuxGtHWJfh+U8z5BJr/qwDnu6HYNAwFjN2BNGfaZYNnGTfWTQHTmocsuIVS4ynUUZz4v6q/KjMD1p1bwYEKDAdCPgRXNX0z0ZuBYFCj4E3DFtxC4wEofgAXG/zZE5j/yXI6T+5rz5QCk695kI8MOHsfEaM+HSN1PtVQgbhxg5Suvra+psvwHb6K1+F59UREfpqeKVSQCEenY+6y83pKIGRd/+AW3ZVjIN/0wgnFe84jMXk0HYEMeXKUzaeDUea9BX/Sv190BKsL0W3Mhq5l2ckiD8yyNzAQ0utBcmwpihsvwSgvRXzqOLgedKb1qtBtP9Cl/0xrYaGO32u/o+Cj7Gy8Z27Dd/BK7uiMITHpHYTmf9Pr91EYpeuPpK+ffz4JkeCn2WPpE46I+auOAk9NDvd4NmMKYp9NzKWGf2cLpUBmyKwJPV46N30tc2UgpZRVOj1/2lg0W737bgiem+22uqezp0IWuMBjiQy53hGFt+V2+tooL0P3B2NsfdBK+EJnnJcrezW0zmdwtT7JlMWT0NvDiH77ob1Pw8wYI3yFyImQZbrG+Fsm7Kdgpb//I/C23IJ/R0tOn0agBKGFs+AITfNziq2QR7iACiFfCBnjSsp25AvOWjm9y+eQL5S6xhE3zyJfcNbEEfDusZ4FRhqrXPO4mzmmLQrDlJsw0ki1BdWL2nrqgXhsA4QyMJK0PVpp/fRM4Md/r0PDWowUSm3GvIarvROwSKp/qOG4hmFHtaErtuTlVe8utO1wAvO+3k/fxSC9mrkbEM4hSopgvEc7uM5hji6BGfBDUT1hTHgb0l+Ucyj1CGHE4jX4of7+S1F2X3CioQpGYi8YH4uhpQsdkTkILj/ZVzhAY2L1BkNUIXPcQefT2tRay1LZYdXtj0NVVDCss6qeQWONNeVG+Fwf2QVPmbzSyYFl4+HxLCXT32gBOZsNYwqmuY+225X46q9jA5rCKcdWUZcsZiJhzKIaspLemAm0IHsqViGiJOsg2XG43RfQ+WQr5qxw1J6/AH2DZkuSVSusAAAAAElFTkSuQmCC" alt="" width="18" height="18">The Tax Team</span><span class="etesti-stars">★★★★★</span></div>
@@ -977,7 +979,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <p class="etesti-disc">The review above is verbatim from The Tax Team's Google Business Profile; the photography beside it is illustrative and is not the reviewer. The worked example is illustrative arithmetic on a representative return, not a specific client — your own numbers will differ. Results vary by individual circumstances, and nothing here is tax, legal, or financial advice.</p>
+    <div class="etesti">
+      <div class="etesti-media">
+        <img class="im-person" src="assets/testi-law.png" alt="" loading="lazy" decoding="async">
+        <img class="im-biz" src="assets/biz-law.png" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="etesti-body">
+        <div class="etesti-top"><span class="etesti-mark"><img class="etm" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAPNSURBVHgBxZdraBRXFMf/987sbrLpppsmtbhVE60WMaXGttimobRaaonYh9D90A9thX4pilC/FPSDaWqlUoSoKD5AEAVBQRHFBF8E8RnfIiK+YvAZDZvsurqbnZ17r2c2uMlmZ+MQk+wPZnbnnHPPuXPmztxzGJzSWFcMwWtRVFgDJT+Gxt/VwUvBmSakCCkl70HgAjR2CqcvN2Lx9i4nbtkrLQ6tGAel/oBLW0DWxXCCkFG49F0QyXrMWNyGQU1gTa0HlV/+TXe0gMx8GAyc3AuxGtHWJfh+U8z5BJr/qwDnu6HYNAwFjN2BNGfaZYNnGTfWTQHTmocsuIVS4ynUUZz4v6q/KjMD1p1bwYEKDAdCPgRXNX0z0ZuBYFCj4E3DFtxC4wEofgAXG/zZE5j/yXI6T+5rz5QCk695kI8MOHsfEaM+HSN1PtVQgbhxg5Suvra+psvwHb6K1+F59UREfpqeKVSQCEenY+6y83pKIGRd/+AW3ZVjIN/0wgnFe84jMXk0HYEMeXKUzaeDUea9BX/Sv190BKsL0W3Mhq5l2ckiD8yyNzAQ0utBcmwpihsvwSgvRXzqOLgedKb1qtBtP9Cl/0xrYaGO32u/o+Cj7Gy8Z27Dd/BK7uiMITHpHYTmf9Pr91EYpeuPpK+ffz4JkeCn2WPpE46I+auOAk9NDvd4NmMKYp9NzKWGf2cLpUBmyKwJPV46N30tc2UgpZRVOj1/2lg0W737bgiem+22uqezp0IWuMBjiQy53hGFt+V2+tooL0P3B2NsfdBK+EJnnJcrezW0zmdwtT7JlMWT0NvDiH77ob1Pw8wYI3yFyImQZbrG+Fsm7Kdgpb//I/C23IJ/R0tOn0agBKGFs+AITfNziq2QR7iACiFfCBnjSsp25AvOWjm9y+eQL5S6xhE3zyJfcNbEEfDusZ4FRhqrXPO4mzmmLQrDlJsw0ki1BdWL2nrqgXhsA4QyMJK0PVpp/fRM4Md/r0PDWowUSm3GvIarvROwSKp/qOG4hmFHtaErtuTlVe8utO1wAvO+3k/fxSC9mrkbEM4hSopgvEc7uM5hji6BGfBDUT1hTHgb0l+Ucyj1CGHE4jX4of7+S1F2X3CioQpGYi8YH4uhpQsdkTkILj/ZVzhAY2L1BkNUIXPcQefT2tRay1LZYdXtj0NVVDCss6qeQWONNeVG+Fwf2QVPmbzSyYFl4+HxLCXT32gBOZsNYwqmuY+225X46q9jA5rCKcdWUZcsZiJhzKIaspLemAm0IHsqViGiJOsg2XG43RfQ+WQr5qxw1J6/AH2DZkuSVSusAAAAAElFTkSuQmCC" alt="" width="18" height="18">The Tax Team</span><span class="ework-tag">Worked example</span></div>
+        <p class="etesti-quote">Not every finding is six figures. This one just never stops.</p>
+        <div class="ework-rows">
+          <div class="ework-row"><span class="k">The return</span><span class="v">Law firm. S-corp, roughly $800K profit, one owner.</span></div>
+          <div class="ework-row"><span class="k">What we'd flag</span><span class="v">Officer salary set at $450K and never revisited — well above what the role supports, so the excess is being taxed as wages.</span></div>
+          <div class="ework-row"><span class="k">The arithmetic</span><span class="v">Resetting to a defensible figure moves about $175,000 out of the Medicare and additional-Medicare wage base. At 3.8%, that is roughly $6,650 a year — and it repeats every year the structure stays as it is.</span></div>
+        </div>
+        <div class="ework-amt"><span class="k">What the fix is worth</span><span class="n">$6,650</span><span class="s">a year, every year</span></div>
+      </div>
+    </div>
+
+    <p class="etesti-disc">The review above is verbatim from The Tax Team's Google Business Profile. The worked examples are illustrative arithmetic on representative returns, not specific clients — your own numbers will differ. Results vary by individual circumstances, and nothing here is tax, legal, or financial advice.</p>
   </div>
 </section>
 
