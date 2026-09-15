@@ -1,11 +1,28 @@
 # apply.gotaxteam.com — Google Ads landing page
+
 User-agent: *
 Allow: /
 
+# Google Ads landing-page checks
 User-agent: AdsBot-Google
 Allow: /
 
 User-agent: AdsBot-Google-Mobile
+Allow: /
+
+# AI answer engines — allowed so the practice can be cited when someone asks
+# an assistant for a Miami/Coral Gables tax firm. These are the citation
+# crawlers, not the model-training ones.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ChatGPT-User
 Allow: /
 
 Sitemap: https://apply.gotaxteam.com/sitemap.xml
