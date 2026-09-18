@@ -127,7 +127,28 @@
     document.cookie=COOKIE+'='+v+'; Max-Age='+(DAYS*86400)+'; Path=/; SameSite=Lax'+host+sec;
     try{localStorage.setItem(COOKIE,JSON.stringify(o));}catch(e){}
   }
+  // Microsoft Clarity consent (ConsentV2). 'denied' = Clarity deletes its cookies, ends the
+  // session and keeps running cookieless (new ID every page view, nothing persisted).
+  function clarityConsent(optedOut){
+    window.clarity = window.clarity || function(){ (window.clarity.q = window.clarity.q || []).push(arguments); };
+    var v = optedOut ? 'denied' : 'granted';
+    window.clarity('consentv2', { ad_Storage: v, analytics_Storage: v });
+  }
+  // On opt-out, Consent Mode only stops NEW Google cookies — delete any already set
+  // (GA4 _ga/_ga_*, Google Ads _gcl_*) on this host and the parent domain.
+  function clearGoogleCookies(){
+    var h=location.hostname, doms=['', h, '.'+h];
+    if (h.indexOf('gotaxteam.com')>-1) doms.push(DOMAIN, 'gotaxteam.com');
+    document.cookie.split('; ').forEach(function(r){
+      var n=r.split('=')[0];
+      if (/^(_ga|_gid|_gat|_gcl_)/.test(n)) doms.forEach(function(d){
+        document.cookie=n+'=; Max-Age=0; Path=/'+(d?'; domain='+d:'');
+      });
+    });
+  }
   function apply(optedOut){
+    clarityConsent(optedOut);
+    if (optedOut) clearGoogleCookies();
     var v = optedOut ? 'denied' : 'granted';
     gtag('consent','update',{
       analytics_storage:v, ad_storage:v, ad_user_data:v, ad_personalization:v, personalization_storage:v
@@ -148,6 +169,7 @@
 
   if (gpc){ apply(true); if(!saved) write({out:true, gpc:true}); }   // honor Global Privacy Control automatically
   else if (saved){ apply(!!saved.out); }                            // honor prior choice
+  else { clarityConsent(false); }                                   // US default (opt-out model)
 
   /* ---------------- UI ---------------- */
   var CSS='.ttk-cc,.ttk-cc *{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}'
@@ -170,7 +192,7 @@
     injectCSS();
     banner = el(
       '<div class="ttk-cc" role="dialog" aria-live="polite" aria-label="Cookie notice">'
-      +'<p>We use cookies — including analytics and advertising (Google Analytics, Google Ads) — to run this site, measure our ads, and improve your experience. You can opt out of the sale or sharing of your personal information anytime. See our <a href="'+POLICY+'#cookie-policy" target="_blank" rel="noopener">Cookie Policy</a>.</p>'
+      +'<p>We use cookies and similar technologies — including analytics, session recording and advertising (Google Analytics, Microsoft Clarity, Google Ads) — to run this site, measure our ads, and improve your experience. You can opt out of the sale or sharing of your personal information anytime. See our <a href="'+POLICY+'#cookie-policy" target="_blank" rel="noopener">Cookie Policy</a>.</p>'
       +'<div class="ttk-row">'
         +'<button type="button" class="ttk-ok" data-act="ok">Got it</button>'
         +'<button type="button" class="ttk-dns" data-act="out">Do Not Sell or Share My Personal Information</button>'
@@ -203,7 +225,7 @@
       var cur=(read()||{}).out;
       injectCSS();
       banner = el('<div class="ttk-cc" role="dialog" aria-label="Privacy choices">'
-        +'<p><strong>Do Not Sell or Share My Personal Information.</strong> '+(cur?'You are currently opted out — we are not selling or sharing your personal information.':'You can opt out of the sale or sharing of your personal information for advertising and analytics.')+'</p>'
+        +'<p><strong>Do Not Sell or Share My Personal Information.</strong> '+(cur?'You are currently opted out — we are not selling or sharing your personal information.':'You can opt out of the sale or sharing of your personal information for advertising, analytics and session recording.')+'</p>'
         +'<div class="ttk-row">'
           +(cur? '<button type="button" class="ttk-ok" data-act="ok">Allow again</button><button type="button" class="ttk-dns" data-act="close">Close</button>'
                : '<button type="button" class="ttk-ok" data-act="out">Opt me out</button><button type="button" class="ttk-dns" data-act="close">Close</button>')
@@ -223,6 +245,16 @@
 })();
 </script>
 <!-- ===== /Tax Team Consent ===== -->
+
+<!-- Microsoft Clarity (project wcqm31gt8t): heatmaps + session recordings.
+     Placed after the consent block so the consentv2 signal is queued before the tag loads.
+     Opted-out / GPC visitors: no Clarity cookies (cookieless mode). -->
+<script>
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script","wcqm31gt8t");
+</script>
 
 <!-- Google Tag Manager (GTM-MMTSMLMZ): loads GA4 + Google Ads tags for the whole funnel.
      Placed after the consent block so gtag('consent','default') runs first. -->
@@ -1305,7 +1337,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     document.querySelectorAll("[data-survey]").forEach(function(el){
       if (el.tagName === "A") el.setAttribute("href", url);
-      el.addEventListener("click", function(e){ e.preventDefault(); window.location.href = url; });
+      el.addEventListener("click", function(e){
+        e.preventDefault();
+        try{ window.clarity && window.clarity("event", "cta_start_review"); }catch(_){}   // Clarity: tag sessions that clicked through
+        window.location.href = url;
+      });
     });
   })();
   })();
