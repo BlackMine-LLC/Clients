@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/tax-strategy/free-review", "destination": "/", "permanent": false },
+    { "source": "/s-corp-review/free", "destination": "/", "permanent": false },
+    { "source": "/lower-taxes/free-review", "destination": "/", "permanent": false }
+  ]
+}
