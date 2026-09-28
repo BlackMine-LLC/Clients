@@ -206,7 +206,8 @@
   .celeb{background:var(--ink);color:var(--cream)}
   .celeb .k{color:var(--gold);font-family:"Hanken Grotesk",sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;display:block;text-align:center}
   .celeb h2{color:#fff;font-size:clamp(26px,5.6vw,42px);margin:16px auto 0;max-width:20ch;text-align:center;text-wrap:balance;line-height:1.12}
-  .celeb-wall{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+  .celeb-wall{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
+  .celeb-wall>.celeb-card{flex:0 0 calc((100% - 12px)/2)}
   .celeb-head{font-family:var(--serif);font-weight:500;color:#fff;text-align:center;font-size:clamp(20px,4.6vw,30px);letter-spacing:-.015em;line-height:1.12;margin:0 auto 8px;max-width:20ch}
   .celeb-head .em{color:#38d39a}
   .book-fo{display:none}
@@ -262,7 +263,7 @@
     .section{padding:96px 0}
     .logo img{height:36px}
     .ind-grid{grid-template-columns:repeat(6,1fr)}
-    .celeb-wall{grid-template-columns:repeat(5,1fr)}
+    .celeb-wall>.celeb-card{flex-basis:calc((100% - 48px)/5)}
     .book-fo{display:block;position:absolute;z-index:1;pointer-events:none;opacity:.92;filter:drop-shadow(0 18px 24px rgba(23,22,15,.18))}
     .book-fo.coffee{width:150px;left:2%;top:140px;--rot:-9deg;transform:rotate(-9deg)}
     .book-fo.calc{width:210px;right:-3%;bottom:90px;--rot:17deg;transform:rotate(17deg)}
@@ -337,7 +338,6 @@
     <div class="celeb-head reveal">The people who chose <span class="em">financial security</span>.</div>
     <div class="celeb-wall reveal">
       <div class="celeb-card"><div class="pw"><img src="https://cdn.prod.website-files.com/677f422b6a775b86864b5784/6785adb97ef3f3f14b83ae40_pic-2-mike-perryjune2020_1qbqw0tj856iw1hwtxuduw7234.avif" alt="Mike Perry" loading="lazy"></div><div class="meta"><div class="nm">Mike Perry</div><div class="cat">UFC</div></div></div>
-      <div class="celeb-card"><div class="pw"><img src="https://cdn.prod.website-files.com/677f422b6a775b86864b5784/6785aebceb2dec17fe050ac5_14668880_041524-wpvi-devonta-smith-img.avif" alt="Devonte Smith" loading="lazy"></div><div class="meta"><div class="nm">Devonte Smith</div><div class="cat">NFL · Super Bowl Champion</div></div></div>
       <div class="celeb-card"><div class="pw"><img src="https://cdn.prod.website-files.com/677f422b6a775b86864b5784/6785bd0686d5a1463c7170cc_USATSI_16601129_168386351_lowres-1024x694.avif" alt="Noah Igbinoghene" loading="lazy"></div><div class="meta"><div class="nm">Noah Igbinoghene</div><div class="cat">NFL</div></div></div>
       <div class="celeb-card"><div class="pw"><img src="https://cdn.prod.website-files.com/677f422b6a775b86864b5784/67b159077635de1298b7f61a_557b664c-cfc5-4ee2-9550-6d70ab0e14fd.avif" alt="Tyrus Wheat" loading="lazy"></div><div class="meta"><div class="nm">Tyrus Wheat</div><div class="cat">NFL</div></div></div>
       <div class="celeb-card"><div class="pw"><img src="https://cdn.prod.website-files.com/677f422b6a775b86864b5784/67b15598bd99c67c1cf42833_ba7ecb27-cae3-4b88-abdd-24ca84ccad43.jpg" alt="Gillian Robertson" loading="lazy"></div><div class="meta"><div class="nm">Gillian Robertson</div><div class="cat">UFC</div></div></div>
