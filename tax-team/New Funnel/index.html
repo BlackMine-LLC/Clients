@@ -379,8 +379,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main class="stage">
   <div class="stage-in">
-    <p class="kicker">Doing $1M+ a year? Give Aileen 3&nbsp;minutes.</p>
-    <h1>Your return shows what you paid. <em>Not what you should&nbsp;have.</em></h1>
+    <p class="kicker">For business owners doing $1M+ a year</p>
+    <h1>Find out what you could be <em>saving in&nbsp;taxes.</em></h1>
 
     <div class="vsl" id="vsl">
       <video id="vslv" playsinline webkit-playsinline preload="metadata" poster="assets/vsl-poster-960.jpg" data-hd="assets/vsl-1080.mp4" data-sd="assets/vsl-720.mp4">
@@ -388,7 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </video>
       <button class="vsl-gate" id="vslgate" type="button" aria-label="Play Aileen's video with sound">
         <span class="pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z"/></svg></span>
-        <span class="lb">Why filing isn&rsquo;t planning <small>Aileen, founder · 2:50 · sound on</small></span>
+        <span class="lb">Watch: how tax strategy saves you money <small>2:50 · sound on</small></span>
       </button>
       <div class="vsl-bar" aria-hidden="true"><i id="vslbar"></i></div>
     </div>
@@ -454,7 +454,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var tryPlay = function(){
       if (withSound) return;
       var p = v.play();
-      if (p && p.then) p.then(function(){ gate.classList.add("muted"); gate.setAttribute("aria-label","Tap to hear Aileen with sound"); gate.querySelector(".lb").firstChild.nodeValue = "Tap to hear Aileen "; track("vsl_autoplay_muted"); }).catch(function(){});
+      if (p && p.then) p.then(function(){ gate.classList.add("muted"); gate.setAttribute("aria-label","Tap to hear Aileen with sound"); gate.querySelector(".lb").firstChild.nodeValue = "Tap for sound "; track("vsl_autoplay_muted"); }).catch(function(){});
     };
     v.addEventListener("loadeddata", tryPlay, {once:true});
     tryPlay();
