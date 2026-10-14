@@ -12,15 +12,17 @@ Life coaching and case management site for Tieshia Henry (Lorain & Cuyahoga Coun
 | Forms | FormSubmit → `momentwithmrst@gmail.com` (no "s"; first submission sends a one-time activation email) |
 | Business email | `momentwithmrst@gmail.com`, confirmed from her onboarding form (Apr 2025) and an Otter.ai request from that account (Jan 2026). The old Webflow site misspelled it `momentswithmrst` |
 
-## DNS cutover (Cloudflare → DNS records for mrstschair.com)
-Both domains are already added and verified on the Vercel project. In Cloudflare, set these records to **DNS only** (grey cloud, not proxied):
-| Type | Name | Value | Replaces |
-|---|---|---|---|
-| A | `@` | `216.150.1.1` | A `@` → `198.202.211.1` (Webflow) |
-| A | `@` | `216.150.16.1` | |
-| CNAME | `www` | `cfca04aacd306ae2.vercel-dns-016.com` | CNAME `www` → `cdn.webflow.com` |
+## DNS (Cloudflare, done Oct 14, 2026)
+Live at https://mrstschair.com (Vercel, Let's Encrypt SSL auto-renews). `www` and `http` 308-redirect to `https://mrstschair.com`.
 
-Leave the MX (`eforward1-5.registrar-servers.com`) and any SPF TXT records alone so the email forwarding keeps working.
+| Type | Name | Value | Proxy |
+|---|---|---|---|
+| CNAME | `mrstschair.com` | `cfca04aacd306ae2.vercel-dns-016.com` | DNS only |
+| CNAME | `www` | `cfca04aacd306ae2.vercel-dns-016.com` | DNS only |
+| MX ×5 | `@` | `eforward1-5.registrar-servers.com` (Namecheap email forwarding) | untouched |
+| TXT | `@` | `v=spf1 include:spf.efwd.registrar-servers.com ~all` | untouched |
+
+Rollback to Webflow (if ever needed): set both CNAMEs back to `cdn.webflow.com`. A leftover `_webflow` verification TXT record and two `NS dns1/dns2.registrar-servers.com` records at the apex are harmless and can be removed later.
 
 ## Layout
 - `site/`: the deployable site (20 pages). Don't hand-edit HTML; it's generated.
@@ -43,5 +45,4 @@ Add `?shot` to a URL to show every reveal at once (for full-page screenshots).
 - Fonts are self-hosted. The Google map loads only on click.
 
 ## Open items
-- Cloudflare DNS cutover (see above). Needs a Cloudflare login.
 - Testimonials (2–3, first name + city) and a real photo of "the chair" would strengthen the site.
