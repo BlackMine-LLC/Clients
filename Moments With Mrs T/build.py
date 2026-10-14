@@ -15,7 +15,7 @@ PHONE, PHONE_TEL = "(330) 249-1042", "+13302491042"
 EMAIL = "momentswithmrst@gmail.com"
 FACEBOOK = "https://www.facebook.com/tieshia.henry"
 # Microsoft Clarity project ID (clarity.microsoft.com → Settings → Setup). Leave "" until the project exists.
-CLARITY_ID = ""
+CLARITY_ID = "yxqjh4jbps"
 LEGAL_UPDATED = "October 14, 2026"
 
 IMGS = json.loads((ROOT / "_source/imgs.json").read_text(encoding="utf-8"))
