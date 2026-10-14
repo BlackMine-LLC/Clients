@@ -12,7 +12,7 @@ ROOT = Path(__file__).parent
 OUT = ROOT / "site"
 SITE_URL = "https://mrstschair.com"
 PHONE, PHONE_TEL = "(330) 249-1042", "+13302491042"
-EMAIL = "momentswithmrst@gmail.com"
+EMAIL = "momentwithmrst@gmail.com"
 FACEBOOK = "https://www.facebook.com/tieshia.henry"
 # Microsoft Clarity project ID (clarity.microsoft.com → Settings → Setup). Leave "" until the project exists.
 CLARITY_ID = "yxqjh4jbps"

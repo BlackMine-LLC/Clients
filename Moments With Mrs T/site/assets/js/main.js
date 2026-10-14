@@ -1,6 +1,6 @@
 // Form submissions go to FormSubmit (free, no backend). The first submission sends an
 // activation email to the inbox below; click it once and every later booking request arrives there.
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/momentswithmrst@gmail.com";
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/momentwithmrst@gmail.com";
 
 // Mobile menu
 const nav = document.getElementById("nav");
@@ -42,7 +42,7 @@ document.querySelectorAll("form.form").forEach((form) => {
       status.textContent = "Thank you! Mrs. T will reach out within 1–2 business days.";
       status.classList.add("ok");
     } catch {
-      status.innerHTML = 'Something went wrong sending your request. Please call <a href="tel:+13302491042">(330) 249-1042</a> or email <a href="mailto:momentswithmrst@gmail.com">momentswithmrst@gmail.com</a>.';
+      status.innerHTML = 'Something went wrong sending your request. Please call <a href="tel:+13302491042">(330) 249-1042</a> or email <a href="mailto:momentwithmrst@gmail.com">momentwithmrst@gmail.com</a>.';
       status.classList.add("err");
     } finally {
       btn.disabled = false; btn.textContent = label;

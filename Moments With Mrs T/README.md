@@ -9,7 +9,8 @@ Life coaching and case management site for Tieshia Henry (Lorain & Cuyahoga Coun
 | Vercel project | `moments-with-mrs-t` (`prj_Lyoh0zVsEwo62raA9nRp7qJZ7wnw`), connected to `BlackMine-LLC/Clients`, Root Directory `Moments With Mrs T/site`, Framework "Other", no build command. Pushes to `main` deploy to production |
 | Live (Vercel URL) | https://moments-with-mrs-t.vercel.app |
 | Analytics | Microsoft Clarity project `yxqjh4jbps` (set in `CLARITY_ID` in `build.py`; empty = off) |
-| Forms | FormSubmit → `momentswithmrst@gmail.com` (first submission sends a one-time activation email) |
+| Forms | FormSubmit → `momentwithmrst@gmail.com` (no "s"; first submission sends a one-time activation email) |
+| Business email | `momentwithmrst@gmail.com`, confirmed from her onboarding form (Apr 2025) and an Otter.ai request from that account (Jan 2026). The old Webflow site misspelled it `momentswithmrst` |
 
 ## DNS cutover (Cloudflare → DNS records for mrstschair.com)
 Both domains are already added and verified on the Vercel project. In Cloudflare, set these records to **DNS only** (grey cloud, not proxied):
@@ -42,6 +43,5 @@ Add `?shot` to a URL to show every reveal at once (for full-page screenshots).
 - Fonts are self-hosted. The Google map loads only on click.
 
 ## Open items
-- Confirm the business email: the site uses `momentswithmrst@gmail.com` (from the live Webflow site), but Tieshia's onboarding form says `Momentwithmrst@gmail.com`.
 - Cloudflare DNS cutover (see above). Needs a Cloudflare login.
 - Testimonials (2–3, first name + city) and a real photo of "the chair" would strengthen the site.
