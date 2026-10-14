@@ -1,0 +1,256 @@
+Body
+  ComponentInstance COMPONENT=Global Styles
+  Block.page-wrapper
+    ComponentInstance COMPONENT=Navbar
+    Block.main-wrapper
+      Section.Section 2.Banner Home 2 {"tag": "section"}
+        Block.Image Banner Home 2 Wrapper.IMG 2
+          BlockContainer.Base Container.Overlay-gradient.Extra Dark
+            Block.Content Banner Home 2 Wrap
+              Heading.White Text {"tag": "h1", "headingLevel": 1}
+                Strong
+                  "Mrs. T's Chair | Blogs  "
+              Paragraph.Paragraph Banner 2.NO max-width
+                "Our mission is to provide compassionate, evidence-based mental health support tailored to each individual’s needs."
+              Block.Secrete sacue .Horizontal
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "From Pain to Purpose"
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "Tailored to Your Journey"
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "Real Healing, Real Talk"
+              Block.Button Banner Wrapper 2
+                Link.button.is-alternate {"link": {"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}}
+                  "Let’s talk with us"
+      DynamoWrapper.Articles right-text
+        DynamoList
+          DynamoItem
+            Block.section_layout3 {"tag": "section"}
+              Block.padding-top-8rem
+                Block.container-large 2
+                  Block.padding-medium 2.padding-x-0
+                    Block.layout2_component
+                      Grid.layout3_content
+                        Block.layout3_content-Right Copy
+                          Block.tagline_layout3
+                            Block.decoration-line Copy
+                            Block.Category Title_layout2
+                          Block.div-wrapper_layout3
+                            Link.Heading All Articles
+                            Paragraph.text-size-regular_layout2.featured-post-width.text-color-grey
+                            Link.Text Link
+                              "Read Now"
+                        Block.Image-Wrapper-left-side
+                          Block.layout2_image-wrapper.layout-tablet-image-first
+                            Image.layout2_image
+        DynamoEmpty
+          Block
+            "No items found."
+      DynamoWrapper.Articles Left-text
+        DynamoList
+          DynamoItem
+            Block.section_layout2 {"tag": "section"}
+              Block.padding-top-8rem
+                Block.container-large 2
+                  Block.padding-medium 2.padding-x-0
+                    Block.layout2_component
+                      Grid.layout2_content
+                        Block.Image-Wrapper-left-side
+                          Block.layout2_image-wrapper.layout-tablet-image-first
+                            Image.layout2_image
+                        Block.layout2_content-Right
+                          Block.tagline_layout2
+                            Block.Category Title_layout2
+                            Block.decoration-line_layout4
+                          Block.div-wrapper_layout2
+                            Link.Heading All Articles
+                            Paragraph.text-size-regular_layout2.featured-post-width.text-color-grey
+                            Link.Text Link
+                              "Read Now"
+        DynamoEmpty
+          Block
+            "No items found."
+      DynamoWrapper.Articles right-text
+        DynamoList
+          DynamoItem
+            Block.section_layout3 {"tag": "section"}
+              Block.padding-top-8rem
+                Block.container-large 2
+                  Block.padding-medium 2.padding-x-0
+                    Block.layout2_component
+                      Grid.layout3_content
+                        Block.layout3_content-Right Copy
+                          Block.tagline_layout3
+                            Block.decoration-line Copy
+                            Block.Category Title_layout2
+                          Block.div-wrapper_layout3
+                            Link.Heading All Articles
+                            Paragraph.text-size-regular_layout2.featured-post-width.text-color-grey
+                            Link.Text Link
+                              "Read Now"
+                        Block.Image-Wrapper-left-side
+                          Block.layout2_image-wrapper.layout-tablet-image-first
+                            Image.layout2_image
+        DynamoEmpty
+          Block
+            "No items found."
+      DynamoWrapper.Articles Left-text
+        DynamoList
+          DynamoItem
+            Block.section_layout2 {"tag": "section"}
+              Block.padding-top-8rem
+                Block.container-large 2
+                  Block.padding-medium 2.padding-x-0
+                    Block.layout2_component
+                      Grid.layout2_content
+                        Block.Image-Wrapper-left-side
+                          Block.layout2_image-wrapper.layout-tablet-image-first
+                            Image.layout2_image
+                        Block.layout2_content-Right
+                          Block.tagline_layout2
+                            Block.Category Title_layout2
+                            Block.decoration-line_layout4
+                          Block.div-wrapper_layout2
+                            Link.Heading All Articles
+                            Paragraph.text-size-regular_layout2.featured-post-width.text-color-grey
+                            Link.Text Link
+                              "Read Now"
+        DynamoEmpty
+          Block
+            "No items found."
+      Block.section_blogsection03 {"tag": "section"}
+        Block.page-padding
+          Block.container-large 2
+            Block.padding-vertical.padding-xhuge
+              Block.blogsection03_component
+                Block.margin-bottom 2.margin-xxlarge
+                  Block.blogsection03_heading-wrapper
+                    Block.blogsection03_heading
+                      Block.max-width-large
+                        Block.margin-bottom 2.margin-xsmall
+                          Block.text-weight-semibold.text-color-primary600
+                            "Our blog"
+                        Block.margin-bottom 2.margin-xsmall
+                          Heading {"tag": "h2", "headingLevel": 2}
+                            "Check Out our Other Posts on the same Topic"
+                        Block.text-size-medium 8
+                          "Explore a variety of tools and strategies designed to guide you in identifying the right path for your mental health journey. From mindfulness techniques to cognitive behavioral approaches, these resources can help you gain clarity and direction."
+                    Block.blogsection03_button-row.hide-mobile-landscape
+                      Image {"assetId": "68269dcfd1127426fc34b592", "altText": "Moments With Mrs. T logo — a face with flourishing trees symbolizing growth, balance, and great mental health in Cuyahoga County"}
+                Block.blogsection03_list-wrapper
+                  DynamoWrapper.Blog-All-Posts
+                    DynamoList
+                      DynamoItem.Collection Item
+                        Block.blogsection03_item
+                          Link.blogsection03_image-link
+                            Block.blogsection03_image-wrapper
+                              Image.blogsection03_image {"altText": "Mrs T's Blog - The common communication pitfalls in family relationships"}
+                          Link.blogsection03_title-link
+                            Heading.heading-xsmall {"tag": "h3", "headingLevel": 3}
+                            HtmlEmbed.blogsection03_icon
+                          Block.text-size-regular 2
+                          Block.blogsection03_author-wrapper
+                            Block.blogsection03_author-text
+                              Block.blogsection03_date-wrapper
+                                Block.text-size-small 2
+                                Block.text-divider.text-size-small
+                                  "•"
+                                Block.text-size-small 2
+                                  "5 min read"
+                    DynamoEmpty
+                      Block
+                        "No items found."
+                Block.blogsection03_button-row.mobile-landscape
+                  Block.button-wrapper.max-width-full-mobile-landscape
+                    Link.uui-button
+                      Block
+                        "View all posts"
+      Block.section_faq3.color-scheme-4 {"tag": "section"}
+        Block.padding-global
+          Block.container-large
+            Block.padding-section-large
+              Block.faq3_component
+                Grid.faq3_content
+                  Block.faq3_content-left
+                    Block.margin-bottom.margin-small
+                      Heading.heading-style-h2 {"tag": "h2", "headingLevel": 2}
+                        "FAQs"
+                    Paragraph.text-size-medium 3
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+                    Block.margin-top.margin-medium
+                      Block.button-group
+                        Link.button.is-secondary {"link": {"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}}
+                          "Contact"
+                  Block.faq3_list
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "What makes Moments With Mrs. T different from other life coaching services?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "Our compassionate, lived-experience approach combined with certified expertise creates a genuinely nurturing environment for transformation."
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "How long are your programs?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "Our programs range from 3 months to 12 months, tailored to your personal growth needs."
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "Do you offer group sessions?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "Yes! We provide both one-on-one and group workshop sessions for coping skills and life strategy building."
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "Can life coaching services be virtual?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "Yes, we offer both in-person and virtual coaching sessions for your convenience."
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "What ages do you serve?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "I work with children starting in the 4th grade up to adults seeking guidance, healing, and empowerment."
+      Block.main-wrapper 2 {"tag": "main"}
+    ComponentInstance COMPONENT=Footer

@@ -1,0 +1,400 @@
+Body
+  ComponentInstance COMPONENT=Global Styles
+  Block.page-wrapper
+    ComponentInstance COMPONENT=Navbar
+    Block.main-wrapper.No Overfllow
+      Section.Section 2.Banner Home 2 {"tag": "section"}
+        Block.Image Banner Home 2 Wrapper
+          BlockContainer.Base Container.Overlay-gradient
+            Block.Content Banner Home 2 Wrap
+              Heading.White Text {"tag": "h1", "headingLevel": 1}
+                Strong
+                  "FAQs About Life Coaching and Mental Wellness in Cuyahoga & Lorain County"
+              Paragraph.Paragraph Banner 2.NO max-width
+                "I am dedicated to providing empathetic, evidence-based mental health support that is specifically tailored to the needs of each person."
+              Block.Secrete sacue .Horizontal
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "From Pain to Purpose"
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "Tailored to Your Journey"
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "Real Healing, Real Talk"
+              Block.Button Banner Wrapper 2
+                Link.button.is-alternate {"link": {"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}}
+                  "Let’s talk with us"
+      Block.Section
+        Block.Base Container
+          Block.Accordion Wrapper
+            Block.Accordion Wrap
+              DropdownWrapper.Accordion Item
+                DropdownToggle.Accordion Toggle
+                  Heading.Accordion Title.Small FAQ H2 {"tag": "h2", "headingLevel": 2}
+                    "What makes Moments With Mrs. T different from other life coaching services?"
+                  Image.icon-1x1-xsmall {"assetId": "682662003bf94e763652ae7c"}
+                DropdownList.Accordion List
+                  Paragraph.Accordion List Content
+                    "Our unique blend of empathy and professional certification fosters a supportive environment for personal growth and transformation."
+              DropdownWrapper.Accordion Item
+                DropdownToggle.Accordion Toggle
+                  Heading.Accordion Title.Small FAQ H2 {"tag": "h2", "headingLevel": 2}
+                    "Can coaching help with seasonal stress or winter depression?"
+                  Image.icon-1x1-xsmall {"assetId": "682662003bf94e763652ae7c"}
+                DropdownList.Accordion List
+                  Paragraph.Accordion List Content
+                    "Absolutely. Seasonal Affective Disorder (SAD) is very real in Ohio. The "
+                    Strong
+                      "long, dark winters"
+                    " and constant gray skies in Cuyahoga and Lorain can deeply affect your mood. We help you build coping strategies that make you feel more grounded, energized, and emotionally balanced — no matter the season."
+                    
+                    
+                    "Our "
+                    Strong
+                      "Family Communication Coaching"
+                    " also helps reduce seasonal stress at home."
+              DropdownWrapper.Accordion Item
+                DropdownToggle.Accordion Toggle
+                  Heading.Accordion Title.Small FAQ H2 {"tag": "h2", "headingLevel": 2}
+                    "What if I don’t know where to start?"
+                  Image.icon-1x1-xsmall {"assetId": "682662003bf94e763652ae7c"}
+                DropdownList.Accordion List
+                  Paragraph.Accordion List Content
+                    "That’s perfectly OK. Our services are built for people who feel overwhelmed, unsure, or just need a starting point. Begin by scheduling a Free Consultation and we’ll help guide your path forward — without pressure or judgment."
+              DropdownWrapper.Accordion Item
+                DropdownToggle.Accordion Toggle
+                  Heading.Accordion Title.Small FAQ H2 {"tag": "h2", "headingLevel": 2}
+                    "Do you take insurance?"
+                  Image.icon-1x1-xsmall {"assetId": "682662003bf94e763652ae7c"}
+                DropdownList.Accordion List
+                  Paragraph.Accordion List Content
+                    "We currently do not accept insurance, but our rates are affordable and flexible. We also offer "
+                    Strong
+                      "discounts"
+                    " for long-term commitments and "
+                    Strong
+                      "bundled sessions"
+                    "."
+            Block.Accordion Wrap
+              DropdownWrapper.Accordion Item
+                DropdownToggle.Accordion Toggle
+                  Heading.Accordion Title.Small FAQ H2 {"tag": "h2", "headingLevel": 2}
+                    "Is this service available in-person or online?"
+                  Image.icon-1x1-xsmall {"assetId": "682662003bf94e763652ae7c"}
+                DropdownList.Accordion List
+                  Paragraph.Accordion List Content
+                    "Both! We serve clients across "
+                    Strong
+                      "Cuyahoga, Lorain & Strongsville"
+                    " in person, and we also offer secure virtual sessions to make access easier — especially during tough Ohio winters when travel can be tough."
+              DropdownWrapper.Accordion Item
+                DropdownToggle.Accordion Toggle
+                  Heading.Accordion Title.Small FAQ H2 {"tag": "h2", "headingLevel": 2}
+                    "Do you offer family or group-based coaching?"
+                  Image.icon-1x1-xsmall {"assetId": "682662003bf94e763652ae7c"}
+                DropdownList.Accordion List
+                  Paragraph.Accordion List Content
+                    "Yes! Many of our clients find "
+                    Strong
+                      "Group Coaching"
+                    " more comforting and relatable. Family-based sessions are also available for improving communication, rebuilding trust, or healing after difficult times."
+                    
+                    
+                    "Visit "
+                    Strong
+                      "Family Communication Coaching"
+                    " and "
+                    Strong
+                      "Group Coaching Sessions"
+                    " to learn more."
+              DropdownWrapper.Accordion Item
+                DropdownToggle.Accordion Toggle
+                  Heading.Accordion Title.Small FAQ H2 {"tag": "h2", "headingLevel": 2}
+                    "Do you help teens or only adults?"
+                  Image.icon-1x1-xsmall {"assetId": "682662003bf94e763652ae7c"}
+                DropdownList.Accordion List
+                  Paragraph.Accordion List Content
+                    "We work with all ages – adults, teenagers, and children – especially those navigating big changes, family conflict, or emotional overwhelm. Sessions are always adapted to fit the age and needs of the individual."
+              DropdownWrapper.Accordion Item
+                DropdownToggle.Accordion Toggle
+                  Heading.Accordion Title.Small FAQ H2 {"tag": "h2", "headingLevel": 2}
+                    "Are results guaranteed?"
+                  Image.icon-1x1-xsmall {"assetId": "682662003bf94e763652ae7c"}
+                DropdownList.Accordion List
+                  Paragraph.Accordion List Content
+                    "While every journey is unique, what we can guarantee is our "
+                    Strong
+                      "commitment to your progress"
+                    ", honest feedback, and professional support every step of the way. Transformation takes time, and we’re with you for the long haul."
+      Section.Section 2 {"tag": "section"}
+        BlockContainer.Base Container
+          Grid.Story Wrapper
+            Block
+              Image.Img 5 Home 1 {"assetId": "69094569c7c1946df49788b0", "altText": "Meet the owner of Moments With mrs. T - Tieshia Henry "}
+            Block.Story Content Wrap
+              Block.Short Copy
+                Block.Subtitle Text 3
+                  "About us"
+                Heading {"tag": "h2", "headingLevel": 2}
+                  "Meet Tieshia Henry"
+                  
+                Paragraph.Small width Paragraph
+                  "Founder & Certified Life Coach"
+                  
+                  "Passionate | Empathetic | Purpose-Driven"
+                  
+              Block.CTA Wrapper Home 1.Vertical
+                Block.CTA Content Wrapper.Full Width
+                  Block.Top Content CTA Wrap
+                    Block.Subtitle Text.Light Subtitle
+                      "Book a consultation"
+                    Heading.White Heding {"tag": "h2", "headingLevel": 2}
+                      "Take the first step toward improving your mental well-being today."
+                    Paragraph.White Paragraph
+                      "Whether you're looking for personalized gameplans, support groups, or wellness programs, Tiesha from Moments with Mrs. T is here to guide you."
+                FormWrapper.Form Block Book.Full width {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}}
+                  FormForm.Form Book {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}}
+                    FormTextInput.Text Field.Name Field {"input": {"isRequired": true, "inputName": "Name", "inputType": "text"}}
+                    Block.Fields Wrapper
+                      FormTextInput.Text Field.Phone Field {"input": {"isRequired": true, "inputName": "Phone", "inputType": "tel"}}
+                      FormTextInput.Text Field.Email Field {"input": {"isRequired": true, "inputName": "Email 3", "inputType": "email"}}
+                    FormSelect.Text Field.Time Dropdown {"input": {"isRequired": true, "inputName": "Field"}}
+                    FormTextInput.Text Field {"input": {"isRequired": true, "inputName": "Message", "inputType": "text"}}
+                    FormButton.button.is-secondary.is-alternate
+                  FormSuccessMessage.Success Message Book
+                    Block
+                      "Thank you! Your submission has been received!"
+                  FormErrorMessage.Error Message Book
+                    Block
+                      "Oops! Something went wrong while submitting the form."
+            Block.Short Copy
+              Block.Subtitle Text 3
+                "About us"
+              Paragraph.Small width Paragraph
+                Strong
+                  "Tieshia Henry"
+                " brings a rare blend of professional expertise and real-world understanding to every coaching session. With a natural gift for encouraging others and a heart fueled by service, Tieshia is committed to helping clients feel empowered, validated, and hopeful — every step of the way."
+                
+        Image.About Absolute image.Left {"assetId": "6826be2c9aedbbb576674791", "altText": "Green vine with leaf petals symbolizing growth and resilience — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County."}
+        Image.About Absolute image {"assetId": "6826be2c9aedbbb576674791", "altText": "Green vine with leaf petals symbolizing growth and resilience — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County."}
+      Section.Section 2.Without Top Spacing {"tag": "section"}
+        BlockContainer.Base Container
+          Block.Map Image Wrapper
+            Block.Content Map Wrapper
+              Heading.Big Title H2 {"tag": "h2", "headingLevel": 2}
+                " More ways to inspire, heal, and guide others to a future they deserve. This isn’t just a business; it’s my purpose."
+                
+        Block.Gradient Section
+      Section.Section {"tag": "section"}
+        BlockContainer.Base Container
+          Block.About Us Content Home 1
+            Block.About Us Left Wrapper
+              Image.About Us Image {"assetId": "68269cecaa5f55bde312e14a", "altText": "Tieshia Henry with her family — Founder of Moments With Mrs. T, promoting balance, family values, and mental wellness in Cuyahoga County."}
+              Image.Right Image Absolute {"assetId": "6826713ad95c622675c96b76", "altText": "Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services."}
+              Image.Left Image Absolute {"assetId": "6826713a4d81fd6d0725b0f7", "altText": "Floral petals evoking tranquility and reflection — Life Coaching and Mental Health Support in Lorain County."}
+            Block.About Us Right Wrapper
+              Block.Subtitle Text
+                "Our Story"
+              Heading {"tag": "h2", "headingLevel": 2}
+                "The Roots of Moments With Mrs. T"
+              Paragraph.Paragraph Large.Our Story 80% Width
+                "The seeds of "
+                Strong
+                  "Moments With Mrs. T"
+                " were planted in 2019 when Tieshia recognized a deeper calling within herself — a desire to help others move beyond pain, uncertainty, and past trauma."
+                
+                
+                "Officially launched in "
+                Strong
+                  "2023"
+                ", after completing extensive coursework and achieving Life Coach certification, Moments With Mrs. T is the culmination of personal experiences, professional training, and an unwavering passion for people."
+              Block.Section Button Wrapper
+                Link.button {"link": {"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}}
+                  "Book A Consultation"
+        Image.About Absolute image {"assetId": "6826be2c9aedbbb576674791", "altText": "Green vine with leaf petals symbolizing growth and resilience — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County."}
+      Block.section_layout134 {"tag": "section"}
+        Section.Section 2.Without Top Spacing Hidden Ovetflow {"tag": "section"}
+          BlockContainer.Base Container
+            Block.Values Content Home 1 Wrapper
+              Block.Subtitle Text 5
+                "Our Vision"
+              Block.Values Title 2.spacing
+                "To create a world where "
+                Strong
+                  "everyone knows they are not alone"
+                " in their struggles. I envision a community where individuals "
+                Strong
+                  "embrace their healing journey"
+                ", find renewed hope, and walk confidently toward a brighter, fuller future."
+            Image.Photo Absolute {"assetId": "6826713abd083aa53006a2ea", "altText": "Tree growing strong roots symbolizing personal growth and transformation — Moments With Mrs. T Life Coaching Process in Cuyahoga County."}
+            Image.Photo Absolute.Left Image {"assetId": "6826713ad95c622675c96b76", "altText": "Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services."}
+          Image.Background 4 {"assetId": "68e9d80b0dc29ae82739db1c"}
+      Section.Section 2 {"tag": "section"}
+        BackgroundVideoWrapper.Background Video
+        BlockContainer.Base Container
+          Block.Info Mental Wrapper.Info Mental About Us
+            Block.Subtitle Text 3
+              Strong
+                "What Makes Us Different"
+            Paragraph.text-size-medium 6
+              "At Moments With Mrs. T, we aren’t just another coaching service — I am your partner in transformation. My approach is uniquely personal, blending professional techniques with the powerful touch of lived experience. I don’t just guide you — I walk with you, helping you make sense of life’s complexities with compassion and clarity."
+              
+              
+              "My brand’s "
+              Strong
+                ""special sauce""
+              "? The gift of "
+              Strong
+                "enlightenment and encouragement"
+              " — lifting my clients' spirits daily while offering realistic, actionable strategies for long-term success."
+      Section.Section {"tag": "section"}
+        BlockContainer.Base Container
+          Block.CTA Wrapper Home 1
+            Block.CTA Content Wrapper
+              Block.Top Content CTA Wrap
+                Block.Subtitle Text.Light Subtitle
+                  "Book a consultation"
+                Heading.White Heding {"tag": "h2", "headingLevel": 2}
+                  "Take the first step toward improving your mental well-being today."
+                Paragraph.White Paragraph
+                  "Whether you're looking for personalized gameplans, support groups, or wellness programs, Tiesha from Moments with Mrs. T is here to guide you."
+              List.List CTA {"tag": "ul"}
+                ListItem
+                  "Get tailored advice from experienced mental health professionals."
+                ListItem
+                  "Discuss your specific needs and create a personalized plan."
+                ListItem
+                  "Confidential and compassionate support."
+            FormWrapper.Form Block Book {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}}
+              FormForm.Form Book {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}}
+                FormTextInput.Text Field.Name Field {"input": {"isRequired": true, "inputName": "Name", "inputType": "text"}}
+                Block.Fields Wrapper
+                  FormTextInput.Text Field.Phone Field {"input": {"isRequired": true, "inputName": "Phone", "inputType": "tel"}}
+                  FormTextInput.Text Field.Email Field {"input": {"isRequired": true, "inputName": "Email 3", "inputType": "email"}}
+                FormSelect.Text Field.Time Dropdown {"input": {"isRequired": true, "inputName": "Field"}}
+                FormTextInput.Text Field {"input": {"isRequired": true, "inputName": "Message", "inputType": "text"}}
+                FormButton.button.is-secondary.is-alternate
+              FormSuccessMessage.Success Message Book
+                Block
+                  "Thank you! Your submission has been received!"
+              FormErrorMessage.Error Message Book
+                Block
+                  "Oops! Something went wrong while submitting the form."
+      Section.Section {"tag": "section"}
+        BlockContainer.Base Container
+          Block.Align Space Title Wrapper
+            Block.Left Content Title
+              Block.Subtitle Text
+                "Blog & news"
+              Heading {"tag": "h2", "headingLevel": 2}
+                "Discover valuable resources"
+            Block.Right Content Title
+              Link.button {"link": {"linkType": "page", "pageId": "68e9f22072cdd440a88cf811"}}
+                "More resources"
+          DynamoWrapper.Collection List Wrapper 100%
+            DynamoList.Collection List Blog Grid
+              DynamoItem.Collection Item Blog
+                Block.Blog wrap
+                  Link.Link Image Blog
+                    Image.Blog Image {"altText": "Photo"}
+                  Block.Content Blog Grid Wrapper
+                    Block.Content Blog Wrapper
+                      Block.Date Blog
+                      Link.Blog Title
+                    Block.Button Collection Wrapper
+                      Link.button.is-secondary
+                        "Read more"
+            DynamoEmpty
+              Block
+                "No items found."
+          Block.Button Tablet Wrpper
+            Link.Primary Button
+              "More resources"
+              Span.Text Span 4
+                ""
+      Block.section_faq3.color-scheme-4 {"tag": "section"}
+        Block.padding-global
+          Block.container-large
+            Block.padding-section-large
+              Block.faq3_component
+                Grid.faq3_content
+                  Block.faq3_content-left
+                    Block.margin-bottom.margin-small
+                      Heading.heading-style-h2 {"tag": "h2", "headingLevel": 2}
+                        "FAQs"
+                    Paragraph.text-size-medium 3
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+                    Block.margin-top.margin-medium
+                      Block.button-group
+                        Link.button.is-secondary {"link": {"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}}
+                          "Contact"
+                  Block.faq3_list
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "What makes Moments With Mrs. T different from other life coaching services?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "The compassionate, lived-experience approach combined with certified expertise creates a genuinely nurturing environment for transformation."
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "How long are your programs?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "The programs range from 3 months to 12 months, tailored to your personal growth needs."
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "Do you offer group sessions?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "Yes! I provide both one-on-one and group workshop sessions for coping skills and life strategy building."
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "Can life coaching services be virtual?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "Yes, I offer both in-person and virtual coaching sessions for your convenience."
+                    Block.faq3_accordion
+                      Block.faq3_question
+                        Block.text-size-medium 3.text-weight-bold
+                          Strong
+                            "What ages do you serve?"
+                        Block.faq3_icon-wrapper
+                          HtmlEmbed.icon-embed-small
+                      Block.faq3_answer
+                        Block.margin-bottom.margin-small
+                          Paragraph
+                            "I work with adults and older teens (16+) seeking guidance, healing, and empowerment."
+    ComponentInstance COMPONENT=Footer

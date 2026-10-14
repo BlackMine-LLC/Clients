@@ -1,0 +1,214 @@
+  <<Global Styles>>
+    <<Navbar>>
+              div [Subtitle Text]: Empowering your mental well-being
+              h1 [Heading,Hero-Title]: Moments With Mrs. T Cuyahoga Life Coaching & Case Management
+                  div [Secrete Sauce Text,hero]: Helping overwhelmed parents, teens, and women rebuild confidence and emotional strength. Coaching for women, families, and caregivers who are ready to heal, rebuild, and grow — without judgment.
+                LINK Link [button,is-icon] {"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}
+                  div: Come Sit With Mrs. T
+              IMG 69728228fb6741b2033dc414 alt=Moments With Mrs. T Owner; Tieshia Henery, Case Management Proffesional [Hero Person]
+                IMG 68269dcfd1127426fc34b592 alt=Moments With Mrs. T logo — a face with flourishing trees symbolizing growth, balance, and great mental health in Cuyahoga County [Hero Card IMG]
+                  div [Owner Signature,Text Primary Color]: Tieshia Henry
+                  Paragraph: Founder & CEO
+                div [Hero CTA Text]: Start growing with Mrs. T
+                Link [button,is-alternate,is-small] LINK={"linkType": "pageSection", "pageSectionId": {"component": "682662003bf94e763652ae87", "element": "6de53c65-f8c7-2d6e-fb42-8f28da728b7e"}}: Come Sit With Mrs. T
+      === SECTION Section,Home 1 Banner {"id": "Top"}
+              div [Subtitle Text]: Empowering your mental well-being
+              h1 [Heading]: Moments With Mrs. T Cuyahoga Life Coaching & Case Management
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Done"}
+                  div [Secrete Sauce Text]: Real Healing, Real Talk
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Done"}
+                  div [Secrete Sauce Text]: Tailored to Your Journey /
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Done"}
+                  div [Secrete Sauce Text]: From Pain to Purpose
+                LINK Link [button,is-icon] {"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}
+                  div: Let's talk with us
+              IMG 68267d6bb4f4b628f1483e75 alt=Tieshia Henry, Founder of Moments With Mrs. T — Certified Life Coach and Case Management Specialist in Cuyahoga County [Banner 1 Image]
+              IMG 6826713b4b223a3a25c3cfa7 alt=Tree branch growing symbolizing personal growth and resilience — Moments With Mrs. T Life Coaching in Cuyahoga County. [Right Image Banner 1]
+              IMG 6826713a9d2f9f610554745f alt=Soft flower petals symbolizing peace and healing — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County. [Left Image Banner 1]
+                div [Owner Signature]: Tieshia Henry
+                Paragraph [Paragraph]: Founder & CEO
+            div [Text Absoute Banner]: John 15:5
+        IMG 68265e09fa466ab895808d6a alt= [Top Background Banner 1]
+        IMG 68265e09fa466ab895808d7f alt= [Bottom Background Banner 1]
+      === SECTION Who is this for {}
+        === SECTION Section 2 {}
+                div [Subtitle Text 3]: Who This Is For
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Done"}
+                    div [Secrete Sauce Text,Who-is]: Overwhelmed parents needing support
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Done"}
+                    div [Secrete Sauce Text,Who-is]: Teens struggling with communication or identity /
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Done"}
+                    div [Secrete Sauce Text,Who-is]: Women navigating trauma, stress, or life transitions
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Done"}
+                    div [Secrete Sauce Text,Who-is]: Families needing guidance and emotional tools
+                div [Subtitle Text 3,Red]: Who This Is NOT For
+                    div [Secrete Sauce Text,Who-is]: Those unwilling to engage in the healing process
+                    div [Secrete Sauce Text,Who-is]: Individuals seeking crisis clinical therapy /
+                    div [Secrete Sauce Text,Who-is]: People looking for quick fixes without personal work
+      === SECTION Section,BG {}
+        === SECTION Section Logos,With Center {}
+          IMG 6826c1079272fef62799461b alt=Growing vine with leaf petals illustrating emotional growth — Life Coaching and Mental Health Support near Lorain County. [Leaf Page break,custom]
+            h2 [Hero Text Primary Color,text-align-center,Mrs.T's_Chair]: Mrs. T's Chair
+          IMG 6826c1079272fef62799461b alt=Growing vine with leaf petals illustrating emotional growth — Life Coaching and Mental Health Support near Lorain County. [Leaf Page break,Flip,Custom]
+              Paragraph [Paragraph Large,Mrs. T Chair Paragrapgh]: Mrs. T’s Chair isn’t just a name — it’s a symbol of stillness, safety, and support. It’s where the overwhelmed parent finally exhales. It’s where the teen who’s been misunderstood finds their voice. It’s where organizations send those they care about most — because they know they’ll be met with warmth, wisdom, and real help. / ‍ / This chair represents a moment to pause and breathe — without judgment, without pressure. Just guidance, healing, and the kind of care that transforms lives. Whether you’re navigating trauma, managing stress, or supporting someone who is, Mrs. T’s Chair is where the healing begins.
+              div [Section Button Wrapper]: Come Sit With Mrs. T
+      === SECTION Section {}
+              IMG 68269cecaa5f55bde312e14a alt=Tieshia Henry with her family — Founder of Moments With Mrs. T, promoting balance, family values, and mental wellness in Cuyahoga County. [About Us Image]
+              IMG 6826713ad95c622675c96b76 alt=Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services. [Right Image Absolute]
+              IMG 6826713a4d81fd6d0725b0f7 alt=Floral petals evoking tranquility and reflection — Life Coaching and Mental Health Support in Lorain County. [Left Image Absolute]
+              div [Subtitle Text]: About us
+              h2: About Moments With Mrs. T
+              Paragraph [Paragraph Large,About Us Width Paragraph]: At Moments With Mrs. T, I believe that healing and moving forward should be a supported, empowering journey. Founded in 2023 by I, Tieshia Henry, a certified life coach with a heart for service, I offer wraparound services that help you acknowledge, process, and triumph over life's challenges. / ‍ / Born from a deep desire to see individuals thrive, my approach blends case management, coping strategies, and personalized care, ensuring you never have to walk the path alone. I am proudly based in Lorain County and serve the surrounding Cuyahoga areas with dedication and compassion.
+              div [Section Button Wrapper]: About Moments with Mrs. T
+        IMG 6826be2c9aedbbb576674791 alt=Green vine with leaf petals symbolizing growth and resilience — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County. [About Absolute image]
+      === SECTION Section,Color Gradient {}
+            div [Subtitle Text,Alternate]: How I can help
+            h2 [Section Title]: Explore The Core Services at Moments With Mrs. T
+            Paragraph [Paragraph Large]: Explore my range of coaching and wellness services tailored to help you heal, grow, and thrive — at your own pace and in your own way.
+          DynamoWrapper {}
+            DynamoList {}
+              DynamoItem {}
+                  IMG None alt= [service-icon]
+                  div [Button Collection Wrapper]: Learn more
+            DynamoEmpty {}
+              div: No items found.
+          LINK Link [button,is-secondary,is-icon] {"linkType": "page", "pageId": "68dd6aa7d73742cdcb0bfdbb"}
+            div: Discover all services
+            IMG 682667b8882e5086cadca0cd alt= [icon-1x1-xsmall]
+      === SECTION Section {"id": "Form"}
+                div [Subtitle Text,Light Subtitle]: Book a consultation
+                h2 [White Heding]: Take the first step toward improving your mental well-being today.
+                Paragraph [White Paragraph]: Whether you're looking for personalized gameplans, support groups, or wellness programs, Tiesha from Moments with Mrs. T is here to guide you.
+                ListItem: Get tailored advice from experienced mental health professionals.
+                ListItem: Discuss your specific needs and create a personalized plan.
+                ListItem: Confidential and compassionate support.
+            FormWrapper [Form Block Book] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {"id": "Consultation-Booking"}
+              FormForm [Form Book] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {"id": "email-form"}
+                FormTextInput [Text Field,Name Field] {"input": {"isRequired": true, "inputName": "Name", "inputType": "text"}} {"id": "name"}
+                  FormTextInput [Text Field,Phone Field] {"input": {"isRequired": true, "inputName": "Phone", "inputType": "tel"}} {"id": "Phone"}
+                  FormTextInput [Text Field,Email Field] {"input": {"isRequired": true, "inputName": "Email 3", "inputType": "email"}} {"id": "Email"}
+                FormSelect [Text Field,Time Dropdown] {"input": {"isRequired": true, "inputName": "Field"}} {"id": "Time"}
+                FormTextInput [Text Field] {"input": {"isRequired": true, "inputName": "Message", "inputType": "text"}} {"id": "Extra-Info"}
+                FormButton [button,is-secondary,is-alternate] {} {}
+              FormSuccessMessage [Success Message Book] {} {}
+                div: Thank you! Your submission has been received!
+              FormErrorMessage [Error Message Book] {} {}
+                div: Oops! Something went wrong while submitting the form.
+      === SECTION Section,Service {}
+                div [Subtitle Text]: The Moments Matter
+                h3 [Service Title]: Why Choose Moments With Mrs. T?
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Star"}
+                    h3 [Service Card Title]: 5-Star Client Experience
+                    Paragraph [Service Card Details]: Personalized, quality care you can trust
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Two Hearts"}
+                    h3 [Service Card Title]: Compassion-First Approach
+                    Paragraph [Service Card Details]: I care because I’ve been there
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Positive Dynamic"}
+                    h3 [Service Card Title]: Real Results
+                    Paragraph [Service Card Details]: Move from feeling stuck to thriving with my expert strategies
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Address"}
+                    h3 [Service Card Title]: Local & Caring
+                    Paragraph [Service Card Details]: Deeply rooted in the Lorain, Cuyahoga, and Strongsville community
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Receipt Terminal"}
+                    h3 [Service Card Title]: Affordable Packages
+                    Paragraph [Service Card Details]: Tailored support without breaking the bank
+            div [Text Block White]: Wholeness
+            div [Text Block White]: Mindfulness
+            div [Text Block White]: Freedom
+            div [Text Block White]: Balance
+          IMG 6826713ad95c622675c96b76 alt=Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services. [Small Image Absolute]
+          IMG 6826713a915bcccd0603a0e1 alt=Floral petals evoking tranquility and reflection — Life Coaching and Mental Health Support in Lorain County. [Small Image Absolute 3]
+        IMG 68e9d80b0dc29ae82739db1c alt= [Background 3]
+      === SECTION Section,Without Top Spacing {}
+              BackgroundVideoWrapper {"visibility": true}
+                div [Video Text]: Molding Broken Pieces Into Purposeful Wholeness
+              div [Subtitle Text]: Our Approach
+              h2: I believe mental health conversations should be open
+              Paragraph: My approach is gentle, intentional, and rooted in restoration. I help you reshape what’s been cracked, smooth what’s been rough, and mold new strength where there once was pain.
+              div [Section Button Wrapper]: Come Sit With Mrs. T
+      === SECTION section_timeline19 {}
+          IMG 690948d44bec577e005ed59f alt= [Our-process- Absolute center]
+                          div [Subtitle Text]: Our Healing Process
+                          h2 [heading-style-h2]: Start Your Healing Journey In 4 Simple Steps
+                        Paragraph [text-size-medium 3]: From Reaching Out to Rising Up — Your Journey Starts Here.
+                            LINK Link [button,is-icon] {"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}
+                              div: Start Your Session
+                              EMBED [icon-embed-xxsmall] {"visibility": true}
+                        IMG 6826713a9d2f9f610554745f alt=Soft flower petals symbolizing peace and healing — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County. [icon-1x1-custom1]
+                          h3 [heading-style-h5]: Step #1
+                        Paragraph: Call or email me to start the conversation—no pressure, just connection.
+                        IMG 6826713abd083aa53006a2ea alt=Tree growing strong roots symbolizing personal growth and transformation — Moments With Mrs. T Life Coaching Process in Cuyahoga County. [icon-1x1-custom1]
+                          h3 [heading-style-h5]: Step #2
+                        Paragraph: I’ll schedule a session to help us understand where you are and where you want to go.
+                        IMG 6826713a05a08f242905e3cc alt=Growing tree representing steady progress and healing — Moments With Mrs. T Case Management and Mental Wellness Process. [icon-1x1-custom1]
+                          h3 [heading-style-h5]: Step #3
+                        Paragraph: Choose a 3–12 month journey designed around your goals, challenges, and strengths.
+                        IMG 68269dcfd1127426fc34b592 alt=Moments With Mrs. T logo — a face with flourishing trees symbolizing growth, balance, and great mental health in Cuyahoga County [icon-1x1-custom1]
+                          h3 [heading-style-h5]: Step #4
+                        Paragraph: Experience real change—with space to share feedback and access continued support whenever you need it.
+      === SECTION Section,Without Top Spacing {}
+            h2 [Big Title H2 White]: I provide holistic, personalized mental health support.
+              IMG 68269b34ef973ab5473b28c1 alt= [Mental Image]
+              div [Mental Title Big,Right Bottom]: Comprehensive Support
+              div [Mental Title Big]: Personalized Care
+              div [Mental Title Big,Left Bottom]: Compassionate Community
+              div [Mental Title Small]: Accessibility & Support
+              div [Mental Title Small,Left Text]: Planning Proactively
+              div [Mental Title Small,Bottom Text]: Empowering Growth
+                div [Text Block White]: Compassion
+                div [Text Block White]: Empowerment
+                div [Text Block White]: Integrity
+                div [Text Block White]: Collaboration
+            div [Button Banner Wrapper]: Come Sit WIth Mrs. T
+      === SECTION Section {}
+            div [Subtitle Text]: Our location
+            h2: Locations I Serve
+          IMG 6826968df6c80ae77371c8ff alt=Map [Map Photo]
+              h3 [Small Location title]: Lorain County
+              Link [Contact Link]: (330) 249-1042
+              Link [Contact Link] LINK={"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}: momentwithmrst@gmail.com
+              h3 [Small Location title]: Cuyahoga County
+              Link [Contact Link]: (330) 249-1042
+              Link [Contact Link] LINK={"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}: momentwithmrst@gmail.com
+              h3 [Small Location title]: Virtual Services
+              Link [Contact Link]: (330) 249-1042
+              Link [Contact Link] LINK={"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}: momentwithmrst@gmail.com
+      === SECTION Section,Background Image {}
+            div [Subtitle Text]: Your mental health journey starts here
+            h2: Journey to mental well-being is unique for everyone, and I'm here to walk alongside you every step of the way.
+              ListItem: A Safe, Supportive Space
+              ListItem: Expert Guidance, Tailored to You
+              ListItem: Join a Community of Support
+            div [Button Mental Wrap]: Start Your Session
+      === SECTION Section {}
+              div [Subtitle Text]: Blog & news
+              h2: Discover valuable resources
+            div [Right Content Title]: More resources
+          DynamoWrapper {}
+            DynamoList {}
+              DynamoItem {}
+                    IMG None alt=Photo [Blog Image]
+                    div [Button Collection Wrapper]: Read more
+            DynamoEmpty {}
+              div: No items found.
+          div [Button Tablet Wrpper]: More resources
+      === SECTION section_faq3,color-scheme-4 {}
+                      h2 [heading-style-h2]: FAQs
+                    Paragraph [text-size-medium 3]: Common frequently asked question that I get at Moments with Mrs. T. I'm here to answer your worries and put your mind at ease.
+                      div [button-group]: Contact
+                        div [text-size-medium 3,text-weight-bold]: What makes Moments With Mrs. T different from other life coaching services?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: My compassionate, lived-experience approach combined with certified expertise creates a genuinely nurturing environment for transformation.
+                        div [text-size-medium 3,text-weight-bold]: How long are your programs?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: My programs range from 3 months to 12 months, tailored to your personal growth needs.
+                        div [text-size-medium 3,text-weight-bold]: Do you offer group sessions?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Yes! I provide both one-on-one and group workshop sessions for coping skills and life strategy building.
+                        div [text-size-medium 3,text-weight-bold]: Can life coaching services be virtual?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Yes, I offer both in-person and virtual coaching sessions for your convenience.
+                        div [text-size-medium 3,text-weight-bold]: What ages do you serve?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: I work with children starting in the 4th grade up to adults seeking guidance, healing, and empowerment.
+    <<Footer>>

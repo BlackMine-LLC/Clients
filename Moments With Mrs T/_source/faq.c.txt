@@ -1,0 +1,133 @@
+  <<Global Styles>>
+    <<Navbar>>
+      === SECTION Section 2,Banner Home 2 {"id": "Top"}
+              h1 [White Text]: FAQs About Life Coaching and Mental Wellness in Cuyahoga & Lorain County
+              Paragraph [Paragraph Banner 2,NO max-width]: I am dedicated to providing empathetic, evidence-based mental health support that is specifically tailored to the needs of each person.
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Check Mark"}
+                    Paragraph [Hero List Text]: From Pain to Purpose
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Check Mark"}
+                    Paragraph [Hero List Text]: Tailored to Your Journey
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Check Mark"}
+                    Paragraph [Hero List Text]: Real Healing, Real Talk
+              div [Button Banner Wrapper 2]: Let’s talk with us
+                  h2 [Accordion Title,Small FAQ H2]: What makes Moments With Mrs. T different from other life coaching services?
+                  IMG 682662003bf94e763652ae7c alt= [icon-1x1-xsmall]
+                  Paragraph [Accordion List Content]: Our unique blend of empathy and professional certification fosters a supportive environment for personal growth and transformation.
+                  h2 [Accordion Title,Small FAQ H2]: Can coaching help with seasonal stress or winter depression?
+                  IMG 682662003bf94e763652ae7c alt= [icon-1x1-xsmall]
+                  Paragraph [Accordion List Content]: Absolutely. Seasonal Affective Disorder (SAD) is very real in Ohio. The long, dark winters and constant gray skies in Cuyahoga and Lorain can deeply affect your mood. We help you build coping strategies that make you feel more grounded, energized, and emotionally balanced — no matter the season. /  / Our Family Communication Coaching also helps reduce seasonal stress at home.
+                  h2 [Accordion Title,Small FAQ H2]: What if I don’t know where to start?
+                  IMG 682662003bf94e763652ae7c alt= [icon-1x1-xsmall]
+                  Paragraph [Accordion List Content]: That’s perfectly OK. Our services are built for people who feel overwhelmed, unsure, or just need a starting point. Begin by scheduling a Free Consultation and we’ll help guide your path forward — without pressure or judgment.
+                  h2 [Accordion Title,Small FAQ H2]: Do you take insurance?
+                  IMG 682662003bf94e763652ae7c alt= [icon-1x1-xsmall]
+                  Paragraph [Accordion List Content]: We currently do not accept insurance, but our rates are affordable and flexible. We also offer discounts for long-term commitments and bundled sessions.
+                  h2 [Accordion Title,Small FAQ H2]: Is this service available in-person or online?
+                  IMG 682662003bf94e763652ae7c alt= [icon-1x1-xsmall]
+                  Paragraph [Accordion List Content]: Both! We serve clients across Cuyahoga, Lorain & Strongsville in person, and we also offer secure virtual sessions to make access easier — especially during tough Ohio winters when travel can be tough.
+                  h2 [Accordion Title,Small FAQ H2]: Do you offer family or group-based coaching?
+                  IMG 682662003bf94e763652ae7c alt= [icon-1x1-xsmall]
+                  Paragraph [Accordion List Content]: Yes! Many of our clients find Group Coaching more comforting and relatable. Family-based sessions are also available for improving communication, rebuilding trust, or healing after difficult times. /  / Visit Family Communication Coaching and Group Coaching Sessions to learn more.
+                  h2 [Accordion Title,Small FAQ H2]: Do you help teens or only adults?
+                  IMG 682662003bf94e763652ae7c alt= [icon-1x1-xsmall]
+                  Paragraph [Accordion List Content]: We work with all ages – adults, teenagers, and children – especially those navigating big changes, family conflict, or emotional overwhelm. Sessions are always adapted to fit the age and needs of the individual.
+                  h2 [Accordion Title,Small FAQ H2]: Are results guaranteed?
+                  IMG 682662003bf94e763652ae7c alt= [icon-1x1-xsmall]
+                  Paragraph [Accordion List Content]: While every journey is unique, what we can guarantee is our commitment to your progress, honest feedback, and professional support every step of the way. Transformation takes time, and we’re with you for the long haul.
+      === SECTION Section 2 {}
+              IMG 69094569c7c1946df49788b0 alt=Meet the owner of Moments With mrs. T - Tieshia Henry  [Img 5 Home 1]
+                div [Subtitle Text 3]: About us
+                h2: Meet Tieshia Henry /
+                Paragraph [Small width Paragraph]: Founder & Certified Life Coach / Passionate | Empathetic | Purpose-Driven /
+                    div [Subtitle Text,Light Subtitle]: Book a consultation
+                    h2 [White Heding]: Take the first step toward improving your mental well-being today.
+                    Paragraph [White Paragraph]: Whether you're looking for personalized gameplans, support groups, or wellness programs, Tiesha from Moments with Mrs. T is here to guide you.
+                FormWrapper [Form Block Book,Full width] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {}
+                  FormForm [Form Book] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {"id": "email-form"}
+                    FormTextInput [Text Field,Name Field] {"input": {"isRequired": true, "inputName": "Name", "inputType": "text"}} {"id": "name"}
+                      FormTextInput [Text Field,Phone Field] {"input": {"isRequired": true, "inputName": "Phone", "inputType": "tel"}} {"id": "Phone"}
+                      FormTextInput [Text Field,Email Field] {"input": {"isRequired": true, "inputName": "Email 3", "inputType": "email"}} {"id": "Email-3"}
+                    FormSelect [Text Field,Time Dropdown] {"input": {"isRequired": true, "inputName": "Field"}} {"id": "field"}
+                    FormTextInput [Text Field] {"input": {"isRequired": true, "inputName": "Message", "inputType": "text"}} {"id": "Message"}
+                    FormButton [button,is-secondary,is-alternate] {} {}
+                  FormSuccessMessage [Success Message Book] {} {}
+                    div: Thank you! Your submission has been received!
+                  FormErrorMessage [Error Message Book] {} {}
+                    div: Oops! Something went wrong while submitting the form.
+              div [Subtitle Text 3]: About us
+              Paragraph [Small width Paragraph]: Tieshia Henry brings a rare blend of professional expertise and real-world understanding to every coaching session. With a natural gift for encouraging others and a heart fueled by service, Tieshia is committed to helping clients feel empowered, validated, and hopeful — every step of the way. /
+        IMG 6826be2c9aedbbb576674791 alt=Green vine with leaf petals symbolizing growth and resilience — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County. [About Absolute image,Left]
+        IMG 6826be2c9aedbbb576674791 alt=Green vine with leaf petals symbolizing growth and resilience — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County. [About Absolute image]
+      === SECTION Section 2,Without Top Spacing {}
+              h2 [Big Title H2]: More ways to inspire, heal, and guide others to a future they deserve. This isn’t just a business; it’s my purpose. /
+      === SECTION Section {}
+              IMG 68269cecaa5f55bde312e14a alt=Tieshia Henry with her family — Founder of Moments With Mrs. T, promoting balance, family values, and mental wellness in Cuyahoga County. [About Us Image]
+              IMG 6826713ad95c622675c96b76 alt=Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services. [Right Image Absolute]
+              IMG 6826713a4d81fd6d0725b0f7 alt=Floral petals evoking tranquility and reflection — Life Coaching and Mental Health Support in Lorain County. [Left Image Absolute]
+              div [Subtitle Text]: Our Story
+              h2: The Roots of Moments With Mrs. T
+              Paragraph [Paragraph Large,Our Story 80% Width]: The seeds of Moments With Mrs. T were planted in 2019 when Tieshia recognized a deeper calling within herself — a desire to help others move beyond pain, uncertainty, and past trauma. /  / Officially launched in 2023, after completing extensive coursework and achieving Life Coach certification, Moments With Mrs. T is the culmination of personal experiences, professional training, and an unwavering passion for people.
+              div [Section Button Wrapper]: Book A Consultation
+        IMG 6826be2c9aedbbb576674791 alt=Green vine with leaf petals symbolizing growth and resilience — Moments With Mrs. T Life Coaching & Mental Wellness in Cuyahoga County. [About Absolute image]
+      === SECTION section_layout134 {}
+        === SECTION Section 2,Without Top Spacing Hidden Ovetflow {}
+              div [Subtitle Text 5]: Our Vision
+              div [Values Title 2,spacing]: To create a world where everyone knows they are not alone in their struggles. I envision a community where individuals embrace their healing journey, find renewed hope, and walk confidently toward a brighter, fuller future.
+            IMG 6826713abd083aa53006a2ea alt=Tree growing strong roots symbolizing personal growth and transformation — Moments With Mrs. T Life Coaching Process in Cuyahoga County. [Photo Absolute]
+            IMG 6826713ad95c622675c96b76 alt=Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services. [Photo Absolute,Left Image]
+          IMG 68e9d80b0dc29ae82739db1c alt= [Background 4]
+      === SECTION Section 2 {}
+        BackgroundVideoWrapper {"visibility": true}
+            div [Subtitle Text 3]: What Makes Us Different
+            Paragraph [text-size-medium 6]: At Moments With Mrs. T, we aren’t just another coaching service — I am your partner in transformation. My approach is uniquely personal, blending professional techniques with the powerful touch of lived experience. I don’t just guide you — I walk with you, helping you make sense of life’s complexities with compassion and clarity. /  / My brand’s "special sauce"? The gift of enlightenment and encouragement — lifting my clients' spirits daily while offering realistic, actionable strategies for long-term success.
+      === SECTION Section {}
+                div [Subtitle Text,Light Subtitle]: Book a consultation
+                h2 [White Heding]: Take the first step toward improving your mental well-being today.
+                Paragraph [White Paragraph]: Whether you're looking for personalized gameplans, support groups, or wellness programs, Tiesha from Moments with Mrs. T is here to guide you.
+                ListItem: Get tailored advice from experienced mental health professionals.
+                ListItem: Discuss your specific needs and create a personalized plan.
+                ListItem: Confidential and compassionate support.
+            FormWrapper [Form Block Book] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {}
+              FormForm [Form Book] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {"id": "email-form"}
+                FormTextInput [Text Field,Name Field] {"input": {"isRequired": true, "inputName": "Name", "inputType": "text"}} {"id": "name"}
+                  FormTextInput [Text Field,Phone Field] {"input": {"isRequired": true, "inputName": "Phone", "inputType": "tel"}} {"id": "Phone"}
+                  FormTextInput [Text Field,Email Field] {"input": {"isRequired": true, "inputName": "Email 3", "inputType": "email"}} {"id": "Email-3"}
+                FormSelect [Text Field,Time Dropdown] {"input": {"isRequired": true, "inputName": "Field"}} {"id": "field"}
+                FormTextInput [Text Field] {"input": {"isRequired": true, "inputName": "Message", "inputType": "text"}} {"id": "Message"}
+                FormButton [button,is-secondary,is-alternate] {} {}
+              FormSuccessMessage [Success Message Book] {} {}
+                div: Thank you! Your submission has been received!
+              FormErrorMessage [Error Message Book] {} {}
+                div: Oops! Something went wrong while submitting the form.
+      === SECTION Section {}
+              div [Subtitle Text]: Blog & news
+              h2: Discover valuable resources
+            div [Right Content Title]: More resources
+          DynamoWrapper {}
+            DynamoList {}
+              DynamoItem {}
+                    IMG None alt=Photo [Blog Image]
+                    div [Button Collection Wrapper]: Read more
+            DynamoEmpty {}
+              div: No items found.
+          div [Button Tablet Wrpper]: More resources
+      === SECTION section_faq3,color-scheme-4 {}
+                      h2 [heading-style-h2]: FAQs
+                    Paragraph [text-size-medium 3]: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                      div [button-group]: Contact
+                        div [text-size-medium 3,text-weight-bold]: What makes Moments With Mrs. T different from other life coaching services?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: The compassionate, lived-experience approach combined with certified expertise creates a genuinely nurturing environment for transformation.
+                        div [text-size-medium 3,text-weight-bold]: How long are your programs?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: The programs range from 3 months to 12 months, tailored to your personal growth needs.
+                        div [text-size-medium 3,text-weight-bold]: Do you offer group sessions?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Yes! I provide both one-on-one and group workshop sessions for coping skills and life strategy building.
+                        div [text-size-medium 3,text-weight-bold]: Can life coaching services be virtual?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Yes, I offer both in-person and virtual coaching sessions for your convenience.
+                        div [text-size-medium 3,text-weight-bold]: What ages do you serve?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: I work with adults and older teens (16+) seeking guidance, healing, and empowerment.
+    <<Footer>>

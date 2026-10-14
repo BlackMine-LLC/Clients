@@ -1,0 +1,121 @@
+  <<Global Styles>>
+    <<Navbar>>
+      === SECTION Section,Home 1 Banner {"id": "Top"}
+              IMG None alt= [Logo Service Details]
+              IMG None alt= [Banner Image 3 Home,Service Details Image]
+              IMG 6826713ad95c622675c96b76 alt=Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services. [Left Image Banner 2,About Us Banner Img 1]
+              IMG 68d46a54987f1c062e1f7f0a alt= [Right Image Banner 2,About Us Banner Img  2]
+        IMG 68265e09fa466ab895808d6a alt= [Top Background Banner 1]
+        IMG 68265e09fa466ab895808d7f alt= [Bottom Background Banner 1]
+      === SECTION Section 2,Without Top Spacing {}
+                    div [Subtitle Text,Light Subtitle]: Book a consultation
+                    h2 [White Heding]: All It Takes Is One Step
+                    Paragraph [White Paragraph]: Whether you're looking for personalized gameplans, support groups, or wellness programs, Moments With Mrs. T is here to guide you.
+                FormWrapper [Form Block Book,Full width] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {}
+                  FormForm [Form Book] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {"id": "email-form"}
+                    FormTextInput [Text Field,Name Field] {"input": {"isRequired": true, "inputName": "Name", "inputType": "text"}} {"id": "name"}
+                      FormTextInput [Text Field,Phone Field] {"input": {"isRequired": true, "inputName": "Phone", "inputType": "tel"}} {"id": "Phone"}
+                      FormTextInput [Text Field,Email Field] {"input": {"isRequired": true, "inputName": "Email 3", "inputType": "email"}} {"id": "Email-3"}
+                    FormSelect [Text Field,Time Dropdown] {"input": {"isRequired": true, "inputName": "Field"}} {"id": "field"}
+                    FormTextInput [Text Field] {"input": {"isRequired": true, "inputName": "Message", "inputType": "text"}} {"id": "Message"}
+                    FormButton [button,is-secondary,is-alternate] {} {}
+                  FormSuccessMessage [Success Message Book] {} {}
+                    div: Thank you! Your submission has been received!
+                  FormErrorMessage [Error Message Book] {} {}
+                    div: Oops! Something went wrong while submitting the form.
+      === SECTION Section {}
+                div [Subtitle Text,Light Subtitle]: Book a consultation
+                h2 [White Heding]: Take the first step toward improving your mental well-being today.
+                Paragraph [White Paragraph]: Whether you're looking for personalized gameplans, support groups, or wellness programs, Moments With Mrs. T is here to guide you.
+                ListItem: Get tailored advice from experienced mental health professionals.
+                ListItem: Discuss your specific needs and create a personalized plan.
+                ListItem: Confidential and compassionate support.
+            FormWrapper [Form Block Book] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {}
+              FormForm [Form Book] {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}} {"id": "email-form"}
+                FormTextInput [Text Field,Name Field] {"input": {"isRequired": true, "inputName": "Name", "inputType": "text"}} {"id": "name"}
+                  FormTextInput [Text Field,Phone Field] {"input": {"isRequired": true, "inputName": "Phone", "inputType": "tel"}} {"id": "Phone"}
+                  FormTextInput [Text Field,Email Field] {"input": {"isRequired": true, "inputName": "Email 3", "inputType": "email"}} {"id": "Email-3"}
+                FormSelect [Text Field,Time Dropdown] {"input": {"isRequired": true, "inputName": "Field"}} {"id": "field"}
+                FormTextInput [Text Field] {"input": {"isRequired": true, "inputName": "Message", "inputType": "text"}} {"id": "Message"}
+                FormButton [button,is-secondary,is-alternate] {} {}
+              FormSuccessMessage [Success Message Book] {} {}
+                div: Thank you! Your submission has been received!
+              FormErrorMessage [Error Message Book] {} {}
+                div: Oops! Something went wrong while submitting the form.
+      === SECTION Section,Service {}
+                div [Subtitle Text]: The Moments Matter
+                h3 [Service Title]: Why Choose Moments With Mrs. T?
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Star"}
+                    h3 [Service Card Title]: 5-Star Client Experience
+                    Paragraph [Service Card Details]: Personalized, quality care you can trust
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Two Hearts"}
+                    h3 [Service Card Title]: Compassion-First Approach
+                    Paragraph [Service Card Details]: I care because I’ve been there
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Positive Dynamic"}
+                    h3 [Service Card Title]: Real Results
+                    Paragraph [Service Card Details]: Move from feeling stuck to thriving with expert strategies
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Address"}
+                    h3 [Service Card Title]: Local & Caring
+                    Paragraph [Service Card Details]: Deeply rooted in the Lorain, Cuyahoga, and Strongsville community
+                      DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Receipt Terminal"}
+                    h3 [Service Card Title]: Affordable Packages
+                    Paragraph [Service Card Details]: Tailored support without breaking the bank
+            div [Text Block White]: Wholeness
+            div [Text Block White]: Mindfulness
+            div [Text Block White]: Freedom
+            div [Text Block White]: Balance
+          IMG 6826713ad95c622675c96b76 alt=Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services. [Small Image Absolute]
+          IMG 6826713a915bcccd0603a0e1 alt=Floral petals evoking tranquility and reflection — Life Coaching and Mental Health Support in Lorain County. [Small Image Absolute 3]
+        IMG 682667b8882e5086cadca09d alt= [Background 3]
+      === SECTION Section {}
+            div [Subtitle Text]: Our location
+            h2: Locations I Serve
+          IMG 6826968df6c80ae77371c8ff alt=Map [Map Photo]
+              h5: Lorain County
+              Link [Contact Link]: (330) 249-1042
+              Link [Contact Link] LINK={"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}: momentwithmrst@gmail.com
+              h5: Cuyahoga County
+              Link [Contact Link]: (330) 249-1042
+              Link [Contact Link] LINK={"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}: momentwithmrst@gmail.com
+              h5: Virtual Services
+              Link [Contact Link]: (330) 249-1042
+              Link [Contact Link] LINK={"linkType": "page", "pageId": "68f29a693e7fb0ed8bb56dca"}: momentwithmrst@gmail.com
+      === SECTION Section,Background Image {}
+            div [Subtitle Text]: Your mental health journey starts here
+            h2: Journey to mental well-being is unique for everyone, and I'm here to walk alongside you every step of the way.
+              ListItem: A Safe, Supportive Space for Growth
+              ListItem: Expert Guidance, Tailored to You're lide
+              ListItem: Join a Community of Fruitfulness
+            div [Button Mental Wrap]: Get In Touch With Us
+      === SECTION Section {}
+              div [Subtitle Text]: Blog & news
+              h2: Discover valuable resources
+            div [Right Content Title]: More resources
+          DynamoWrapper {}
+            DynamoList {}
+              DynamoItem {}
+                    IMG None alt=Photo [Blog Image]
+                    div [Button Collection Wrapper]: Read more
+            DynamoEmpty {}
+              div: No items found.
+          div [Button Tablet Wrpper]: More resources
+      === SECTION section_faq3,color-scheme-4 {}
+                      h2 [heading-style-h2]: FAQs
+                    Paragraph [text-size-medium 3]: Common Questions I get asked when it comes to Moments with Mrs. T services. We are here to help
+                      div [button-group]: Contact
+                        div [text-size-medium 3,text-weight-bold]: What makes Moments With Mrs. T different from other life coaching services?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: The compassionate, lived-experience approach combined with certified expertise creates a genuinely nurturing environment for transformation.
+                        div [text-size-medium 3,text-weight-bold]: How long are your programs?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: The programs range from 3 months to 12 months, tailored to your personal growth needs.
+                        div [text-size-medium 3,text-weight-bold]: Do you offer group sessions?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Yes! I provide both one-on-one and group workshop sessions for coping skills and life strategy building.
+                        div [text-size-medium 3,text-weight-bold]: Can life coaching services be virtual?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Yes, I offer both in-person and virtual coaching sessions for your convenience.
+                        div [text-size-medium 3,text-weight-bold]: What ages do you serve?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: I work with adults and children in the 4th grade and up seeking guidance, healing, and empowerment.
+    <<Footer>>

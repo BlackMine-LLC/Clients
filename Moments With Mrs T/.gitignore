@@ -1,0 +1,6 @@
+# scratch output from QA screenshots
+_source/shots/
+_source/sheet*.jpg
+_source/frame*.jpg
+__pycache__/
+.vercel/

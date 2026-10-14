@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "mrst-site", "runtimeExecutable": "npx", "runtimeArgs": ["-y", "serve@14", "site", "-l", "4321"], "port": 4321 }
+  ]
+}

@@ -1,0 +1,161 @@
+Body
+  ComponentInstance COMPONENT=Global Styles
+  Block.page-wrapper
+    ComponentInstance COMPONENT=Navbar
+    Block.main-wrapper
+      Section.Section 2.Banner Home 2 {"tag": "section"}
+        Block.Image Banner Home 2 Wrapper.IMG 3
+          BlockContainer.Base Container.Overlay-gradient
+            Block.Content Banner Home 2 Wrap
+              Heading.White Text {"tag": "h1", "headingLevel": 1}
+                Strong
+                  "Contact Moments With Mrs. T in Cuyahoga & Lorain County"
+              Paragraph.Paragraph Banner 2.NO max-width
+                "Reach out to Moments With Mrs. T for trusted life coaching and mental wellness support in Cuyahoga & Lorain County. Schedule a free consultation today."
+              Block.Secrete sacue .Horizontal
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "From Pain to Purpose"
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "Tailored to Your Journey"
+                Block.list1_item 2
+                  Block.layout65_item-icon-wrapper
+                    DOM.icon-1x1-small {"tag": "img", "dom": {"tag": "img"}}
+                  Block.layout65_item-text-wrapper
+                    Paragraph.Hero List Text
+                      Strong
+                        "Real Healing, Real Talk"
+      Section.Section Logos {"tag": "section"}
+        BlockContainer.Leaf wrap
+          Image.Leaf Page break {"assetId": "6826c1079272fef62799461b", "altText": "Growing vine with leaf petals illustrating emotional growth — Life Coaching and Mental Health Support near Lorain County."}
+          Image.Leaf Page break.Flip {"assetId": "6826c1079272fef62799461b", "altText": "Growing vine with leaf petals illustrating emotional growth — Life Coaching and Mental Health Support near Lorain County."}
+      Section.Section 2 {"tag": "section"}
+        BlockContainer.Base Container
+          Grid.Story Wrapper
+            Block
+              Image.Img 5 Home 1.Alternate {"assetId": "6909481faeb0fef5f77d5bbd", "altText": "Contact Moments With mrs. T in Cuyahoga & Lorain County"}
+            Block.Story Content Wrap
+              Block.Short Copy
+                Heading {"tag": "h2", "headingLevel": 2}
+                  "Let’s Talk. Let’s Heal. Let’s Grow."
+                  
+                Paragraph.Small width Paragraph
+                  "We’re so glad you’re here. Whether you’re ready to schedule a session, have questions about our services, or just need someone to talk to, "
+                  Strong
+                    "Moments With Mrs. T"
+                  " is ready to help you take the next step."
+                  
+                  
+                  "We believe in making life make sense — one conversation at a time."
+                  
+              Block.CTA Wrapper Home 1.Vertical
+                Block.CTA Content Wrapper.Full Width
+                  Block.Top Content CTA Wrap
+                    Block.Subtitle Text.Light Subtitle
+                      "Book a consultation"
+                    Heading.White Heding {"tag": "h2", "headingLevel": 2}
+                      "Schedule Your Free Consultation"
+                    Paragraph.White Paragraph
+                      "We offer a "
+                      Strong
+                        "free, no-obligation consultation"
+                      " to help you explore your options and see if our coaching services are a good fit for you."
+                FormWrapper.Form Block Book.Full width {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}}
+                  FormForm.Form Book {"form": {"name": "Email Form", "formSettings": {"action": "", "method": "get", "name": "Email Form", "redirect": "", "state": "normal"}}}
+                    FormTextInput.Text Field.Name Field {"input": {"isRequired": true, "inputName": "Name", "inputType": "text"}}
+                    Block.Fields Wrapper
+                      FormTextInput.Text Field.Phone Field {"input": {"isRequired": true, "inputName": "Phone", "inputType": "tel"}}
+                      FormTextInput.Text Field.Email Field {"input": {"isRequired": true, "inputName": "Email 3", "inputType": "email"}}
+                    FormSelect.Text Field.Time Dropdown {"input": {"isRequired": true, "inputName": "Field"}}
+                    FormTextInput.Text Field {"input": {"isRequired": true, "inputName": "Message", "inputType": "text"}}
+                    FormButton.button.is-secondary.is-alternate
+                  FormSuccessMessage.Success Message Book
+                    Block
+                      "Thank you! Your submission has been received!"
+                  FormErrorMessage.Error Message Book
+                    Block
+                      "Oops! Something went wrong while submitting the form."
+            Block.Short Copy
+              Block.Subtitle Text 3
+                "Helpful Local Reminders"
+              Paragraph.Small width Paragraph
+                "Ohio weather can take a toll on mental health — especially during winter months and high-pressure seasonal transitions. That’s why we offer "
+                Strong
+                  "virtual coaching sessions"
+                " too, so you never have to face things alone, rain or shine."
+                
+      Section.Section.Service {"tag": "section"}
+        BlockContainer.Base Container
+          Block.Container.margin-large
+            Block.Why Choose wrapper
+              Block.Service Title Wrap
+                Block.Subtitle Text
+                  "The Moments Matter"
+                Heading.Service Title {"tag": "h3", "headingLevel": 3}
+                  "Why Choose Moments With Mrs. T?"
+              Block.Service Grid
+                Block.Service Card
+                  Block.Service Card Contant
+                    Block.Service Card Icon Wrap
+                      DOM.Service Card Icon {"tag": "img", "dom": {"tag": "img"}}
+                    Heading.Service Card Title {"tag": "h3", "headingLevel": 3}
+                      "5-Star Client Experience"
+                    Paragraph.Service Card Details
+                      "Personalized, quality care you can trust"
+                Block.Service Card
+                  Block.Service Card Contant
+                    Block.Service Card Icon Wrap
+                      DOM.Service Card Icon {"tag": "img", "dom": {"tag": "img"}}
+                    Heading.Service Card Title {"tag": "h3", "headingLevel": 3}
+                      "Compassion-First Approach"
+                    Paragraph.Service Card Details
+                      "I care because I’ve been there"
+                Block.Service Card
+                  Block.Service Card Contant
+                    Block.Service Card Icon Wrap
+                      DOM.Service Card Icon {"tag": "img", "dom": {"tag": "img"}}
+                    Heading.Service Card Title {"tag": "h3", "headingLevel": 3}
+                      "Real Results"
+                    Paragraph.Service Card Details
+                      "Move from feeling stuck to thriving with my expert strategies"
+                Block.Service Card
+                  Block.Service Card Contant
+                    Block.Service Card Icon Wrap
+                      DOM.Service Card Icon {"tag": "img", "dom": {"tag": "img"}}
+                    Heading.Service Card Title {"tag": "h3", "headingLevel": 3}
+                      "Local & Caring"
+                    Paragraph.Service Card Details
+                      "Deeply rooted in the Lorain, Cuyahoga, and Strongsville community"
+                Block.Service Card
+                  Block.Service Card Contant
+                    Block.Service Card Icon Wrap
+                      DOM.Service Card Icon {"tag": "img", "dom": {"tag": "img"}}
+                    Heading.Service Card Title {"tag": "h3", "headingLevel": 3}
+                      "Affordable Packages"
+                    Paragraph.Service Card Details
+                      "Tailored support without breaking the bank"
+          Block.Absolute Block.1
+            Block.Text Block White
+              "Wholeness"
+          Block.Absolute Block.2
+            Block.Text Block White
+              "Mindfulness"
+          Block.Absolute Block.3
+            Block.Text Block White
+              "Freedom"
+          Block.Absolute Block.4
+            Block.Text Block White
+              "Balance"
+          Image.Small Image Absolute {"assetId": "6826713ad95c622675c96b76", "altText": "Floral background representing positivity and emotional healing — Moments With Mrs. T Counseling and Life Coaching Services."}
+          Image.Small Image Absolute 3 {"assetId": "6826713a915bcccd0603a0e1", "altText": "Floral petals evoking tranquility and reflection — Life Coaching and Mental Health Support in Lorain County."}
+        Image.Background 3 {"assetId": "68e9d80b0dc29ae82739db1c"}
+    ComponentInstance COMPONENT=Footer

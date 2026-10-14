@@ -1,0 +1,79 @@
+  <<Global Styles>>
+    <<Navbar>>
+      === SECTION Section 2,Banner Home 2 {"id": "Top"}
+              h1 [White Text]: Mrs. T's Chair | Blogs
+              Paragraph [Paragraph Banner 2,NO max-width]: Our mission is to provide compassionate, evidence-based mental health support tailored to each individual’s needs.
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Check Mark"}
+                    Paragraph [Hero List Text]: From Pain to Purpose
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Check Mark"}
+                    Paragraph [Hero List Text]: Tailored to Your Journey
+                    DOMIMG {"src": "data:image/png;base64,iVBORw0KGgoAAAANSU", "alt": "Check Mark"}
+                    Paragraph [Hero List Text]: Real Healing, Real Talk
+              div [Button Banner Wrapper 2]: Let’s talk with us
+      DynamoWrapper {}
+        DynamoList {}
+          DynamoItem {}
+            === SECTION section_layout3 {}
+                            Link [Text Link]: Read Now
+                            IMG None alt= [layout2_image]
+        DynamoEmpty {}
+          div: No items found.
+      DynamoWrapper {}
+        DynamoList {}
+          DynamoItem {}
+            === SECTION section_layout2 {}
+                            IMG None alt= [layout2_image]
+                            Link [Text Link]: Read Now
+        DynamoEmpty {}
+          div: No items found.
+      DynamoWrapper {}
+        DynamoList {}
+          DynamoItem {}
+            === SECTION section_layout3 {}
+                            Link [Text Link]: Read Now
+                            IMG None alt= [layout2_image]
+        DynamoEmpty {}
+          div: No items found.
+      DynamoWrapper {}
+        DynamoList {}
+          DynamoItem {}
+            === SECTION section_layout2 {}
+                            IMG None alt= [layout2_image]
+                            Link [Text Link]: Read Now
+        DynamoEmpty {}
+          div: No items found.
+      === SECTION section_blogsection03 {}
+                          div [text-weight-semibold,text-color-primary600]: Our blog
+                          h2: Check Out our Other Posts on the same Topic
+                        div [text-size-medium 8]: Explore a variety of tools and strategies designed to guide you in identifying the right path for your mental health journey. From mindfulness techniques to cognitive behavioral approaches, these resources can help you gain clarity and direction.
+                      IMG 68269dcfd1127426fc34b592 alt=Moments With Mrs. T logo — a face with flourishing trees symbolizing growth, balance, and great mental health in Cuyahoga County []
+                  DynamoWrapper {}
+                    DynamoList {}
+                      DynamoItem {}
+                              IMG None alt=Mrs T's Blog - The common communication pitfalls in family relationships [blogsection03_image]
+                            EMBED [blogsection03_icon] {"visibility": true}
+                                div [text-divider,text-size-small]: •
+                                div [text-size-small 2]: 5 min read
+                    DynamoEmpty {}
+                      div: No items found.
+                      div: View all posts
+      === SECTION section_faq3,color-scheme-4 {}
+                      h2 [heading-style-h2]: FAQs
+                    Paragraph [text-size-medium 3]: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                      div [button-group]: Contact
+                        div [text-size-medium 3,text-weight-bold]: What makes Moments With Mrs. T different from other life coaching services?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Our compassionate, lived-experience approach combined with certified expertise creates a genuinely nurturing environment for transformation.
+                        div [text-size-medium 3,text-weight-bold]: How long are your programs?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Our programs range from 3 months to 12 months, tailored to your personal growth needs.
+                        div [text-size-medium 3,text-weight-bold]: Do you offer group sessions?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Yes! We provide both one-on-one and group workshop sessions for coping skills and life strategy building.
+                        div [text-size-medium 3,text-weight-bold]: Can life coaching services be virtual?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: Yes, we offer both in-person and virtual coaching sessions for your convenience.
+                        div [text-size-medium 3,text-weight-bold]: What ages do you serve?
+                          EMBED [icon-embed-small] {"visibility": true}
+                          Paragraph: I work with children starting in the 4th grade up to adults seeking guidance, healing, and empowerment.
+    <<Footer>>

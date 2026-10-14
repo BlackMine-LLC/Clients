@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.momentswithmrst.com/sitemap.xml
