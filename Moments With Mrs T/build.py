@@ -10,7 +10,7 @@ from datetime import date
 
 ROOT = Path(__file__).parent
 OUT = ROOT / "site"
-SITE_URL = "https://www.momentswithmrst.com"  # change once the client's domain is confirmed
+SITE_URL = "https://mrstschair.com"
 PHONE, PHONE_TEL = "(330) 249-1042", "+13302491042"
 EMAIL = "momentswithmrst@gmail.com"
 FACEBOOK = "https://www.facebook.com/tieshia.henry"
