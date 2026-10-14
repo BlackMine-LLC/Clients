@@ -6,9 +6,20 @@ Life coaching and case management site for Tieshia Henry (Lorain & Cuyahoga Coun
 |---|---|
 | Domain | `mrstschair.com` (Namecheap, account AdminBlackMine, expires Nov 4, 2027). Canonical: `https://mrstschair.com`, `www` redirects to it |
 | DNS host | **Cloudflare** (nameservers `perla` / `oswald.ns.cloudflare.com`), not Namecheap. Keep the Namecheap email-forwarding MX records (`eforward*.registrar-servers.com`) |
-| Vercel project | `moments-with-mrs-t`, Root Directory `Moments With Mrs T/site`, Framework "Other", no build command |
+| Vercel project | `moments-with-mrs-t` (`prj_Lyoh0zVsEwo62raA9nRp7qJZ7wnw`), connected to `BlackMine-LLC/Clients`, Root Directory `Moments With Mrs T/site`, Framework "Other", no build command. Pushes to `main` deploy to production |
+| Live (Vercel URL) | https://moments-with-mrs-t.vercel.app |
 | Analytics | Microsoft Clarity. Project ID goes in `CLARITY_ID` in `build.py` (empty = off) |
 | Forms | FormSubmit → `momentswithmrst@gmail.com` (first submission sends a one-time activation email) |
+
+## DNS cutover (Cloudflare → DNS records for mrstschair.com)
+Both domains are already added and verified on the Vercel project. In Cloudflare, set these records to **DNS only** (grey cloud, not proxied):
+| Type | Name | Value | Replaces |
+|---|---|---|---|
+| A | `@` | `216.150.1.1` | A `@` → `198.202.211.1` (Webflow) |
+| A | `@` | `216.150.16.1` | |
+| CNAME | `www` | `cfca04aacd306ae2.vercel-dns-016.com` | CNAME `www` → `cdn.webflow.com` |
+
+Leave the MX (`eforward1-5.registrar-servers.com`) and any SPF TXT records alone so the email forwarding keeps working.
 
 ## Layout
 - `site/`: the deployable site (20 pages). Don't hand-edit HTML; it's generated.
@@ -33,5 +44,5 @@ Add `?shot` to a URL to show every reveal at once (for full-page screenshots).
 ## Open items
 - Confirm the business email: the site uses `momentswithmrst@gmail.com` (from the live Webflow site), but Tieshia's onboarding form says `Momentwithmrst@gmail.com`.
 - Create the Clarity project and set `CLARITY_ID`.
-- Point Cloudflare DNS at Vercel when ready to launch.
+- Cloudflare DNS cutover (see above). Needs a Cloudflare login.
 - Testimonials (2–3, first name + city) and a real photo of "the chair" would strengthen the site.
