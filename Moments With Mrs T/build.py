@@ -89,6 +89,7 @@ def header(active):
   <nav class="nav" id="nav" aria-label="Main">
     <button class="menu-toggle nav-close" data-menu aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     {links}{btn("Book a free consultation", "/contact", "small")}
+    <div class="nav-contact"><a href="tel:{PHONE_TEL}">{PHONE}</a><a href="mailto:{EMAIL}">{EMAIL}</a></div>
   </nav>
 </div></header><div class="scrim"></div>"""
 
@@ -133,7 +134,7 @@ def page(path, title, desc, body, active=None, ld=None, og_image="/assets/og-ima
 <html lang="en" class="no-js" data-clarity="{CLARITY_ID}">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{canon}">
@@ -141,7 +142,7 @@ def page(path, title, desc, body, active=None, ld=None, og_image="/assets/og-ima
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{canon}"><meta property="og:image" content="{SITE_URL}{og_image}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0d3c5e">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/EncodeSans-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/Karla-400-latin.woff2" as="font" type="font/woff2" crossorigin>

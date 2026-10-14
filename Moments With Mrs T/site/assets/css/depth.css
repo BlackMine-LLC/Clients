@@ -394,3 +394,24 @@ section:not(.edged) > .ghostmark.r{bottom:40px}
 /* ---- optional SMS consent ---- */
 .form .check{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.85rem;color:var(--muted);line-height:1.45}
 .form .check input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--navy)}
+
+/* =====================================================================
+   iPhone edge-to-edge (same approach as Slick Shine).
+   viewport-fit=cover lets the page draw under the notch; the sticky white
+   header pads itself up into the status-bar area so the clock, signal and
+   battery always sit on solid white, never on scrolling content.
+   ===================================================================== */
+html{background:#fff;scroll-padding-top:calc(90px + env(safe-area-inset-top))}
+.site-header{padding-top:env(safe-area-inset-top);background:#fff}
+.wrap{padding-left:max(var(--gutter),env(safe-area-inset-left));padding-right:max(var(--gutter),env(safe-area-inset-right))}
+.nav-contact{display:none}
+@media (max-width:960px){
+  /* phones/tablets: the navy contact strip moves into the menu so the notch is one solid color */
+  .topbar{display:none}
+  .nav{padding-top:calc(96px + env(safe-area-inset-top));padding-bottom:calc(24px + env(safe-area-inset-bottom));overflow-y:auto}
+  .nav-close{top:calc(22px + env(safe-area-inset-top))}
+  .nav-contact{display:grid;gap:10px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+  .nav-contact a{text-decoration:none;font-weight:600;color:var(--navy)}
+}
+#privacy-banner{bottom:calc(16px + env(safe-area-inset-bottom))}
+.site-footer{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
