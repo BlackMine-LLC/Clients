@@ -1,0 +1,672 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tax Team LinkedIn Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a single editorial column (max 1080) that reads like a strategy memo; data sits in ruled ledger panels, not cards. Square corners throughout. */
+:root{
+  --paper:#F6F5F1; --surface:#FFFFFF; --ink:#17160F; --ink-soft:#3C3B33; --muted:#6B6A63;
+  --rule:#DCD9CF; --green:#00925F; --green-soft:#E3F1EA; --gold:#9A7A43; --gold-soft:#F1EADB;
+  --bad:#B4462F; --bad-soft:#F6E4DF; --bar-muted:#C9C6BB;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11140F; --surface:#181C16; --ink:#EEECE4; --ink-soft:#CFCCC1; --muted:#9A988E;
+  --rule:#2E332B; --green:#2FC08A; --green-soft:#16291F; --gold:#D2B07A; --gold-soft:#2A2519;
+  --bad:#E07A61; --bad-soft:#2E1C17; --bar-muted:#4A4E45; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11140F; --surface:#181C16; --ink:#EEECE4; --ink-soft:#CFCCC1; --muted:#9A988E;
+  --rule:#2E332B; --green:#2FC08A; --green-soft:#16291F; --gold:#D2B07A; --gold-soft:#2A2519;
+  --bad:#E07A61; --bad-soft:#2E1C17; --bar-muted:#4A4E45; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding:0 20px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-block:40px 80px}
+a{color:var(--green);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.04;font-weight:600}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.12}
+h3{font-size:1.2rem;line-height:1.25}
+p{margin:0}
+.lede{font-size:1.15rem;color:var(--ink-soft);max-width:62ch}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.small{font-size:.86rem;color:var(--muted)}
+.prose{max-width:66ch;display:grid;gap:12px;color:var(--ink-soft)}
+
+/* masthead */
+.mast{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:12px}
+.mast b{font-family:var(--display);font-size:1.05rem}
+.hero{display:grid;gap:22px;padding-block:44px 34px}
+.hero h1 em{font-style:italic;color:var(--green)}
+.facts{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.facts div{padding:14px 12px;border-right:1px solid var(--rule);display:grid;gap:2px}
+.facts div:last-child{border-right:0}
+.facts b{font-family:var(--display);font-size:1.9rem;font-weight:600;line-height:1}
+.facts span{font-size:.8rem;color:var(--muted)}
+
+/* nav */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);margin-inline:-20px;padding:10px 20px;overflow-x:auto;white-space:nowrap}
+nav.toc a{color:var(--ink-soft);text-decoration:none;font-size:.86rem;font-weight:600;margin-right:18px}
+nav.toc a:hover{color:var(--green)}
+
+section{padding-block:56px 8px;display:grid;gap:26px;scroll-margin-top:52px}
+.sec-head{display:grid;gap:10px;max-width:760px}
+.sec-head .eyebrow{color:var(--green)}
+
+/* verdict strip */
+.verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);background:var(--surface)}
+.verdict>div{padding:20px;border-right:1px solid var(--rule);display:grid;gap:8px;align-content:start;min-width:0}
+.verdict>div:last-child{border-right:0}
+.verdict b{font-family:var(--display);font-size:1.15rem;font-weight:600}
+.verdict p{color:var(--ink-soft);font-size:.95rem}
+
+/* panels */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.panel{background:var(--surface);border:1px solid var(--rule);padding:20px;display:grid;gap:14px;align-content:start;min-width:0}
+.panel h3{font-size:1.08rem}
+.src{font-size:.78rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:10px}
+
+/* bar charts */
+.bars{display:grid;gap:9px}
+.bar{display:grid;grid-template-columns:minmax(96px,34%) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .lab{color:var(--ink-soft);min-width:0}
+.bar .track{height:14px;background:transparent;position:relative}
+.bar .fill{height:100%;background:var(--bar-muted)}
+.bar.hi .fill{background:var(--green)}
+.bar.lo .fill{background:var(--bad)}
+.bar.au .fill{background:var(--gold)}
+.bar .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+
+/* paired bars (before/after) */
+.pair{display:grid;gap:4px}
+.pair .row{display:grid;grid-template-columns:minmax(96px,34%) 1fr 44px;gap:10px;align-items:center;font-size:.86rem}
+.pair .row .fill{height:10px}
+.pair .t{font-size:.9rem;font-weight:600;color:var(--ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+
+/* score meter */
+.score{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.score b{font-family:var(--display);font-size:3.6rem;line-height:1;font-weight:600}
+.cells{display:grid;grid-template-columns:repeat(16,1fr);gap:3px}
+.cells i{height:18px;background:var(--rule)}
+.cells i.y{background:var(--gold)}
+.cells i.g{background:var(--green)}
+
+/* checklists */
+ul.ticks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ul.ticks li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93rem;color:var(--ink-soft)}
+ul.ticks li::before{content:"";width:12px;height:12px;margin-top:5px;border:1.5px solid var(--muted)}
+ul.ticks li.ok::before{background:var(--green);border-color:var(--green)}
+ul.ticks li.half::before{background:linear-gradient(90deg,var(--gold) 50%,transparent 50%);border-color:var(--gold)}
+ul.ticks li.no::before{border-color:var(--bad)}
+
+/* work / not-work */
+.ledger{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);background:var(--surface)}
+.ledger>div{padding:20px;display:grid;gap:14px;align-content:start;min-width:0}
+.ledger>div+div{border-left:1px solid var(--rule)}
+.ledger h3{display:flex;gap:10px;align-items:center}
+.tag{font-family:var(--body);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px}
+.tag.g{background:var(--green-soft);color:var(--green)}
+.tag.r{background:var(--bad-soft);color:var(--bad)}
+.tag.y{background:var(--gold-soft);color:var(--gold)}
+.item{display:grid;gap:3px;border-top:1px solid var(--rule);padding-top:12px}
+.item b{font-weight:700;font-size:.97rem}
+.item p{font-size:.9rem;color:var(--ink-soft)}
+.item .s{font-size:.76rem;color:var(--muted)}
+
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:720px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--paper);position:sticky;top:0}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td .q{font-family:var(--display);font-style:italic;color:var(--ink)}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 7px;letter-spacing:.04em;white-space:nowrap}
+.pill.g{background:var(--green-soft);color:var(--green)}
+.pill.y{background:var(--gold-soft);color:var(--gold)}
+.pill.r{background:var(--bad-soft);color:var(--bad)}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule)}
+.quotes blockquote{margin:0;padding:18px 18px 18px 0;border-bottom:1px solid var(--rule);display:grid;gap:8px}
+.quotes blockquote p{font-family:var(--display);font-size:1.05rem;line-height:1.35}
+.quotes cite{font-style:normal;font-size:.78rem;color:var(--muted)}
+
+/* openings */
+.open{display:grid;grid-template-columns:56px 1fr;gap:16px;border-top:1px solid var(--rule);padding-top:18px}
+.open .k{font-family:var(--display);font-size:2rem;color:var(--green);line-height:1}
+.open h3{margin-bottom:6px}
+.open p{color:var(--ink-soft);max-width:70ch}
+.open .ev{font-size:.82rem;color:var(--muted);margin-top:6px}
+
+/* phases */
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);background:var(--surface)}
+.phases>div{padding:18px;border-right:1px solid var(--rule);display:grid;gap:10px;align-content:start;min-width:0}
+.phases>div:last-child{border-right:0}
+.phases .when{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.phases ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.9rem;color:var(--ink-soft)}
+
+/* week */
+.week{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--rule);background:var(--surface)}
+.week>div{padding:14px;border-right:1px solid var(--rule);display:grid;gap:6px;align-content:start;min-width:0}
+.week>div:last-child{border-right:0}
+.week .d{font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.week .p{font-family:var(--display);font-size:1rem}
+.week .f{font-size:.82rem;color:var(--ink-soft)}
+.week .off{color:var(--muted);font-size:.85rem}
+
+.callout{border-left:3px solid var(--gold);padding:4px 0 4px 16px;color:var(--ink-soft);max-width:72ch}
+.callout b{color:var(--ink)}
+.guard{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);background:var(--surface)}
+.guard>div{padding:18px;display:grid;gap:8px;align-content:start}
+.guard>div+div{border-left:1px solid var(--rule)}
+.guard ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem;color:var(--ink-soft)}
+.adsplit{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;align-items:start}
+.adbars{display:grid;gap:12px;align-content:start}
+ul.ticks.findings{gap:0}
+ul.ticks.findings li{padding:12px 0;border-top:1px solid var(--rule);line-height:1.5}
+ul.ticks.findings li:first-child{border-top:0;padding-top:0}
+ul.ticks.findings li b{display:block;color:var(--ink);margin-bottom:2px}
+footer{margin-top:64px;border-top:1px solid var(--ink);padding-top:16px;display:grid;gap:10px}
+footer ul{margin:0;padding-left:18px;font-size:.86rem;color:var(--ink-soft);display:grid;gap:4px}
+code{font-size:.85em;background:var(--paper);padding:1px 5px;border:1px solid var(--rule)}
+
+@media (max-width:860px){
+  .facts{grid-template-columns:repeat(3,1fr)} .facts div:nth-child(3){border-right:0} .facts div:nth-child(n+4){border-top:1px solid var(--rule)}
+  .verdict,.grid3,.quotes{grid-template-columns:1fr}
+  .verdict>div{border-right:0;border-bottom:1px solid var(--rule)} .verdict>div:last-child{border-bottom:0}
+  .grid2,.ledger,.guard,.adsplit{grid-template-columns:1fr}
+  .ledger>div+div,.guard>div+div{border-left:0;border-top:1px solid var(--rule)}
+  .phases{grid-template-columns:1fr 1fr} .phases>div:nth-child(2){border-right:0} .phases>div:nth-child(n+3){border-top:1px solid var(--rule)}
+  .week{grid-template-columns:1fr} .week>div{border-right:0;border-bottom:1px solid var(--rule)}
+}
+@media (max-width:520px){
+  body{padding:0 16px} nav.toc{margin-inline:-16px;padding-inline:16px}
+  .facts{grid-template-columns:1fr 1fr} .facts div{border-right:1px solid var(--rule)!important;border-top:1px solid var(--rule)}
+  .phases{grid-template-columns:1fr} .phases>div{border-right:0!important;border-top:1px solid var(--rule)}
+  .bar{grid-template-columns:1fr 54px} .bar .lab{grid-column:1/-1} .pair .row{grid-template-columns:1fr 40px} .pair .row .lab{grid-column:1/-1}
+  .score{grid-template-columns:1fr}
+  .open{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){ .fill{transition:width .6s ease} }
+</style>
+
+<div class="wrap">
+  <div class="mast">
+    <b>The Tax Team × BlackMine</b>
+    <span class="small num">LinkedIn research · prepared 16 Oct 2026 · for Aileen Guillen</span>
+  </div>
+
+  <header class="hero">
+    <span class="eyebrow">LinkedIn growth playbook</span>
+    <h1>Nobody owns tax strategy on LinkedIn yet. <em>Miami doesn't even have a contender.</em></h1>
+    <p class="lede">We read 346 real LinkedIn posts, 291 benchmark figures, about 30 competing firms and 101 demand signals. The pattern is consistent. Firm pages get almost nothing. Founders who tell real stories get everything. And the tax strategists with big audiences live on YouTube, not here. That leaves a clear lane for a bilingual Miami founder who plans instead of files.</p>
+    <div class="facts">
+      <div><b class="num">346</b><span>LinkedIn posts scraped, 211 creators</span></div>
+      <div><b class="num">291</b><span>benchmark figures, each sourced</span></div>
+      <div><b class="num">33</b><span>firms and founders benchmarked</span></div>
+      <div><b class="num">101</b><span>demand and trend signals</span></div>
+      <div><b class="num">60</b><span>pain phrases in owners' own words</span></div>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#standing">Where you stand</a><a href="#works">What works</a><a href="#winners">Who's winning</a><a href="#demand">What owners want</a><a href="#openings">Your openings</a><a href="#footage">Your footage</a><a href="#plan">90-day plan</a><a href="#paid">Paid</a><a href="#guardrails">Guardrails</a><a href="#method">Sources</a>
+  </nav>
+
+  <section aria-labelledby="sum">
+    <div class="sec-head"><span class="eyebrow">The short version</span><h2 id="sum">Three findings decide the strategy</h2></div>
+    <div class="verdict">
+      <div><span class="tag g">The opening</span><b>The tax lane is empty</b><p>Mark Kohler has 617K YouTube subscribers but a median of 7 reactions per LinkedIn post. No tax-planning creator we found has more than about 25K LinkedIn followers. No Latina tax voice has a visible audience at all.</p></div>
+      <div><span class="tag y">The engine</span><b>People beat pages, stories beat tips</b><p>Kaufman Rossin, Miami's biggest firm page, averages about 21 likes on 110K followers. A planner with 4.7K followers got 6,313 reactions for one post about his daughter. Generic tax tips from small accounts get a median of 3.5.</p></div>
+      <div><span class="tag r">The starting line</span><b>You're at 4 of 32</b><p>The company page has 306 followers and no posts. Aileen's profile has no headline, About section, banner or Featured section, and no original post in about 3 years. Fixing that takes a week and costs nothing.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ STANDING ============ -->
+  <section id="standing" aria-labelledby="h-standing">
+    <div class="sec-head"><span class="eyebrow">01 · Where you stand</span><h2 id="h-standing">A strong business with an almost empty LinkedIn</h2>
+      <p class="lede">5,000+ clients, 340+ business clients and a 4.7★ rating over 120+ reviews don't show up anywhere on LinkedIn today. We scored both profiles against 16 checks, worth 2 points each.</p></div>
+
+    <div class="panel">
+      <div class="score">
+        <b class="num">4<span style="font-size:1.6rem;color:var(--muted)">/32</span></b>
+        <div style="display:grid;gap:8px">
+          <div class="cells" aria-label="Score cells: 1 complete, 2 partial, 13 missing">
+            <i class="g"></i><i class="y"></i><i class="y"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="legend"><span><i style="background:var(--green)"></i>Done (photo)</span><span><i style="background:var(--gold)"></i>Weak (location, employee links)</span><span><i style="background:var(--rule)"></i>Missing (13 items)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h3>Aileen's profile</h3>
+        <ul class="ticks">
+          <li class="ok">Profile photo is set</li>
+          <li class="no">No headline. The tab reads "Aileen Guillen – The Tax Team"</li>
+          <li class="no">No About section, no Featured section, default banner</li>
+          <li class="no">Shows Connect, not Follow, so people can't follow her without connecting</li>
+          <li class="no">Auto-generated URL: /in/aileen-guillen-18352b34</li>
+          <li class="half">Location says "United States", not Miami</li>
+          <li class="no">Original posts: two hiring shares, about 3 years ago. Reposts since</li>
+          <li class="no">No newsletter</li>
+        </ul>
+        <p class="src">About 1K followers, 500+ connections. Public logged-out view, 16 Oct 2026.</p>
+      </div>
+      <div class="panel">
+        <h3>The Tax Team company page</h3>
+        <ul class="ticks">
+          <li class="ok">Logo set, 37 employees linked</li>
+          <li class="no">About text sells back-taxes prep (and has a typo)</li>
+          <li class="no">Specialties list prep and IRS debt. Nothing on strategy, high earners or healthcare</li>
+          <li class="no">Says "Founded 2014" (the brand says 2015). Industry set to Financial Services</li>
+          <li class="no">Default banner and no posts visible</li>
+          <li class="no">A second page, "The Tax Team Kendall", sells "maximum refund" to 39 followers</li>
+          <li class="no">gotaxteam.com links to Facebook and Instagram, not LinkedIn</li>
+        </ul>
+        <p class="src">306 followers. linkedin.com/company/the-tax-team, 16 Oct 2026.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Size doesn't buy engagement: average likes per post, last 10 posts</h3>
+      <div class="bars" role="img" aria-label="Average likes per post by account">
+        <div class="bar hi"><span class="lab">Brandon Hall (founder, 37K) · best post</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">286</span></div>
+        <div class="bar"><span class="lab">Baker Tilly US (page, 161K)</span><span class="track"><span class="fill" style="width:55.6%"></span></span><span class="val">159</span></div>
+        <div class="bar"><span class="lab">Berkowitz Pollack Brant (Miami, 11K)</span><span class="track"><span class="fill" style="width:14.7%"></span></span><span class="val">42</span></div>
+        <div class="bar"><span class="lab">Eide Bailly (page, 58K)</span><span class="track"><span class="fill" style="width:11.2%"></span></span><span class="val">32</span></div>
+        <div class="bar"><span class="lab">BDO (page, 202K)</span><span class="track"><span class="fill" style="width:8.4%"></span></span><span class="val">24</span></div>
+        <div class="bar"><span class="lab">Kaufman Rossin (Miami, 111K)</span><span class="track"><span class="fill" style="width:7.3%"></span></span><span class="val">21</span></div>
+        <div class="bar"><span class="lab">Cain Watters (dental, 4K)</span><span class="track"><span class="fill" style="width:3.1%"></span></span><span class="val">8.8</span></div>
+        <div class="bar lo"><span class="lab">Anderson Advisors (tax strategy, 25K)</span><span class="track"><span class="fill" style="width:.6%"></span></span><span class="val">0.8</span></div>
+        <div class="bar lo"><span class="lab">Physician Tax Solutions (1.2K)</span><span class="track"><span class="fill" style="width:.3%"></span></span><span class="val">0.3</span></div>
+        <div class="bar lo"><span class="lab">Advanced Tax Advisors (Miami)</span><span class="track"><span class="fill" style="width:.2%"></span></span><span class="val">0.1</span></div>
+      </div>
+      <p class="src">Likes as shown on public company and post pages, 16 Oct 2026. The green bar is one founder post (286 likes, 60 comments), shown for scale. Full table of 33 accounts in <code>data/05-competitors.csv</code>.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHAT WORKS ============ -->
+  <section id="works" aria-labelledby="h-works">
+    <div class="sec-head"><span class="eyebrow">02 · What works on LinkedIn now</span><h2 id="h-works">What works and what doesn't, by the numbers</h2>
+      <p class="lede">These come from large studies (hundreds of thousands to millions of posts) plus our own sample of money and tax posts. Each vendor measures "engagement" its own way, so compare bars within a chart, never across charts.</p></div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h3>Engagement rate by format</h3>
+        <div class="bars">
+          <div class="bar hi"><span class="lab">Document (PDF carousel)</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">21.8%</span></div>
+          <div class="bar"><span class="lab">Video</span><span class="track"><span class="fill" style="width:33.8%"></span></span><span class="val">7.4%</span></div>
+          <div class="bar"><span class="lab">Image</span><span class="track"><span class="fill" style="width:30%"></span></span><span class="val">6.5%</span></div>
+          <div class="bar lo"><span class="lab">Link</span><span class="track"><span class="fill" style="width:17.5%"></span></span><span class="val">3.8%</span></div>
+          <div class="bar lo"><span class="lab">Text only</span><span class="track"><span class="fill" style="width:14.6%"></span></span><span class="val">3.2%</span></div>
+        </div>
+        <p class="src">Buffer, State of Social Media Engagement 2026, median engagement rate (counts clicks), 2025 data. Socialinsider (1.3M page posts) ranks documents first too, at 7.0%.</p>
+      </div>
+      <div class="panel">
+        <h3>For people (not pages) in money content, one photo wins</h3>
+        <div class="pair">
+          <span class="t">Codie Sanchez · median reactions</span>
+          <div class="row"><span class="lab">Image post (n=9)</span><span class="track"><span class="fill" style="width:100%;background:var(--green)"></span></span><span class="num">1,779</span></div>
+          <div class="row"><span class="lab">Video (n=3)</span><span class="track"><span class="fill" style="width:36%;background:var(--bar-muted)"></span></span><span class="num">643</span></div>
+          <div class="row"><span class="lab">Carousel (n=1)</span><span class="track"><span class="fill" style="width:26%;background:var(--bar-muted)"></span></span><span class="num">467</span></div>
+        </div>
+        <div class="pair">
+          <span class="t">Sahil Bloom · median reactions</span>
+          <div class="row"><span class="lab">Image post (n=6)</span><span class="track"><span class="fill" style="width:100%;background:var(--green)"></span></span><span class="num">1,617</span></div>
+          <div class="row"><span class="lab">Carousel (n=4)</span><span class="track"><span class="fill" style="width:69%;background:var(--bar-muted)"></span></span><span class="num">1,119</span></div>
+          <div class="row"><span class="lab">Video (n=1)</span><span class="track"><span class="fill" style="width:31%;background:var(--bar-muted)"></span></span><span class="num">506</span></div>
+        </div>
+        <p class="src">Our scrape of each creator's public posts, 16 Oct 2026. None of the top 25 money posts we found is a video. <b>So:</b> stories go out as text plus one photo of Aileen. Explainers go out as documents, which people save.</p>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="panel">
+        <h3>Longer posts get more comments</h3>
+        <div class="bars">
+          <div class="bar"><span class="lab">Under 400 chars</span><span class="track"><span class="fill" style="width:14%"></span></span><span class="val">1</span></div>
+          <div class="bar"><span class="lab">701–1,000</span><span class="track"><span class="fill" style="width:43%"></span></span><span class="val">3</span></div>
+          <div class="bar"><span class="lab">1,301–2,000</span><span class="track"><span class="fill" style="width:71%"></span></span><span class="val">5</span></div>
+          <div class="bar hi"><span class="lab">2,001–2,500</span><span class="track"><span class="fill" style="width:86%"></span></span><span class="val">6</span></div>
+          <div class="bar"><span class="lab">2,501–3,000</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">7</span></div>
+        </div>
+        <p class="src">Median comments per post. AuthoredUp, 372,126 personal posts. Engagement rate peaks at 2,001–2,500 characters (2.67%). That's about 300–400 words.</p>
+      </div>
+      <div class="panel">
+        <h3>Hooks that lift reach</h3>
+        <div class="bars">
+          <div class="bar hi"><span class="lab">Number or $ in the first line</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">6.5</span></div>
+          <div class="bar hi"><span class="lab">First-person scene ("My…", "I…")</span><span class="track"><span class="fill" style="width:99.7%"></span></span><span class="val">6.5</span></div>
+          <div class="bar hi"><span class="lab">Family word (daughter, wife)</span><span class="track"><span class="fill" style="width:94.6%"></span></span><span class="val">6.2</span></div>
+          <div class="bar lo"><span class="lab">Question hook</span><span class="track"><span class="fill" style="width:53.7%"></span></span><span class="val">3.5</span></div>
+          <div class="bar lo"><span class="lab">8 words or fewer</span><span class="track"><span class="fill" style="width:52.5%"></span></span><span class="val">3.4</span></div>
+        </div>
+        <p class="src">Reactions per 1,000 followers in our 346-post sample. Posts without each feature averaged about 4.0–5.0.</p>
+      </div>
+      <div class="panel">
+        <h3>Hashtags shrink reach</h3>
+        <div class="bars">
+          <div class="bar hi"><span class="lab">No hashtags</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">6,632</span></div>
+          <div class="bar"><span class="lab">1–2</span><span class="track"><span class="fill" style="width:47.2%"></span></span><span class="val">3,133</span></div>
+          <div class="bar lo"><span class="lab">3–5</span><span class="track"><span class="fill" style="width:41.9%"></span></span><span class="val">2,779</span></div>
+          <div class="bar lo"><span class="lab">11 or more</span><span class="track"><span class="fill" style="width:7.6%"></span></span><span class="val">502</span></div>
+        </div>
+        <p class="src">Average impressions per post. Ordinal, 270,306 posts.</p>
+      </div>
+    </div>
+
+    <div class="ledger">
+      <div>
+        <h3><span class="tag g">Working</span> Do more of this</h3>
+        <div class="item"><b>One real scene, then the lesson</b><p>Open with a client type, a family moment or a dollar figure. Teach after. 14 of the top 25 money posts open on a person or a scene.</p><span class="s">Our sample, 16 Oct 2026</span></div>
+        <div class="item"><b>Explain one concept in plain English</b><p>Josh Aharonoff's "Finance is NOT Accounting" got 3,220 reactions and "AUDIT: the process every company should understand" got 6,233, both several times his normal.</p><span class="s">Public post pages</span></div>
+        <div class="item"><b>Knowledge content is growing</b><p>LinkedIn reports knowledge posts up 24% and time spent reading comments up 18% year on year. Tax education is exactly this.</p><span class="s">LinkedIn Q4 FY26, 29 Jul 2026 (primary)</span></div>
+        <div class="item"><b>Replying in the first hour</b><p>Replying adds about 30% engagement (Buffer) and about 35% reach (van der Blom).</p><span class="s">Vendor and secondary</span></div>
+        <div class="item"><b>3 posts a week, 24+ hours apart</b><p>Posts under 12 hours apart lose 17% engagement. Tuesday to Thursday mornings ET to start.</p><span class="s">Ordinal, Buffer, Sprout</span></div>
+      </div>
+      <div>
+        <h3><span class="tag r">Not working</span> Stop or avoid</h3>
+        <div class="item"><b>Posting as the firm</b><p>Company page posts reach about 1.6% of followers. Personal posts get 74% more median impressions.</p><span class="s">Van der Blom; AuthoredUp via Refine Labs</span></div>
+        <div class="item"><b>Generic, AI-sounding tips</b><p>Since 30 Jul 2026 members can report a post as "AI slop". LinkedIn says reported content now gets 40% fewer views. Tax reminders like "Estimated payments aren't just for freelancers" got 3 reactions.</p><span class="s">LinkedIn CPO via Social Media Today (primary)</span></div>
+        <div class="item"><b>Links in the post</b><p>Estimates of the reach penalty run from 11% to 36%. Put the link in the Featured section or a comment, or skip it.</p><span class="s">Van der Blom, Ordinal, LinkPost</span></div>
+        <div class="item"><b>Re-cut YouTube clips</b><p>Kohler's feed is mostly reposted clips: 2–16 reactions on 18K followers. Company page video views fell 36% year on year.</p><span class="s">Our scrape; Socialinsider</span></div>
+        <div class="item"><b>Polls and engagement bait</b><p>Polls get 1.78x reach but 0.37x engagement. "Comment GUIDE to get it" is now demoted.</p><span class="s">AuthoredUp; LinkedIn Newsroom</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WINNERS ============ -->
+  <section id="winners" aria-labelledby="h-winners">
+    <div class="sec-head"><span class="eyebrow">03 · Who's winning</span><h2 id="h-winners">The posts that travelled furthest, and why</h2>
+      <p class="lede">These are ranked by how far each post went past its own audience. Follower count didn't cap reach: two of the top three are from accounts with under 2,000 followers.</p></div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Who (followers)</th><th>First line</th><th>Format</th><th class="n">Reactions</th><th class="n">Comments</th><th>Why it worked</th></tr></thead>
+        <tbody>
+          <tr><td>Troy A. Young, CFP (4,722)</td><td><a href="https://www.linkedin.com/posts/troy-a-young-cfp%C2%AE-cka%C2%AE-3473292_my-daughter-troi-is-26-she-doesnt-make-activity-7388575227812745217-a80l" class="q">My daughter, Troi, is 26.</a></td><td>Image</td><td class="n">6,313</td><td class="n">642</td><td>Family scene first, then 5 money habits</td></tr>
+          <tr><td>Jared R Kostick (1,657)</td><td><a href="https://www.linkedin.com/posts/jaredrkostick_cash-flow-is-not-an-afterthought-it-is-strategy-activity-7363576451096289280-AlJr" class="q">Cash flow is not an afterthought. It is strategy.</a></td><td>Image</td><td class="n">1,707</td><td class="n">204</td><td>Contrast, then two real client cases with numbers</td></tr>
+          <tr><td>Chanise Anderson, Esq. (1,657)</td><td><a href="https://www.linkedin.com/posts/chanise-anderson-esq_when-the-breadwinner-spouse-dies-this-activity-7370803126146158593--cQV" class="q">When the 'breadwinner spouse' dies, this is what happens</a></td><td>Image</td><td class="n">1,183</td><td class="n">142</td><td>A real fear, the exact call she gets, a fix list</td></tr>
+          <tr><td>Christine Meyer, MD (10,132)</td><td><a href="https://www.linkedin.com/posts/christinemeyermd_we-stopped-squeezing-every-last-patient-activity-7369071810748919812-IVfH" class="q">We stopped squeezing every last patient slot out of our clinicians…</a></td><td>Text</td><td class="n">2,785</td><td class="n">—</td><td>A practice owner going against the norm</td></tr>
+          <tr><td>Pamela Buchanan MD (50,319)</td><td><a href="https://www.linkedin.com/posts/pamela-buchanan-md-61ba5562_he-took-me-out-to-an-expensive-dinner-and-activity-7385302386619346944-pnbV" class="q">He took me out to an expensive dinner and said, "Doc, I just wanna pick your brain."</a></td><td>Image</td><td class="n">3,222</td><td class="n">361</td><td>Dialogue opener, a twist, valuing expertise</td></tr>
+          <tr><td>Divakar Vijayasarathy (55,223)</td><td><a href="https://www.linkedin.com/posts/divakar-dvs_income-gets-you-paid-planning-investing-activity-7467761963020734465-E2st" class="q">Income gets you paid. Planning, investing, and tax strategy make you wealthy.</a></td><td>Text</td><td class="n">1,360</td><td class="n">—</td><td>Closest post in the data to Aileen's own message</td></tr>
+          <tr><td>Kyle Richert (8,515)</td><td><a href="https://www.linkedin.com/posts/richertkyle_met-with-a-two-pa-couple-making-325000-activity-7345465434487308288-zJvt" class="q">Met with a two-PA couple making $325,000/year…</a></td><td>Text</td><td class="n">220</td><td class="n">36</td><td>Anonymised client, income in the hook, real moves</td></tr>
+          <tr><td>Gary Kauffman (6,331)</td><td><a href="https://www.linkedin.com/posts/gary-kauffman_just-reviewed-a-10m-estate-plan-the-other-activity-7390065013983670272-27T_" class="q">Just reviewed a $10M estate plan the other day.</a></td><td>Text</td><td class="n">111</td><td class="n">—</td><td>A big number, one mistake, 120 words</td></tr>
+          <tr><td>Justin Welsh (886,104)</td><td><a href="https://www.linkedin.com/posts/justinwelsh_make-enough-money-to-stop-thinking-about-activity-7514290662138068992-LIFY" class="q">Make enough money to stop thinking about money all the time.</a></td><td>Image</td><td class="n">7,431</td><td class="n">1,167</td><td>A money truth framed as freedom</td></tr>
+          <tr><td>Codie Sanchez (613,033)</td><td><a href="https://www.linkedin.com/posts/codiesanchez_went-to-a-new-church-in-austin-last-weekend-activity-7515034787330314240-Oe45" class="q">Went to a new church in Austin last weekend:</a></td><td>Image</td><td class="n">4,486</td><td class="n">350</td><td>Faith and her own week; 32 words and a photo</td></tr>
+          <tr><td>Mark J. Kohler (18,055)</td><td class="q">For S-Corporation owners, the fourth quarter…</td><td>Video clip</td><td class="n">2</td><td class="n">0</td><td><span class="pill r">Not working</span> A generic reminder, reposted clip</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Counts read from each public post page on 16 Oct 2026. The full 346-row dataset, with every URL, is in <code>data/01-finance-posts.csv</code>. What to expect: in our sample, a good post from a money professional with 1K–10K followers earned 100–300 reactions, and generic tax reminders earned 0–8.</p>
+
+    <div class="callout"><b>Healthcare voices punch above their size.</b> Posts by physician founders reached 64–275 reactions per 1,000 followers, the highest of any group we sampled. Dental and physician tax firms post as logos and average 0–9 likes. Nobody puts a face on practice-owner tax strategy.</div>
+  </section>
+
+  <!-- ============ DEMAND ============ -->
+  <section id="demand" aria-labelledby="h-demand">
+    <div class="sec-head"><span class="eyebrow">04 · What owners are asking for</span><h2 id="h-demand">Interest in planning is up, and people say why in their own words</h2>
+      <p class="lede">Google search interest for planning terms has roughly doubled or tripled year over year. The most-viewed video in this space is built on your exact argument: "Your CPA Could Be Costing You Thousands" has 1.7M views in four months.</p></div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h3>Search interest, last 12 months vs the 12 before</h3>
+        <div class="legend"><span><i style="background:var(--bar-muted)"></i>Prior 52 weeks</span><span><i style="background:var(--green)"></i>Last 52 weeks</span></div>
+        <div class="pair"><span class="t">"tax strategy"</span>
+          <div class="row"><span class="lab">Prior</span><span class="track"><span class="fill" style="width:25.4%;background:var(--bar-muted)"></span></span><span class="num">16</span></div>
+          <div class="row"><span class="lab">Last</span><span class="track"><span class="fill" style="width:73%;background:var(--green)"></span></span><span class="num">46</span></div></div>
+        <div class="pair"><span class="t">"tax planning"</span>
+          <div class="row"><span class="lab">Prior</span><span class="track"><span class="fill" style="width:46%;background:var(--bar-muted)"></span></span><span class="num">29</span></div>
+          <div class="row"><span class="lab">Last</span><span class="track"><span class="fill" style="width:100%;background:var(--green)"></span></span><span class="num">63</span></div></div>
+        <div class="pair"><span class="t">"Florida property tax"</span>
+          <div class="row"><span class="lab">Prior</span><span class="track"><span class="fill" style="width:31.7%;background:var(--bar-muted)"></span></span><span class="num">20</span></div>
+          <div class="row"><span class="lab">Last</span><span class="track"><span class="fill" style="width:61.9%;background:var(--green)"></span></span><span class="num">39</span></div></div>
+        <div class="pair"><span class="t">"Florida income tax"</span>
+          <div class="row"><span class="lab">Prior</span><span class="track"><span class="fill" style="width:22.2%;background:var(--bar-muted)"></span></span><span class="num">14</span></div>
+          <div class="row"><span class="lab">Last</span><span class="track"><span class="fill" style="width:46%;background:var(--green)"></span></span><span class="num">29</span></div></div>
+        <div class="pair"><span class="t">"IRS audit"</span>
+          <div class="row"><span class="lab">Prior</span><span class="track"><span class="fill" style="width:23.8%;background:var(--bar-muted)"></span></span><span class="num">15</span></div>
+          <div class="row"><span class="lab">Last</span><span class="track"><span class="fill" style="width:39.7%;background:var(--green)"></span></span><span class="num">25</span></div></div>
+        <div class="pair"><span class="t">"impuestos" (Florida)</span>
+          <div class="row"><span class="lab">Prior</span><span class="track"><span class="fill" style="width:58.7%;background:var(--bar-muted)"></span></span><span class="num">37</span></div>
+          <div class="row"><span class="lab">Last</span><span class="track"><span class="fill" style="width:73%;background:var(--green)"></span></span><span class="num">46</span></div></div>
+        <p class="src">Google Trends US (Florida for "impuestos"), mean weekly index, pulled 16 Oct 2026. The index is relative and noisy, so read the direction, not the exact figure. People still search "tax preparer" more than "tax planner" (55 vs 9). They want planning but still think in filing terms. That gap is your message.</p>
+      </div>
+      <div class="panel">
+        <h3>Ranked topics for Aileen to own</h3>
+        <div class="tbl" style="border:0">
+          <table style="min-width:0">
+            <thead><tr><th>Topic</th><th>Demand</th><th>Fit</th><th>Safe</th></tr></thead>
+            <tbody>
+              <tr><td>"Your preparer files. Who plans?"</td><td><span class="pill g">5</span></td><td><span class="pill g">5</span></td><td><span class="pill g">5</span></td></tr>
+              <tr><td>Year-end decisions for $400K–$1M+ owners</td><td><span class="pill g">5</span></td><td><span class="pill g">5</span></td><td><span class="pill y">4</span></td></tr>
+              <tr><td>"Spend $1 to save 35¢": the equipment write-off myth (dental edition)</td><td><span class="pill g">5</span></td><td><span class="pill g">5</span></td><td><span class="pill g">5</span></td></tr>
+              <tr><td>Miami and Florida money moves (Amendment 3, newcomers, PTET myth)</td><td><span class="pill y">4</span></td><td><span class="pill g">5</span></td><td><span class="pill y">4</span></td></tr>
+              <tr><td>Practice owners: "when is ownership worth it?"</td><td><span class="pill y">4</span></td><td><span class="pill g">5</span></td><td><span class="pill y">4</span></td></tr>
+              <tr><td>IRS Dirty Dozen myth-busts</td><td><span class="pill y">4</span></td><td><span class="pill g">5</span></td><td><span class="pill g">5</span></td></tr>
+              <tr><td>What I need from your client's advisor by Dec 1</td><td><span class="pill y">3</span></td><td><span class="pill g">5</span></td><td><span class="pill y">4</span></td></tr>
+              <tr><td>"100% write-offs" listicles on the new law</td><td><span class="pill r">3 ↓</span></td><td><span class="pill r">2</span></td><td><span class="pill r">2</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="src">Each scored 1–5 on demand (search, Reddit, YouTube), fit for a bilingual Miami strategist, and compliance safety. "Bonus depreciation" searches are below last year, so the law works as background, not as the hook. 15 topics in <code>research/04</code>.</p>
+      </div>
+    </div>
+
+    <div class="quotes">
+      <blockquote><p>"our current accountant mostly prepares our taxes rather than proactively advising us on tax strategy"</p><cite>r/fatFIRE, income over $1M thread, Sep 2026</cite></blockquote>
+      <blockquote><p>"I don't need someone who just fills out forms for me, that's what TurboTax is for."</p><cite>r/FinancialPlanning</cite></blockquote>
+      <blockquote><p>"What tax planning for physicians matters once the basic advice is already covered?"</p><cite>r/Residency, a ready-made post title</cite></blockquote>
+      <blockquote><p>"I've gone through 3 or 4 CPAs but I've been really disappointed by all of them."</p><cite>r/FinancialPlanning</cite></blockquote>
+      <blockquote><p>"I'm not looking for anything overly aggressive or exotic."</p><cite>r/Residency</cite></blockquote>
+      <blockquote><p>"Maxing out 401k but sadly don't think there's anything else I can do to lower the tax bill."</p><cite>r/HENRYfinance</cite></blockquote>
+    </div>
+    <p class="small">60 verbatim phrases with sources are in <code>research/04-trending-topics-and-demand.md</code>. Use them as hooks word for word, because that is how the buyer already talks.</p>
+  </section>
+
+  <!-- ============ OPENINGS ============ -->
+  <section id="openings" aria-labelledby="h-openings">
+    <div class="sec-head"><span class="eyebrow">05 · Where you can win</span><h2 id="h-openings">Five openings nobody on LinkedIn is filling</h2></div>
+    <div style="display:grid;gap:22px">
+      <div class="open"><span class="k">A</span><div><h3>Miami's tax strategist for owners clearing $400K+</h3><p>Miami LinkedIn is split between big-firm pages that post awards and events, and small firms that are silent or faceless. No Miami founder posts first-person tax strategy. "See Money Differently" and "What are we missing?" have no local rival.</p><p class="ev">Evidence: 11 Miami/South Florida firms benchmarked; none founder-led.</p></div></div>
+      <div class="open"><span class="k">B</span><div><h3>Bilingual tax strategy for Hispanic owners</h3><p>Every competitor page we sampled posts only in English. Codie Sanchez is the only Latina money creator with a large LinkedIn audience, and she doesn't do tax. A Spanish caption on a video, or one Spanish post a week, is unclaimed ground.</p><p class="ev">Evidence: "impuestos" up in Florida (46 vs 37); top Spanish tax-law business video has 46,906 views.</p></div></div>
+      <div class="open"><span class="k">C</span><div><h3>A face for practice-owner tax strategy</h3><p>Dental and physician tax firms post as logos and get 0–9 likes on average, while physician founders telling practice stories got 2,785–3,222 reactions. The best med-spa owner tax video found has 5,980 views. The demand is there and nobody is answering it.</p><p class="ev">Evidence: r/Dentistry "At what income is it worth it to be a practice owner?" (55 comments).</p></div></div>
+      <div class="open"><span class="k">D</span><div><h3>The planning partner for advisors</h3><p>About 70% of high-net-worth clients want tax reduction and under half of advisors provide it. Advisor referrals cost firms $0.72 per $1 of new revenue, far cheaper than social media at $4.88. Advisors, business managers and sports agents are the audience that sends clients.</p><p class="ev">Evidence: Cerulli/Parametric via Kitces; Kitces 2026 (506 advisors); 98% of advisors use LinkedIn.</p></div></div>
+      <div class="open"><span class="k">E</span><div><h3>The only newsletter in the niche</h3><p>No competitor we sampled runs a LinkedIn newsletter. A monthly "What are we missing?" letter becomes the owned channel: subscribers get an email and a notification for every issue, so the feed algorithm doesn't decide who sees it.</p><p class="ev">Evidence: van der Blom attributes about 80% of his conversions to his newsletter and articles.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTAGE ============ -->
+  <section id="footage" aria-labelledby="h-footage">
+    <div class="sec-head"><span class="eyebrow">06 · Your footage, mapped to LinkedIn</span><h2 id="h-footage">Most of the first 90 days is already filmed</h2>
+      <p class="lede">We went through the August shoot library. Mike's tips are the strongest teaching material you own, and Mariah's interview is the strongest proof. The gap is Aileen herself: beyond the VSL, there is very little of her talking to camera.</p></div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Asset</th><th>State</th><th>LinkedIn use</th><th>Format</th><th class="n">Posts</th></tr></thead>
+        <tbody>
+          <tr><td><b>"Profitable & broke"</b> · Mike, 36.8s vertical</td><td><span class="pill g">Approved</span></td><td>Aileen posts it with her own 250-word take: "Profit is a math answer. Cash is a timing answer." First Thought Leader Ad candidate.</td><td>Native video + long caption</td><td class="n">1</td></tr>
+          <tr><td><b>Mike's Day-4 tips</b> · Report Card / P&amp;L, "Miscellaneous", Separate the accounts, "QuickBooks is a truck"</td><td><span class="pill y">Filmed, best takes logged</span></td><td>Each tip becomes a 6-slide document built from Mike's own lines, plus one short clip later. "Owners check their phone 40 times a day and their P&amp;L zero times a month."</td><td>Document + clip</td><td class="n">8</td></tr>
+          <tr><td><b>Mariah Angeliq × Aileen</b> · 28-min interview, 4:41 cut</td><td><span class="pill y">Draft v004</span></td><td>A "Rooms I'm In" story: a Billboard No. 1 artist, a $3M contract exit, "she made it happen." Text story + one photo of the two of them, then a 60–90s cut. <b>Needs Mariah's signed release first.</b></td><td>Text + photo, then video</td><td class="n">2–3</td></tr>
+          <tr><td><b>VSL master</b> · Aileen to camera, 16:9</td><td><span class="pill g">Live on funnel</span></td><td>"Filing isn't planning" (0:12–1:10) works as a 16:9 feed video, the shape LinkedIn ads favour. Skip the $1M and $300K segments.</td><td>16:9 video</td><td class="n">1–2</td></tr>
+          <tr><td><b>Sports shoot + office/team photos</b> · about 115 stills</td><td><span class="pill g">Ready</span></td><td>The "one photo" that carries every text post. This is the format that won for every creator we compared.</td><td>Text + image</td><td class="n">20+</td></tr>
+          <tr><td><b>Mike backstory</b> · 3 planned posts</td><td><span class="pill y">Vox drafts</span></td><td>"People" pillar on Fridays: the part-time role that became 11 years. Mike should post from his own profile. Today neither he nor Alfredo is findable on LinkedIn.</td><td>Video + text</td><td class="n">3</td></tr>
+          <tr><td><b>Darna Brothers, Fredo interview</b></td><td><span class="pill y">Transcribed</span></td><td>Team and culture posts, and recruiting.</td><td>Text + photo</td><td class="n">2</td></tr>
+          <tr><td><b>Aileen solo to camera</b></td><td><span class="pill r">Gap</span></td><td>Book one 2-hour session: record 10 voice-memo answers to the pain phrases in section 04, plus 30 office photos. Real voice is the defence against the "AI slop" filter.</td><td>Source for 10+ posts</td><td class="n">10+</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">About 45 posts can come from what's on file, which is roughly 15 weeks at 3 a week. Video library: <code>~/Documents/Hyperframe Videos/Tax Team Videos/</code>.</p>
+  </section>
+
+  <!-- ============ PLAN ============ -->
+  <section id="plan" aria-labelledby="h-plan">
+    <div class="sec-head"><span class="eyebrow">07 · The 90-day plan</span><h2 id="h-plan">Fix the storefront, then post three times a week through tax season</h2></div>
+    <div class="phases">
+      <div><span class="when">Week 1 · Oct 19–25</span><h3>Storefront</h3><ul>
+        <li>Headline: "Tax strategist for business owners clearing $400K+ · Founder, The Tax Team · Miami". Never "CPA".</li>
+        <li>About, banner, Follow mode on, custom URL, Miami location</li>
+        <li>Featured: the VSL, apply.gotaxteam.com, best post</li>
+        <li>Company page: new About and specialties, founded 2015, banner. Merge the Kendall page</li>
+        <li>LinkedIn icon on the gotaxteam.com footer</li></ul></div>
+      <div><span class="when">Weeks 2–6 · Oct 26–Nov 29</span><h3>Find the voice</h3><ul>
+        <li>3 posts a week from Aileen's profile (rhythm below)</li>
+        <li>Lead with the enemy: "If you filed your 2025 return on Oct 15, you've spent 10 months looking backwards."</li>
+        <li>Amendment 3 explainer Nov 2, neutral, English + Spanish</li>
+        <li>10 hand-written comments a day on posts by practice owners and advisors</li></ul></div>
+      <div><span class="when">Weeks 7–10 · Dec 1–31</span><h3>Year-end window</h3><ul>
+        <li>Weekly "year-end decisions" document (8 slides)</li>
+        <li>"What can't be fixed after midnight" on Dec 31</li>
+        <li>Launch the "What are we missing?" newsletter, issue 1</li>
+        <li>Thought Leader Ads on the two best image or video posts</li></ul></div>
+      <div><span class="when">Weeks 11–13 · Jan</span><h3>Tax season</h3><ul>
+        <li>"Your Jan 15 payment is a planning tool, not a bill"</li>
+        <li>Write-off myth series in English and Spanish (searches peak Jan–Feb)</li>
+        <li>Review: keep the 3 formats that earned DMs and booked reviews; cut the rest</li></ul></div>
+    </div>
+
+    <h3>The weekly rhythm</h3>
+    <div class="week">
+      <div><span class="d">Mon</span><span class="off">No post. Comment on 10 posts.</span></div>
+      <div><span class="d">Tue · 9am ET</span><span class="p">The scene</span><span class="f">Anonymised client moment or a family story, text + one photo, 250–400 words</span></div>
+      <div><span class="d">Wed</span><span class="off">Reply to every comment. Comment on 10 posts.</span></div>
+      <div><span class="d">Thu · 9am ET</span><span class="p">The explainer</span><span class="f">One concept, 6–8 slide document (Mike's tips, year-end decisions, Dirty Dozen)</span></div>
+      <div><span class="d">Fri · 10am ET</span><span class="p">The truth or the team</span><span class="f">A sharp money truth with a number, or a People / Rooms post, alternating weeks. Spanish version monthly</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h3>Dates already on the calendar</h3>
+        <div class="tbl" style="border:0">
+          <table style="min-width:0">
+            <tbody>
+              <tr><td class="n">Oct 19–23</td><td>2027 Social Security wage base ($192,300): what it means for your S-corp salary</td></tr>
+              <tr><td class="n">Late Oct</td><td>IRS 2027 inflation numbers: "three that matter above $500K" (post only once the IRS publishes them)</td></tr>
+              <tr><td class="n">Nov 2–5</td><td>Florida Amendment 3, before and after the vote</td></tr>
+              <tr><td class="n">Nov 9–20</td><td>"Spend $1 to save 35¢" equipment myth, dental edition</td></tr>
+              <tr><td class="n">Nov 16–25</td><td>"What I need from your client's advisor by Dec 1"</td></tr>
+              <tr><td class="n">Dec 1</td><td>Giving Tuesday: why a 2026 gift may deduct less (new 0.5% floor)</td></tr>
+              <tr><td class="n">Dec 31</td><td>What can't be fixed after midnight</td></tr>
+              <tr><td class="n">Jan 15</td><td>Q4 estimate: a planning tool, not a bill</td></tr>
+              <tr><td class="n">Early Mar</td><td>IRS Dirty Dozen 2027: which scams target owners</td></tr>
+              <tr><td class="n">Mar 15</td><td>"Should you be an S corp in 2027?"</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="src">Full dated calendar through Apr 15 in <code>research/04</code>, section 6.</p>
+      </div>
+      <div class="panel">
+        <h3>How we'll measure it</h3>
+        <ul class="ticks">
+          <li class="ok">Booked Tax Position Reviews and DMs from owners: the only number that pays</li>
+          <li class="ok">Profile views and new followers who are owners or advisors</li>
+          <li class="ok">Saves and sends (LinkedIn now shows both)</li>
+          <li class="half">Reactions as a health check: 100–300 is a good post at this size; under 10 means the post failed, not the account</li>
+          <li class="no">Not followers alone, and not page impressions</li>
+        </ul>
+        <p class="callout" style="margin-top:6px"><b>90-day targets (our proposal):</b> profile score 28/32 by Oct 25, 36 posts published, a newsletter live with a first subscriber base, and a weekly count of conversations with owners and advisors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PAID ============ -->
+  <section id="paid" aria-labelledby="h-paid">
+    <div class="sec-head"><span class="eyebrow">08 · When to pay</span><h2 id="h-paid">Boost proven posts, not cold ads</h2>
+      <p class="lede">Thought Leader Ads let the company page pay to show Aileen's own posts to a chosen audience. In the largest study, they cost about a sixth as much per click as a standard image ad. Run them only on posts that already earned real comments.</p></div>
+    <div class="grid2">
+      <div class="panel">
+        <h3>Median cost per click by ad format</h3>
+        <div class="bars">
+          <div class="bar hi"><span class="lab">Thought Leader Ad</span><span class="track"><span class="fill" style="width:14.7%"></span></span><span class="val">$2.29</span></div>
+          <div class="bar"><span class="lab">Single image</span><span class="track"><span class="fill" style="width:84.8%"></span></span><span class="val">$13.23</span></div>
+          <div class="bar"><span class="lab">Carousel</span><span class="track"><span class="fill" style="width:85.2%"></span></span><span class="val">$13.30</span></div>
+          <div class="bar lo"><span class="lab">Video</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">$15.61</span></div>
+        </div>
+        <p class="src">ZenABM, 161,256 ads, $5.5M spend (vendor). A Thought Leader Ad's 2.68% click rate includes reactions; actual clicks to a page run about 0.43%. Document posts can't be boosted this way. Financial services usually costs $9–$15 per click and $150–$250 per lead.</p>
+      </div>
+      <div class="panel">
+        <h3>Where advisors' clients actually come from</h3>
+        <div class="bars">
+          <div class="bar hi"><span class="lab">Client referrals</span><span class="track"><span class="fill" style="width:7%"></span></span><span class="val">$0.34</span></div>
+          <div class="bar hi"><span class="lab">Social, fully outsourced</span><span class="track"><span class="fill" style="width:9.2%"></span></span><span class="val">$0.45</span></div>
+          <div class="bar hi"><span class="lab">Referral partners (CPAs, attorneys)</span><span class="track"><span class="fill" style="width:14.8%"></span></span><span class="val">$0.72</span></div>
+          <div class="bar"><span class="lab">Social, done in-house</span><span class="track"><span class="fill" style="width:36.3%"></span></span><span class="val">$1.77</span></div>
+          <div class="bar lo"><span class="lab">Social media overall</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">$4.88</span></div>
+        </div>
+        <p class="src">Marketing cost per $1 of new revenue, Kitces 2026 (506 advisors). Two lessons: referral partners are the cheapest growth, and social media pays off when someone else runs it so the founder's time goes to conversations.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>What competitors are paying for right now (LinkedIn Ad Library, 268 relevant ads)</h3>
+      <div class="adsplit">
+        <div class="adbars">
+          <div class="bars">
+            <div class="bar hi"><span class="lab">Single image</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">158</span></div>
+            <div class="bar"><span class="lab">Text / other</span><span class="track"><span class="fill" style="width:34.8%"></span></span><span class="val">55</span></div>
+            <div class="bar au"><span class="lab">Boosted newsletter or article</span><span class="track"><span class="fill" style="width:25.3%"></span></span><span class="val">40</span></div>
+            <div class="bar"><span class="lab">Carousel</span><span class="track"><span class="fill" style="width:5.1%"></span></span><span class="val">8</span></div>
+            <div class="bar"><span class="lab">Message ad</span><span class="track"><span class="fill" style="width:3.8%"></span></span><span class="val">6</span></div>
+            <div class="bar lo"><span class="lab">Video</span><span class="track"><span class="fill" style="width:0%"></span></span><span class="val">0</span></div>
+          </div>
+          <p class="small">83 of the 268 (31%) are Thought Leader Ads, a person's own post boosted by a company.</p>
+        </div>
+        <ul class="ticks findings">
+          <li class="no"><span><b>Most named competitors run no ads at all.</b> Kohler's firm, Cain Watters, Karlton Dennis, Corvee, Doc Wealth, Dental CPAs and Advanced Tax Advisors showed none. Anderson ran job ads only.</span></li>
+          <li class="half"><span><b>Kaufman Rossin is targeting attorneys and deal teams, not owners.</b> 12 ads push a "Specialty Tax Referral Toolkit". Miami's biggest firm is betting on referral partners.</span></li>
+          <li class="half"><span><b>"File vs plan" is being bought, just not in Miami.</b> BMD runs "Don't Just File Your Taxes. Start Planning Them" and Neil Jesani runs "Most $100M companies file taxes. Few plan them".</span></li>
+          <li class="ok"><span><b>The physician lane is one person's boosted newsletter.</b> Shawn L. Davenport boosts 9 posts for "The Physicians Wealth Code", the exact model planned for Aileen.</span></li>
+          <li class="no"><span><b>Two advertisers sell outcomes outright.</b> "Write off 100% of your investment" and "fully offset 2026 taxes". That's the tone to stay away from.</span></li>
+        </ul>
+      </div>
+      <p class="src">LinkedIn Ad Library, 45 searches (29 advertisers, 16 keywords), first results page each, ads created since 16 Oct 2025, read 16 Oct 2026. The library shows no spend or results for US ads, so a running ad isn't proof that it works. Full list: <code>data/07-ad-library.csv</code>, write-up in <code>research/07</code>.</p>
+    </div>
+    <div class="callout"><b>When to start:</b> after 6 weeks of organic posting, once 2–3 posts have clearly beaten the rest. Then pair a Thought Leader Ad on the winner with a gated "Year-end moves for practice owners" document using a LinkedIn lead form. LinkedIn reports lead forms convert at 13% vs about 4% for landing pages. Budget is a separate decision for whoever owns paid.</div>
+  </section>
+
+  <!-- ============ GUARDRAILS ============ -->
+  <section id="guardrails" aria-labelledby="h-guard">
+    <div class="sec-head"><span class="eyebrow">09 · Guardrails</span><h2 id="h-guard">The real risk is compliance, not the algorithm</h2>
+      <p class="lede">The IRS put "misleading tax advice on social media" on its 2026 Dirty Dozen list and has assessed more than 32,000 penalties tied to social-media tax claims since 2022. Every post follows these rules.</p></div>
+    <div class="guard">
+      <div><span class="tag g">Always</span><ul>
+        <li>"Tax strategist" and "founder". Name who on the team is licensed and what they do</li>
+        <li>Explain rules, who a move fits, and its risk</li>
+        <li>"Educational, not individual tax advice" on teaching posts</li>
+        <li>Written §7216 consent and a testimonial release before any client story with identifying details, Mariah included</li>
+        <li>Use the IRS's own warnings as content: "why this doesn't work"</li></ul></div>
+      <div><span class="tag r">Never</span><ul>
+        <li>Say or imply CPA, EA or attorney (in Florida, implying CPA is a first-degree misdemeanor)</li>
+        <li>Promise a saving or call anything "IRS-approved" or a "loophole"</li>
+        <li>Promote conservation easements, ERC, "self-employment tax credit", Form 2439 or "pay zero tax" trusts</li>
+        <li>Imply that fewer audits means aggressive moves are safe</li>
+        <li>Answer someone's specific tax question in the comments as if advising them</li></ul></div>
+    </div>
+  </section>
+
+  <footer id="method">
+    <span class="eyebrow">Sources and method</span>
+    <p class="small" style="max-width:80ch">All research was done on 16 Oct 2026 from public, logged-out pages. We didn't log in to anything or get around any block. Post counts were read from each LinkedIn post's own page. Benchmarks are tagged primary (LinkedIn, IRS), secondary (independent research) or vendor (tools reporting their own customers). Vendor figures show direction, not law.</p>
+    <ul>
+      <li><code>research/01</code> Finance creators and outlier posts · <code>data/01-finance-posts.csv</code> (346 posts)</li>
+      <li><code>research/02</code> Platform mechanics and industry standard (algorithm, compliance)</li>
+      <li><code>research/03</code> What works, what doesn't, plus paid · <code>data/03-benchmarks.csv</code> (291 figures); trends, superfans and openings</li>
+      <li><code>research/04</code> Trending topics, demand, pain phrases, dated calendar · <code>data/04-trending-topics.csv</code> (101 signals)</li>
+      <li><code>research/05</code> Current presence and 33 competitors · <code>data/05-competitors.csv</code></li>
+      <li><code>research/06</code> Footage-to-LinkedIn map</li>
+      <li><code>research/07</code> LinkedIn Ad Library · <code>data/07-ad-library.csv</code> (268 ads)</li>
+    </ul>
+    <p class="small" style="max-width:80ch"><b>Limits.</b> LinkedIn rate-limited logged-out requests partway through, so some creators (Jamie Trull, Toby Mathis, Vivian Tu and others) are covered by vendor data or not at all. The Ad Library was read through a normal browser, first results page only. About three quarters of the post sample comes from LinkedIn's featured-posts pages, which favour winners. The baseline figures come from creators' latest posts. We have no per-post analytics for Aileen yet; her LinkedIn analytics become the scoreboard from week 2.</p>
+    <p class="small">Prepared by BlackMine for The Tax Team.</p>
+  </footer>
+</div>
+
+</body></html>
