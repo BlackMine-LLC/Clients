@@ -1,0 +1,296 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<title>Aileen's First Five Posts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Archivo:wght@500;600;700&display=swap">
+<style>
+/* Layout: a feed column at the real desktop feed width (555px) with the review notes beside each post, like a proof sheet with margin notes. Stacks on phones. */
+:root{
+  --ground:#EEF0EC; --card:#FFFFFF; --ink:#19322F; --ink-2:#4E5859; --muted:#6F7774; --rule:#DADFDB;
+  --accent:#04B085; --accent-ink:#0A7A5A; --accent-soft:#E2F4EE; --warn:#9A6A12; --warn-soft:#FBF0D9; --bad:#8C3B2E; --bad-soft:#F6E5E1;
+  --media-bg:#0F1B19; --link:#0A66C2;
+  --display:"Fraunces", Georgia, serif; --label:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --feed:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#0E1412; --card:#1A2220; --ink:#E7ECEA; --ink-2:#C2CBC8; --muted:#8E9995; --rule:#2C3633;
+  --accent:#2FCB9B; --accent-ink:#5ADDB4; --accent-soft:#17312A; --warn:#E3B45A; --warn-soft:#2E2715; --bad:#E58C78; --bad-soft:#33201C;
+  --media-bg:#000; --link:#71B7FB; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#0E1412; --card:#1A2220; --ink:#E7ECEA; --ink-2:#C2CBC8; --muted:#8E9995; --rule:#2C3633;
+  --accent:#2FCB9B; --accent-ink:#5ADDB4; --accent-soft:#17312A; --warn:#E3B45A; --warn-soft:#2E2715; --bad:#E58C78; --bad-soft:#33201C;
+  --media-bg:#000; --link:#71B7FB; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--feed);font-size:15px;line-height:1.5;padding-inline:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding-block:36px 80px;display:grid;gap:34px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.label{font-family:var(--label);font-weight:700;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+header{display:grid;gap:14px;max-width:720px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.05;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent-ink)}
+.lede{font-size:17px;color:var(--ink-2);margin:0;max-width:62ch}
+.mock{display:inline-flex;gap:8px;align-items:center;background:var(--warn-soft);color:var(--warn);font-family:var(--label);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:4px;justify-self:start}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;background:var(--card);padding:3px}
+.seg button{border:0;background:transparent;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:13px;font-weight:600;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+
+/* lineup strip */
+.lineup{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.lineup a{display:grid;gap:4px;padding:12px;background:var(--card);border:1px solid var(--rule);border-radius:8px;text-decoration:none;color:var(--ink);min-width:0}
+.lineup a:hover{border-color:var(--accent)}
+.lineup b{font-family:var(--display);font-weight:600;font-size:15px;line-height:1.2}
+.lineup span{font-size:12.5px;color:var(--muted)}
+
+/* row = post + notes */
+.row{display:grid;grid-template-columns:555px minmax(0,1fr);gap:28px;align-items:start;scroll-margin-top:20px}
+body.phone .row{grid-template-columns:390px minmax(0,1fr)}
+.notes{display:grid;gap:14px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+.notes h2{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.15;margin:0;text-wrap:balance}
+.notes p{margin:0;color:var(--ink-2);font-size:14.5px}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:8px 12px;font-size:14px;margin:0}
+.kv dt{font-family:var(--label);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.kv dd{margin:0;color:var(--ink-2);min-width:0}
+.flags{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.flags li{font-size:13.5px;padding:8px 10px;border-radius:6px;background:var(--warn-soft);color:var(--ink)}
+.flags li.ok{background:var(--accent-soft)}
+.flags li b{font-family:var(--label);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-right:6px;color:var(--warn)}
+.flags li.ok b{color:var(--accent-ink)}
+
+/* the post card */
+.post{background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden;width:100%;max-width:555px}
+.ph{display:grid;grid-template-columns:48px 1fr;gap:10px;padding:12px 16px 0}
+.av{width:48px;height:48px;border-radius:50%;object-fit:cover;background:var(--rule)}
+.who b{display:block;font-size:14px;font-weight:600;line-height:1.3}
+.who span{display:block;font-size:12px;color:var(--muted);line-height:1.35}
+.body{padding:10px 16px 12px;font-size:14px;line-height:1.43;white-space:pre-line;overflow-wrap:anywhere}
+.body.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line}
+.more{border:0;background:none;padding:0 16px 12px;color:var(--muted);font-size:14px;cursor:pointer;font-weight:600}
+.more:hover{color:var(--link);text-decoration:underline}
+.media{background:var(--media-bg);position:relative}
+.media img.photo{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.media video{display:block;width:100%;aspect-ratio:4/5;object-fit:contain;background:var(--media-bg)}
+
+/* document carousel */
+.doc{background:var(--media-bg)}
+.doc-bar{display:flex;justify-content:space-between;gap:10px;padding:9px 14px;background:rgba(0,0,0,.72);color:#fff;font-size:12.5px;font-weight:600}
+.doc-bar span:last-child{font-variant-numeric:tabular-nums;color:#cfd6d3;white-space:nowrap}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.track img{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:cover;scroll-snap-align:start;display:block}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center}
+.nav.l{left:10px}.nav.r{right:10px}
+.nav[disabled]{opacity:.25;cursor:default}
+.dots{display:flex;gap:5px;justify-content:center;padding:8px 0 10px;background:var(--media-bg)}
+.dots i{width:6px;height:6px;border-radius:50%;background:#5b6764}
+.dots i.on{background:#fff}
+
+.stats{display:flex;justify-content:space-between;padding:8px 16px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--rule)}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);padding:4px 8px}
+.acts span{display:flex;gap:6px;align-items:center;justify-content:center;padding:10px 4px;font-size:13.5px;font-weight:600;color:var(--ink-2);border-radius:4px}
+.acts svg{width:18px;height:18px;flex:none}
+
+/* next steps */
+.next{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:26px;display:grid;gap:18px}
+.next h2{font-family:var(--display);font-weight:600;font-size:28px;margin:0}
+.steps{display:grid;gap:0;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--rule);counter-increment:s}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:22px;color:var(--accent-ink);line-height:1.1}
+.steps b{display:block;font-size:15px}
+.steps span{color:var(--ink-2);font-size:14px}
+.files{display:flex;gap:8px;flex-wrap:wrap}
+.files code{font-size:12.5px;background:var(--ground);border:1px solid var(--rule);padding:3px 7px;border-radius:4px}
+
+@media (max-width:900px){
+  .row,body.phone .row{grid-template-columns:minmax(0,1fr)}
+  .post{justify-self:center}
+  .notes{position:static;order:-1}
+  .lineup{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+  .lineup a{flex:0 0 200px;scroll-snap-align:start}
+}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="mock">Internal mockup · nothing here is posted</span>
+    <h1>Aileen's first five posts, <em>as they'd look in the feed.</em></h1>
+    <p class="lede">Five posts from the 28-post calendar, built with real material: photos from Aileen's own shoot library on Drive, two document carousels you can swipe, and Mike's approved video. Each post sits next to a note on why it's built this way and what still needs a yes before it goes out.</p>
+    <div class="toolbar">
+      <span class="label">Feed width</span>
+      <div class="seg" role="group" aria-label="Feed width">
+        <button type="button" id="w-desk" aria-pressed="true">Desktop</button>
+        <button type="button" id="w-phone" aria-pressed="false">Phone</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="lineup" aria-label="The five posts" id="lineup"></nav>
+  <main id="feed" style="display:grid;gap:44px"></main>
+
+  <section class="next" aria-labelledby="h-next">
+    <span class="label">Where this goes from here</span>
+    <h2 id="h-next">From this preview to a live post on Oct 27</h2>
+    <ol class="steps">
+      <li><div><b>We sign off on these five internally</b><span>Swipe the carousels, play the video, read each post past "…more". Anything that feels off gets fixed here, before Aileen sees it.</span></div></li>
+      <li><div><b>Fix Aileen's profile before the first post</b><span>Every post sends people to a profile that scores 4 of 32 today: no headline, no About, default banner. The headline shown on these mockups is the proposed one. A week of profile work makes every post land better.</span></div></li>
+      <li><div><b>Send Aileen this page plus the playbook</b><span>She approves the wording, adds the few lines only she can write, and picks or swaps the photos. Her "yes" also covers Mike being quoted and shown.</span></div></li>
+      <li><div><b>Post three a week, Tue / Thu / Fri mornings ET</b><span>From her personal profile, not the company page. Upload the carousel as a PDF document (files below), the video natively, photos as single images. No links or hashtags in the post.</span></div></li>
+      <li><div><b>Read the numbers after two weeks</b><span>Benchmark from the research: a good post from a money professional with 1K–10K followers earned 100–300 reactions; generic tax reminders earned 0–8. Whatever format wins gets more of the calendar.</span></div></li>
+    </ol>
+    <div class="files"><span class="label" style="align-self:center">Upload-ready files (linkedin-strategy/preview/out)</span><code>second-opinion.pdf</code><code>growing.pdf</code><code>post05_profitable-and-broke_v010_APPROVED.mp4</code></div>
+  </section>
+</div>
+
+<script>
+const AV='media/avatar.jpg', NAME='Aileen Guillen', HEAD='Tax strategist for business owners · Founder, The Tax Team · Miami';
+const P=[
+{id:'p1',when:'Tue Oct 27 · 9:00 AM',fmt:'Text + one photo',short:'Your return is your report card',
+ media:{t:'photo',src:'media/p1.jpg',alt:'Aileen at her desk'},
+ body:`“Your return is your report card, not a strategy.”
+
+I say that to almost every owner I meet, usually right after they tell me they're all set because they filed.
+
+Here's what a report card can't do: change the grade.
+
+Your 2025 return tells you what you paid. It doesn't tell you what you should have paid. Without a strategy there's no "should." There's only "could."
+
+October 15 closed the book on 2025. 2026 is still open, and after today there are 65 days left in it.
+
+Three questions while the grade can still move:
+• Is the way you pay yourself set on purpose, or by habit?
+• Is your structure still right for what you earn now?
+• Does anyone look at your numbers before December 31, or only after?
+
+What grade would your 2025 return get?
+
+Educational, not individual tax advice.`,
+ note:{h:'Lead with her line, in her words',why:'Her own sentence from a recorded call opens the account. First-person scene hooks averaged 6.5 reactions per 1,000 followers in our sample, against about 4–5 without. Stories go out as text plus one real photo, which beat video for personal money creators.',src:'Aileen, Fathom call 820442766 at 09:54 (verbatim quote)',photo:'Sports shoot, IMG_2551: Aileen holding an open Income Tax Return folder (Drive › Content › Sports Photoshoot)',
+ flags:[['ok','Ready','Calendar status: ready. No savings promise, disclaimer included.'],['','Check','The "65 days left" line only works if it posts on Oct 27.']]}},
+
+{id:'p2',when:'Thu Oct 29 · 9:00 AM',fmt:'Document carousel · 6 pages',short:'Keep your accountant',
+ media:{t:'doc',title:'Keep your accountant. Get a second opinion.',deck:'second-opinion',n:6},
+ body:`“Keep the relationship. Don't switch. But at least get a second opinion.”
+
+That's what I tell owners who are unhappy with their tax situation and afraid to do anything about it.
+
+And they are afraid. Not of the IRS. Of the conversation. A second opinion means talking about your kids, your money problems, and showing a stranger your income, without even knowing what you're supposed to bring.
+
+Here's what a good second opinion should feel like. Six slides.
+
+Have you ever wanted a second opinion on your taxes and not asked? What stopped you?`,
+ note:{h:'The explainer people save',why:'Documents had the highest engagement of any format (21.8% median, Buffer 2026) because people page through and save them. This one carries her positioning without attacking anyone\'s accountant, which is also the rule she set for her own ads.',src:'Aileen\'s own words (quote bank, research/12). The handwritten notes on slides 3–5 are ours ⚑',photo:'Cover: sports shoot IMG_7768, a real laugh in the white suit',
+ flags:[['ok','Ready','No savings promise, doesn\'t disparage other accountants.'],['','Check','Handwritten notes on slides 3, 4 and 5 are BlackMine connective lines, not her words. Aileen to OK or rewrite.']]}},
+
+{id:'p3',when:'Fri Oct 30 · 9:00 AM',fmt:'Native video · 0:37',short:'Profitable & broke',
+ media:{t:'video',src:'media/profitable-and-broke.mp4',poster:'media/p3-poster.jpg'},
+ body:`“How are we profitable and broke at the same time?”
+
+Every owner asks this once. Usually on a Thursday, right before payroll.
+
+Mike, from our team, answers it in 37 seconds: profit is a math answer. Cash is a timing answer.
+
+The P&L says you made money. The bank says you can't cover payroll on Friday. They're both telling the truth.
+
+The gap usually hides in three places:
+• Money you're still waiting to collect
+• Equipment you already paid for
+• Loan principal going out the door
+
+None of those show up as expenses. All of them leave your account.
+
+You don't need to work harder. You need to see it coming.
+
+Which one of the three got you?`,
+ note:{h:'Reuse the approved video, with a real caption',why:'Re-cut clips with a one-line caption flop on LinkedIn (Mark Kohler gets 2–16 reactions on 18K followers that way). The fix is a full written post that stands on its own, with the video as support. This is the approved Sept 22 cut, unchanged. It plays sound-off, so the on-screen text carries it.',src:'Approved render: Finished Videos/post05_profitable-and-broke_v010_APPROVED.mp4',photo:'',
+ flags:[['ok','Approved','Video approved 2026-09-22. Caption has no tax claims.'],['','Check','Mike\'s lines in this video were scripted by us. The caption says he "answers it", not that it\'s his own discovery. Mike should OK being on Aileen\'s feed.'],['','Upload','Add a custom thumbnail on upload (the frame shown here) so the feed doesn\'t pick a blurry first frame.']]}},
+
+{id:'p4',when:'Thu Nov 5 · 9:00 AM',fmt:'Document carousel · 7 pages',short:'Once a year, or growing?',
+ media:{t:'doc',title:'Once a year, or “Yo, I\'m growing”?',deck:'growing',n:7},
+ body:`“Mom and pop, basic stuff, once a year.”
+
+That's Mike, from our team, on who needs one tax meeting a year. Then he described the other kind of owner:
+
+"Yo, I'm growing."
+
+Those owners need multiple meetings, all year. Not because something's wrong. Because growth changes everything at once: more income, more people, more decisions landing on the return before anyone looks at them.
+
+Mike has been with us for 11 years. He's watched a lot of once-a-year owners turn into growing ones without anyone changing how often they meet.
+
+Which one are you this year: once-a-year, or "Yo, I'm growing"?`,
+ note:{h:'A video turned into a carousel',why:'This is the reuse idea. Slides 2–5 are frames lifted straight from Mike\'s "How often we talk" video, cropped from 9:16 to 4:5, so the carousel and the video share one look. One shoot now feeds two formats, and the carousel gets the save-and-swipe behaviour that video doesn\'t.',src:'Frames from Finished Videos/post03_vox_v003.mp4 (Mike, unscripted). Slides 1, 6, 7 designed to match',photo:'',
+ flags:[['','Check','The post03 video itself isn\'t marked approved yet. The frames are fine to use, but approve the cut first if we also want to post the video.'],['','Check','"11 years" comes from Mike\'s backstory. Confirm before posting.']]}},
+
+{id:'p5',when:'Fri Nov 6 · 9:00 AM',fmt:'Text + one photo',short:'I\'ll never run that ad',
+ media:{t:'photo',src:'media/p5.jpg',alt:'Aileen in the office'},
+ body:`Scroll for a minute and you'll find one: an ad telling you your CPA is costing you money.
+
+I'll never run that ad.
+
+Not because it doesn't work. Because I don't believe in belittling other professionals in my own profession. Most accountants are doing exactly the job they were hired to do: file your return accurately.
+
+The gap usually isn't a bad accountant. It's that nobody was hired to look ahead.
+
+So our enemy isn't your CPA. It isn't the IRS, and it isn't taxes. It's overpaying, because of poor planning, missed opportunities, and advice that never gets connected.
+
+If you're frustrated, don't fire anybody. Ask one question: who on my team is paid to plan, not just to file?
+
+Accountants and advisors: what do you think of those ads?`,
+ note:{h:'Take a stand, invite the referral partners',why:'The most-viewed video in this space ("Your CPA Could Be Costing You Thousands", 1.7M views) runs on the attack angle. She takes the opposite side out loud, which gives the post an opinion people can reply to. The closing question invites accountants and advisors, the audience that refers clients.',src:'Aileen\'s stance on competitor ads, from her calls (quote bank)',photo:'Sports shoot, IMG_7804: white suit, direct look at camera',
+ flags:[['ok','Ready','Names no firm or person, no savings promise.']]}}
+];
+
+const ICON={like:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 11v9H4v-9h3Zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.7 10H19a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 17.8 20H7"/></svg>',
+ com:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v11H9l-5 4V5Z"/></svg>',
+ rep:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg>',
+ send:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 11 18-7-7 18-2-8-9-3Z"/></svg>'};
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function mediaHTML(m,i){
+  if(m.t==='photo') return `<div class="media"><img class="photo" src="${m.src}" alt="${esc(m.alt)}" loading="lazy"></div>`;
+  if(m.t==='video') return `<div class="media"><video src="${m.src}" poster="${m.poster}" controls muted playsinline preload="metadata"></video></div>`;
+  const imgs=Array.from({length:m.n},(_,k)=>`<img src="web/${m.deck}/${String(k+1).padStart(2,"0")}.jpg" alt="Page ${k+1} of ${m.n}" loading="lazy">`).join('');
+  const dots=Array.from({length:m.n},(_,k)=>`<i${k?'':' class="on"'}></i>`).join('');
+  return `<div class="doc media" data-n="${m.n}"><div class="doc-bar"><span>${esc(m.title)}</span><span class="pc">1 / ${m.n}</span></div>
+    <div style="position:relative"><div class="track" tabindex="0" aria-label="Carousel pages">${imgs}</div>
+    <button class="nav l" type="button" aria-label="Previous page" disabled>‹</button><button class="nav r" type="button" aria-label="Next page">›</button></div>
+    <div class="dots">${dots}</div></div>`;
+}
+const feed=document.getElementById('feed'), lineup=document.getElementById('lineup');
+P.forEach((p,i)=>{
+  lineup.insertAdjacentHTML('beforeend',`<a href="#${p.id}"><span class="label">Post ${i+1} · ${p.when.split(' · ')[0]}</span><b>${esc(p.short)}</b><span>${p.fmt}</span></a>`);
+  const n=p.note;
+  const flags=n.flags.map(f=>`<li class="${f[0]}"><b>${f[1]}</b>${esc(f[2])}</li>`).join('');
+  const photoRow=n.photo?`<dt>Photo</dt><dd>${n.photo}</dd>`:'';
+  feed.insertAdjacentHTML('beforeend',`<div class="row" id="${p.id}">
+   <article class="post" aria-label="Post ${i+1}">
+     <div class="ph"><img class="av" src="${AV}" alt=""><div class="who"><b>${NAME}</b><span>${HEAD}</span><span>${p.when} · Public</span></div></div>
+     <div class="body clamp">${esc(p.body)}</div><button class="more" type="button">…more</button>
+     ${mediaHTML(p.media,i)}
+     <div class="stats"><span>Be the first to react</span><span>Preview</span></div>
+     <div class="acts"><span>${ICON.like}Like</span><span>${ICON.com}Comment</span><span>${ICON.rep}Repost</span><span>${ICON.send}Send</span></div>
+   </article>
+   <aside class="notes"><span class="label">Post ${i+1} · ${p.fmt}</span><h2>${esc(n.h)}</h2><p>${esc(n.why)}</p>
+     <dl class="kv"><dt>Words</dt><dd>${esc(n.src)}</dd>${photoRow}<dt>Posts</dt><dd>${p.when}</dd></dl>
+     <ul class="flags">${flags}</ul></aside></div>`);
+});
+document.querySelectorAll('.more').forEach(b=>b.addEventListener('click',()=>{const t=b.previousElementSibling;const open=t.classList.toggle('clamp');b.textContent=open?'…more':'show less'}));
+document.querySelectorAll('.doc').forEach(d=>{
+  const tr=d.querySelector('.track'),n=+d.dataset.n,pc=d.querySelector('.pc'),dots=d.querySelectorAll('.dots i'),l=d.querySelector('.nav.l'),r=d.querySelector('.nav.r');
+  const cur=()=>Math.round(tr.scrollLeft/tr.clientWidth);
+  const upd=()=>{const c=cur();pc.textContent=`${c+1} / ${n}`;dots.forEach((x,k)=>x.classList.toggle('on',k===c));l.disabled=c===0;r.disabled=c===n-1};
+  tr.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
+  const go=k=>tr.scrollTo({left:k*tr.clientWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  l.addEventListener('click',()=>go(cur()-1)); r.addEventListener('click',()=>go(cur()+1));
+  tr.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(cur()+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(cur()-1)}});
+});
+const setW=ph=>{document.body.classList.toggle('phone',ph);document.getElementById('w-desk').setAttribute('aria-pressed',!ph);document.getElementById('w-phone').setAttribute('aria-pressed',ph);document.querySelectorAll('.post').forEach(x=>x.style.maxWidth=ph?'390px':'555px');document.querySelectorAll('.track').forEach(t=>t.scrollLeft=0)};
+document.getElementById('w-desk').addEventListener('click',()=>setW(false));
+document.getElementById('w-phone').addEventListener('click',()=>setW(true));
+</script>
+</body></html>
