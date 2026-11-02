@@ -71,7 +71,9 @@ for s in services:
 POST_ORDER = ["sleep-and-mental-wellness", "non-verbal-communication-skills", "family-communication-mistakes",
               "family-coaching-benefits", "case-management-eligibility-signs", "conflict-resolution-communication"]
 posts = {it["fieldData"]["slug"]: dict(it["fieldData"], _published=it.get("lastPublished") or it["createdOn"]) for it in CMS["blog"]["items"]}
-posts = [dict(posts[s], slug=s) for s in POST_ORDER]
+# Posts added by social-to-site (newest first), then the original articles in their set order.
+new_posts = sorted((p for slug, p in posts.items() if slug not in POST_ORDER), key=lambda p: p["_published"], reverse=True)
+posts = [dict(p) for p in new_posts] + [dict(posts[s], slug=s) for s in POST_ORDER]
 for p in posts:
     p["body"] = clean_rich(p["post-body"])
     p["mins"] = read_time(p["body"])
@@ -782,7 +784,7 @@ def build_blog():
 <section class="section" style="padding-bottom:0"><div class="wrap">
   <div class="article-head reveal">
     <p class="crumbs" style="color:var(--muted)"><a href="/blog" style="color:var(--navy)">← All posts</a></p>
-    <span class="eyebrow">Becoming aware is the first step</span>
+    <span class="eyebrow">{esc(p.get("eyebrow") or "Becoming aware is the first step")}</span>
     <h1>{esc(p["name"])}</h1>
     <p class="lead" style="margin:0 auto 14px">{esc(p["post-summary"])}</p>
     <div class="meta"><span>By {esc(p.get("author-name") or "Tieshia Henry")}</span><span>·</span><span>{p["mins"]} min read</span></div>
