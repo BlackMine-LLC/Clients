@@ -202,7 +202,7 @@ def booking_form(fid):
     <label>Anything you'd like Mrs. T to know?<textarea name="Message"></textarea></label>
     <label class="hp" aria-hidden="true">Leave blank<input name="_honey" tabindex="-1" autocomplete="off"></label>
     <label class="check"><input type="checkbox" name="SMS consent" value="Yes — appointment texts OK"><span>Optional: text me appointment confirmations and reminders from Moments With Mrs. T. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not required to book.</span></label>
-    <span class="consent">We use your details only to respond and schedule — never for marketing, and never sold. See the <a href="/privacy-policy-terms-and-agreements">Privacy Policy</a> and <a href="/privacy-policy-terms-and-agreements#terms">Terms</a>.</span>
+    <span class="consent">I use your details only to respond and schedule — never for marketing, and never sold. See the <a href="/privacy-policy-terms-and-agreements">Privacy Policy</a> and <a href="/privacy-policy-terms-and-agreements#terms">Terms</a>.</span>
     <button class="btn" type="submit">Request my consultation</button>
     <div class="form-status" role="status" aria-live="polite"></div>
   </form>"""
@@ -338,6 +338,17 @@ def consult_section(title="Take the first step toward improving your mental well
   {booking_form(form_id)}
 </div></div>{e}</section>"""
 
+VOICES = [("My time working with Tieshia Henry has given me faith that there are still true angels who walk the earth.", "Heidi Haas", "Professional colleague"),
+          ("Her door was always open, and she made me feel heard, valued, and understood. … Her advice was thoughtful, empowering, and often life-changing.", "Amanda", "Former client"),
+          ("Tieshia helped me learn to love myself, embrace my imperfections, and understand that my past mistakes do not define who I am. … Her faith, encouragement, and uplifting spirit are contagious.", "Kristina", "Former client")]
+
+def voices_section(tone=None):
+    cards = "".join(f'<figure class="voice reveal"><blockquote>{q}</blockquote><figcaption><b>{n}</b><span>{r}</span></figcaption></figure>' for q, n, r in VOICES)
+    return f"""<section class="section{(" tone-" + tone) if tone else ""}" style="overflow:hidden"><div class="wrap">
+  <div class="center reveal" style="margin-bottom:36px"><span class="eyebrow">Real people. Real experiences. Real impact.</span><h2 data-split>What people say about Mrs. T</h2></div>
+  <div class="voices">{cards}</div>
+</div></section>"""
+
 def why_section(tone=None, to=None, kind="hill"):
     items = "".join(f'<div class="why-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{p}</svg><h3>{t}</h3><p>{d}</p></div>' for t, d, p in WHY)
     words = ["Wholeness", "Mindfulness", "Freedom", "Balance", "Compassion", "Empowerment", "Integrity", "Collaboration"]
@@ -393,7 +404,7 @@ def roots_section(tone=None, to=None, kind="wave"):
     return f"""<section class="section{(" tone-" + tone) if tone else ""}{" edged" if to else ""}" style="overflow:hidden"><div class="motif tr" aria-hidden="true"></div><div class="wrap split reverse">
   {photo_stack("68269cecaa5f55bde312e14a", "Tieshia Henry with family and friends", inset="690947824620ec722b9268f7", inset_alt="Tieshia with clients", ratio="4/3")}
   <div class="reveal">
-    <span class="eyebrow" style="background:#fff">Our story</span>
+    <span class="eyebrow" style="background:#fff">My story</span>
     <h2 data-split>The roots of Moments With Mrs. T</h2>
     <p class="lead">The seeds were planted in 2019, when Tieshia recognized a deeper calling — a desire to help others move beyond pain, uncertainty, and past trauma.</p>
     <p>Officially launched in 2023 after extensive coursework and Life Coach certification, Moments With Mrs. T is the culmination of personal experience, professional training, and an unwavering passion for people.</p>
@@ -540,6 +551,8 @@ def build_home():
   <div class="t"><div class="n">4th<small>grade → adult</small></div><div class="l">Ages welcomed</div></div>
 </div></div></section>
 
+{voices_section(tone="cream")}
+
 <section class="feelings tone-cream edged" style="position:relative" aria-label="From how you feel to where you're headed">
   <h2 class="reveal">Wherever you are right now, there's a way forward.</h2>
   {marquee_rows()}
@@ -677,24 +690,25 @@ def build_about():
 <section class="section"><div class="wrap"><div class="vision reveal">
   <div class="motif tr" aria-hidden="true"></div>
   {img("6826713abd083aa53006a2ea", "", cls="v1")}{img("6826713ad95c622675c96b76", "", cls="v2")}
-  <span class="eyebrow" style="background:#fff">Our vision</span>
+  <span class="eyebrow" style="background:#fff">My vision</span>
   <p>To create a world where everyone knows they are not alone in their struggles — a community where people embrace their healing journey, find renewed hope, and walk confidently toward a brighter, fuller future.</p>
 </div></div></section>
 <section class="section" style="overflow:hidden"><div class="motif bl" aria-hidden="true"></div><div class="wrap split">
   <div class="video-stack reveal"><div class="frame" data-depth="0.3" aria-hidden="true"></div><div class="video-panel"><video autoplay muted loop playsinline preload="none" poster="/assets/video/family-poster.jpg" aria-hidden="true"><source src="/assets/video/family.mp4" type="video/mp4"></video></div>
     <div class="quote glass" data-depth="-0.3">I don't just guide you — I walk with you.</div></div>
   <div class="reveal">
-    <span class="eyebrow">What makes us different</span>
+    <span class="eyebrow">What makes this different</span>
     <h2 data-split>A partner in your transformation</h2>
     <p>Moments With Mrs. T isn't just another coaching service. My approach is uniquely personal, blending professional techniques with the powerful touch of lived experience. I don't just guide you — I walk with you, helping you make sense of life's complexities with compassion and clarity.</p>
     <p>The “special sauce”? The gift of enlightenment and encouragement — lifting clients' spirits daily while offering realistic, actionable strategies for long-term success.</p>
   </div>
 </div></section>
 <section class="section tone-green" style="overflow:hidden"><div class="motif tr" aria-hidden="true"></div><img class="ghostmark l" src="/assets/layers/logo-mark-white.webp" alt="" aria-hidden="true" loading="lazy" style="opacity:.07"><div class="wrap">
-  <div class="center reveal"><span class="eyebrow">Our values</span><h2 data-split>What I believe</h2><p class="lead">By equipping people with the knowledge and strategies they need, I help them build confidence, resilience, and independence in managing their mental health.</p></div>
+  <div class="center reveal"><span class="eyebrow">My values</span><h2 data-split>What I believe</h2><p class="lead">By equipping people with the knowledge and strategies they need, I help them build confidence, resilience, and independence in managing their mental health.</p></div>
   <div class="values">{vals}</div>
   <p class="center" style="margin-top:36px">{btn("Book a free consultation", "/contact")}</p>
 </div></section>
+{voices_section()}
 {consult_section()}
 {blog_section()}
 {faq_section()}
@@ -723,6 +737,7 @@ def build_services():
   <div class="center reveal" style="margin-bottom:44px"><h2 data-split>Services</h2><p class="lead">Expert guidance, practical tools, and a compassionate community where you can find direction, inspiration, and encouragement.</p></div>
   {service_cards()}
 </div></section>
+{voices_section()}
 {consult_section()}
 {why_section()}
 {blog_section()}
@@ -834,6 +849,7 @@ def build_contact():
     </div>
   </div>
 </div></section>
+{voices_section()}
 {consult_section("Schedule your free consultation", "A free, no-obligation consultation to explore your options and see if coaching is a good fit for you.")}
 <section class="section tight" data-same><div class="wrap"><div class="vision reveal" style="background:#fff">
   <span class="eyebrow">A helpful local reminder</span>
