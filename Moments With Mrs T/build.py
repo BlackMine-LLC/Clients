@@ -101,6 +101,7 @@ def footer():
   <div class="footer-grid">
     <div>
       {img("68267156818e6f818f09be5c", "Moments With Mrs. T", cls="logo")}
+      <p class="footer-tag">It's not just a moment. It's a movement.</p>
       <h2>Start your path to mental wellness</h2>
       <p>Even thinking about looking for guidance means you're in the right place. I'm ready when you are.</p>
       {btn("Book your session", "/contact", "light")}
@@ -197,12 +198,12 @@ def booking_form(fid):
     <label>Email<input name="Email" type="email" autocomplete="email" required></label>
     <div class="row">
       <label>Best time to reach you<select name="Best time" required><option value="">Choose a time</option><option>Morning (9am–12pm)</option><option>Afternoon (12pm–4pm)</option><option>Evening (4pm–7pm)</option></select></label>
-      <label>I'm interested in<select name="Interested in"><option>Not sure yet</option>{svc_opts}</select></label>
+      <label>I'm interested in<select name="Interested in"><option>Not sure yet</option><option>A workshop for my team</option>{svc_opts}</select></label>
     </div>
     <label>Anything you'd like Mrs. T to know?<textarea name="Message"></textarea></label>
     <label class="hp" aria-hidden="true">Leave blank<input name="_honey" tabindex="-1" autocomplete="off"></label>
     <label class="check"><input type="checkbox" name="SMS consent" value="Yes — appointment texts OK"><span>Optional: text me appointment confirmations and reminders from Moments With Mrs. T. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not required to book.</span></label>
-    <span class="consent">We use your details only to respond and schedule — never for marketing, and never sold. See the <a href="/privacy-policy-terms-and-agreements">Privacy Policy</a> and <a href="/privacy-policy-terms-and-agreements#terms">Terms</a>.</span>
+    <span class="consent">I use your details only to respond and schedule — never for marketing, and never sold. See the <a href="/privacy-policy-terms-and-agreements">Privacy Policy</a> and <a href="/privacy-policy-terms-and-agreements#terms">Terms</a>.</span>
     <button class="btn" type="submit">Request my consultation</button>
     <div class="form-status" role="status" aria-live="polite"></div>
   </form>"""
@@ -338,6 +339,17 @@ def consult_section(title="Take the first step toward improving your mental well
   {booking_form(form_id)}
 </div></div>{e}</section>"""
 
+VOICES = [("My time working with Tieshia Henry has given me faith that there are still true angels who walk the earth.", "Heidi Haas", "Professional colleague"),
+          ("Her door was always open, and she made me feel heard, valued, and understood. … Her advice was thoughtful, empowering, and often life-changing.", "Amanda", "Former client"),
+          ("Tieshia helped me learn to love myself, embrace my imperfections, and understand that my past mistakes do not define who I am. … Her faith, encouragement, and uplifting spirit are contagious.", "Kristina", "Former client")]
+
+def voices_section(tone=None):
+    cards = "".join(f'<figure class="voice reveal"><blockquote>{q}</blockquote><figcaption><b>{n}</b><span>{r}</span></figcaption></figure>' for q, n, r in VOICES)
+    return f"""<section class="section{(" tone-" + tone) if tone else ""}" style="overflow:hidden"><div class="wrap">
+  <div class="center reveal" style="margin-bottom:36px"><span class="eyebrow">Real people. Real experiences. Real impact.</span><h2 data-split>What people say about Mrs. T</h2><p class="lead">Compassion, accountability, practical support, and the ability to help people feel seen: these themes appear throughout the feedback shared by clients and colleagues.</p></div>
+  <div class="voices">{cards}</div>
+</div></section>"""
+
 def why_section(tone=None, to=None, kind="hill"):
     items = "".join(f'<div class="why-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{p}</svg><h3>{t}</h3><p>{d}</p></div>' for t, d, p in WHY)
     words = ["Wholeness", "Mindfulness", "Freedom", "Balance", "Compassion", "Empowerment", "Integrity", "Collaboration"]
@@ -382,8 +394,9 @@ def meet_tieshia(tone=None, to=None, kind="hill", photo="69bf2ac5b74b01ad68f9daf
   <div class="reveal">
     <span class="eyebrow">Meet your coach</span>
     <h2 data-split>Meet Tieshia Henry</h2>
-    <p style="font-weight:600;color:var(--navy)">Founder &amp; Certified Life Coach · Passionate | Empathetic | Purpose-driven</p>
-    <p>Tieshia brings a rare blend of professional expertise and real-world understanding to every coaching session. With a natural gift for encouraging others and a heart fueled by service, she's committed to helping clients feel empowered, validated, and hopeful — every step of the way.</p>
+    <p style="font-weight:600;color:var(--navy)">Purpose driven. People focused.</p>
+    <p>I am Tieshia Henry, a Certified Life Coach, program developer, mentor, advocate, and author. I am passionate about empowering individuals, families, and communities through education, support, and practical tools.</p>
+    <p>My work is rooted in compassion, real-life experience, and a commitment to helping people move forward with purpose.</p>
     {btn("Book a consultation", "/contact")}
   </div>
 </div>{e}</section>"""
@@ -393,7 +406,7 @@ def roots_section(tone=None, to=None, kind="wave"):
     return f"""<section class="section{(" tone-" + tone) if tone else ""}{" edged" if to else ""}" style="overflow:hidden"><div class="motif tr" aria-hidden="true"></div><div class="wrap split reverse">
   {photo_stack("68269cecaa5f55bde312e14a", "Tieshia Henry with family and friends", inset="690947824620ec722b9268f7", inset_alt="Tieshia with clients", ratio="4/3")}
   <div class="reveal">
-    <span class="eyebrow" style="background:#fff">Our story</span>
+    <span class="eyebrow" style="background:#fff">My story</span>
     <h2 data-split>The roots of Moments With Mrs. T</h2>
     <p class="lead">The seeds were planted in 2019, when Tieshia recognized a deeper calling — a desire to help others move beyond pain, uncertainty, and past trauma.</p>
     <p>Officially launched in 2023 after extensive coursework and Life Coach certification, Moments With Mrs. T is the culmination of personal experience, professional training, and an unwavering passion for people.</p>
@@ -534,11 +547,13 @@ def build_home():
 </div></section>
 
 <section class="trust" aria-label="At a glance"><div class="wrap"><div class="reveal">
-  <div class="t"><div class="n"><span data-count="6">6</span></div><div class="l">Services under one roof</div></div>
+  <div class="t"><div class="n"><span data-count="15">15</span><small>years</small></div><div class="l">Case management experience</div></div>
   <div class="t"><div class="n">3–12<small>mo</small></div><div class="l">Journeys built around you</div></div>
   <div class="t"><div class="n"><span data-count="2">2</span><small>+ virtual</small></div><div class="l">Counties served in person</div></div>
   <div class="t"><div class="n">4th<small>grade → adult</small></div><div class="l">Ages welcomed</div></div>
 </div></div></section>
+
+{voices_section(tone="cream")}
 
 <section class="feelings tone-cream edged" style="position:relative" aria-label="From how you feel to where you're headed">
   <h2 class="reveal">Wherever you are right now, there's a way forward.</h2>
@@ -570,7 +585,7 @@ def build_home():
   <div class="reveal">
     <span class="eyebrow">About</span>
     <h2 data-split>About Moments With Mrs. T</h2>
-    <p class="lead">Healing and moving forward should be a supported, empowering journey.</p>
+    <p class="lead">Let's make life make sense.</p>
     <p>I'm Tieshia Henry, a certified life coach with a heart for service. I founded Moments With Mrs. T in 2023 to offer wraparound services that help you acknowledge, process, and triumph over life's challenges.</p>
     <p>My approach blends case management, coping strategies, and personalized care, so you never have to walk the path alone. I'm proudly based in Lorain County and serve the surrounding Cuyahoga areas with dedication and compassion.</p>
     {btn("More about Mrs. T", "/about", "ghost")}
@@ -662,6 +677,37 @@ def build_home():
          body, ld=[LD_BUSINESS, faq_ld(FAQ_SHORT)])
 
 # ---------------------------------------------------------------- ABOUT
+CREDENTIALS = [("Professional Life Coach", "Transformation Academy · February 2023"), ("Life Purpose Life Coach", "Transformation Academy · February 2023"),
+               ("Goal Success Life Coach", "Transformation Academy · February 2023"), ("Happiness Life Coach", "Transformation Academy · February 2023"),
+               ("Trauma-Informed Coach", "The Centre for Healing · March 2023")]
+EXPERIENCE = [("Life coaching", "Personal and professional growth through support, accountability, and practical planning."),
+              ("Case management", "2010–2025 · Advocacy, resource coordination, goal-focused guidance, and support through difficult transitions."),
+              ("Mentor, Rafa Academy", "2022–2024 · Encouragement, guidance, and support for personal development."),
+              ("Daycare team workshops", "2024–2025 · Teamwork, understanding responsibilities, and respecting each person's role."),
+              ("Adult day services leadership", "Administrative coordination, team support, and engaging participant programming."),
+              ("Program development", "Designed and facilitated practical activities, learning experiences, and support programs.")]
+
+def mission_section():
+    return """<section class="section" style="overflow:hidden"><div class="wrap">
+  <div class="mv">
+    <div class="reveal"><span class="eyebrow">My mission</span><h2>Educate. Empower. Transform.</h2><p>To educate, empower, and create meaningful change in the lives of individuals, families, and communities through coaching, advocacy, mentoring, program development, and culturally responsive support services.</p></div>
+    <div class="reveal"><span class="eyebrow">My vision</span><h2>Stronger families. Healthier communities. Real change.</h2><p>To see stronger families, healthier communities, and more individuals walking in their purpose, fully equipped with the tools, support, and opportunities they need to thrive.</p></div>
+  </div>
+  <p class="big-quote" data-split style="margin-top:clamp(40px,6vw,72px)">“When people are equipped, communities are transformed.”</p>
+</div></section>"""
+
+def credentials_section():
+    def rows(items):
+        return "".join(f"<li><b>{a}</b><span>{b}</span></li>" for a, b in items)
+    return f"""<section class="section tone-sand" style="overflow:hidden"><div class="wrap">
+  <div class="center reveal" style="margin-bottom:36px"><span class="eyebrow" style="background:#fff">Training &amp; experience</span><h2 data-split>Credentials &amp; experience</h2></div>
+  <div class="ledgers">
+    <div class="reveal"><h3>Credentials</h3><ul class="ledger">{rows(CREDENTIALS)}</ul></div>
+    <div class="reveal"><h3>Experience</h3><ul class="ledger">{rows(EXPERIENCE)}</ul></div>
+  </div>
+  <p class="ledger-note">Coaching credentials do not represent a license to provide clinical mental health treatment.</p>
+</div></section>"""
+
 def build_about():
     values = [("It's OK to not be OK.", "Every feeling is welcome here. Naming where you are is the first step toward where you want to be."),
               ("Your trauma does not define you.", "What happened to you is part of your story — not the end of it."),
@@ -670,31 +716,28 @@ def build_about():
               ("You are never alone in your struggle.", "You'll have a partner, a plan, and a community walking with you.")]
     vals = "".join(f'<div class="value card reveal" data-tilt>{img("6826c3e0ec0ad51ce82dfb65")}<h3>{t}</h3><p>{d}</p></div>' for t, d in values)
     body = f"""
-{banner("About Moments With Mrs. T", "Compassionate, evidence-based support tailored to each person — in Lorain & Cuyahoga County and online.")}
+{banner("About Moments With Mrs. T", "Compassionate, real-life support tailored to each person — in Lorain & Cuyahoga County and online.")}
 {meet_tieshia()}
 <section class="section tight" data-same style="overflow:hidden"><div class="wrap"><p class="big-quote" data-split>“More ways to inspire, heal, and guide others to a future they deserve. This isn't just a business; it's my purpose.”</p></div></section>
 {roots_section()}
-<section class="section"><div class="wrap"><div class="vision reveal">
-  <div class="motif tr" aria-hidden="true"></div>
-  {img("6826713abd083aa53006a2ea", "", cls="v1")}{img("6826713ad95c622675c96b76", "", cls="v2")}
-  <span class="eyebrow" style="background:#fff">Our vision</span>
-  <p>To create a world where everyone knows they are not alone in their struggles — a community where people embrace their healing journey, find renewed hope, and walk confidently toward a brighter, fuller future.</p>
-</div></div></section>
+{mission_section()}
+{credentials_section()}
 <section class="section" style="overflow:hidden"><div class="motif bl" aria-hidden="true"></div><div class="wrap split">
   <div class="video-stack reveal"><div class="frame" data-depth="0.3" aria-hidden="true"></div><div class="video-panel"><video autoplay muted loop playsinline preload="none" poster="/assets/video/family-poster.jpg" aria-hidden="true"><source src="/assets/video/family.mp4" type="video/mp4"></video></div>
     <div class="quote glass" data-depth="-0.3">I don't just guide you — I walk with you.</div></div>
   <div class="reveal">
-    <span class="eyebrow">What makes us different</span>
+    <span class="eyebrow">What makes this different</span>
     <h2 data-split>A partner in your transformation</h2>
     <p>Moments With Mrs. T isn't just another coaching service. My approach is uniquely personal, blending professional techniques with the powerful touch of lived experience. I don't just guide you — I walk with you, helping you make sense of life's complexities with compassion and clarity.</p>
     <p>The “special sauce”? The gift of enlightenment and encouragement — lifting clients' spirits daily while offering realistic, actionable strategies for long-term success.</p>
   </div>
 </div></section>
 <section class="section tone-green" style="overflow:hidden"><div class="motif tr" aria-hidden="true"></div><img class="ghostmark l" src="/assets/layers/logo-mark-white.webp" alt="" aria-hidden="true" loading="lazy" style="opacity:.07"><div class="wrap">
-  <div class="center reveal"><span class="eyebrow">Our values</span><h2 data-split>What I believe</h2><p class="lead">By equipping people with the knowledge and strategies they need, I help them build confidence, resilience, and independence in managing their mental health.</p></div>
+  <div class="center reveal"><span class="eyebrow">My values</span><h2 data-split>What I believe</h2><p class="lead">By equipping people with the knowledge and strategies they need, I help them build confidence, resilience, and independence in managing their mental health.</p></div>
   <div class="values">{vals}</div>
   <p class="center" style="margin-top:36px">{btn("Book a free consultation", "/contact")}</p>
 </div></section>
+{voices_section()}
 {consult_section()}
 {blog_section()}
 {faq_section()}
@@ -704,6 +747,33 @@ def build_about():
          body, active="/about", ld=[LD_BUSINESS])
 
 # ---------------------------------------------------------------- SERVICES
+def ways_section():
+    ways = [("One-on-one life coaching", "A priority", "Individualized coaching conversations focused on personal goals, confidence, life transitions, purpose, and practical next steps. Including goal setting and life planning, encouragement and accountability, and grief and resilience support."),
+            ("Group workshops & team building", "", "Interactive experiences for teams and organizations on communication, respect, collaboration, and understanding workplace roles."),
+            ("Workshop & program development", "", "Original learning experiences, guided activities, participant materials, and facilitated discussions tailored to the audience."),
+            ("Community engagement & partnerships", "", "Collaborative events and supportive programs that connect people with encouragement, learning, and opportunities to grow. By partnering with organizations, community leaders, and service providers, we can create greater access to resources and make a lasting impact.")]
+    rows = "".join(f'<div class="way reveal"><h3>{t}{f" <small>{tag}</small>" if tag else ""}</h3><p>{d}</p></div>' for t, tag, d in ways)
+    return f"""<section class="section" style="overflow:hidden"><div class="wrap">
+  <div class="reveal" style="max-width:720px;margin-bottom:28px"><span class="eyebrow">Individual coaching &amp; organizational workshops</span><h2 data-split>Ways to work together</h2><p class="lead">My heart is in one-on-one conversations, while workshops and program development let me support entire teams and communities.</p></div>
+  <div class="ways">{rows}</div>
+</div></section>"""
+
+def workshops_section():
+    topics = ["Respect Yourself", "Respect Your Supervisor", "Respect Your Teammates", "Understand Your Role", "Leaving Trauma at the Door"]
+    program = ["Curriculum development", "Program implementation", "Needs assessment", "Staff training and support", "Community engagement"]
+    return f"""<section class="section tone-sage" style="overflow:hidden"><div class="wrap split">
+  <div class="reveal">{img("portfolio-respect-the-role", "Flyer for Respect the Role, a team building workshop from Mrs. T's Chair", style="border-radius:var(--radius-lg);width:100%;height:auto")}</div>
+  <div class="reveal">
+    <span class="eyebrow" style="background:#fff">Workshops &amp; programs</span>
+    <h2 data-split>Respect the Role</h2>
+    <p>An original workplace-respect and team-development workshop from Mrs. T's Chair. It uses practical examples, guided reflection, and participant action plans to support stronger teams.</p>
+    <ol class="topics">{"".join(f"<li>{x}</li>" for x in topics)}</ol>
+    <p style="margin-top:20px"><strong>In the Low Seasons</strong> (October 2025) is an intimate, fall-inspired workshop created to support reflection, release, and renewal during difficult life seasons.</p>
+    <p><strong>Program development:</strong> {", ".join(program).lower().capitalize()}.</p>
+    {btn("Bring a workshop to your team", "/contact")}
+  </div>
+</div></section>"""
+
 def build_services():
     body = f"""
 <section class="hero">
@@ -723,6 +793,9 @@ def build_services():
   <div class="center reveal" style="margin-bottom:44px"><h2 data-split>Services</h2><p class="lead">Expert guidance, practical tools, and a compassionate community where you can find direction, inspiration, and encouragement.</p></div>
   {service_cards()}
 </div></section>
+{ways_section()}
+{workshops_section()}
+{voices_section()}
 {consult_section()}
 {why_section()}
 {blog_section()}
@@ -807,9 +880,9 @@ def build_blog():
 # ---------------------------------------------------------------- FAQ / CONTACT / LEGAL / 404
 def build_faq():
     body = f"""
-{banner("FAQs about life coaching &amp; mental wellness", "Empathetic, evidence-based support tailored to the needs of each person in Cuyahoga &amp; Lorain County.")}
+{banner("FAQs about life coaching &amp; mental wellness", "Empathetic, real-life support tailored to the needs of each person in Cuyahoga &amp; Lorain County.")}
 <section class="section" style="overflow:hidden"><div class="motif tr" aria-hidden="true"></div><img class="ghostmark l" src="/assets/layers/logo-mark.webp" alt="" aria-hidden="true" loading="lazy"><div class="wrap">{faq_block(FAQ_LONG)}{CRISIS}</div></section>
-{meet_tieshia(photo="69094569c7c1946df49788b0", photo_alt="Tieshia Henry seated in front of a mural of golden wings")}
+{meet_tieshia(photo="portfolio-whiteboard", photo_alt="Tieshia Henry leading a workshop at a whiteboard")}
 {consult_section()}
 {blog_section()}
 """
@@ -821,7 +894,7 @@ def build_contact():
     body = f"""
 {banner("Contact Moments With Mrs. T", "Trusted life coaching and mental wellness support in Cuyahoga &amp; Lorain County. Schedule a free consultation today.", cta=False)}
 <section class="section" style="overflow:hidden"><div class="motif bl" aria-hidden="true"></div><div class="wrap split">
-  {photo_stack("69094569c7c1946df49788b0", "Tieshia Henry seated in front of a mural of golden wings", inset="6909481faeb0fef5f77d5bbd", inset_alt="Tieshia Henry with clients")}
+  {photo_stack("portfolio-teal-hoodie", "Tieshia Henry smiling in a Moments With Mrs. T hoodie", inset="6909481faeb0fef5f77d5bbd", inset_alt="Tieshia Henry with clients")}
   <div class="reveal">
     <span class="eyebrow">Let's connect</span>
     <h2 data-split>Let's talk. Let's heal. Let's grow.</h2>
@@ -829,11 +902,12 @@ def build_contact():
     <p>Whether you're ready to schedule a session, have questions about services, or just need someone to talk to, Moments With Mrs. T is ready to help you take the next step. Making life make sense — one conversation at a time.</p>
     <div class="loc-list" style="margin-top:24px">
       <div class="loc"><h3>Call or text</h3><a href="tel:{PHONE_TEL}">{PHONE}</a></div>
-      <div class="loc"><h3>Email</h3><a href="mailto:{EMAIL}">{EMAIL}</a></div>
+      <div class="loc"><h3>Email (preferred)</h3><a href="mailto:{EMAIL}">{EMAIL}</a></div>
       <div class="loc"><h3>Where</h3><p style="margin:0">In person in Lorain &amp; Cuyahoga County · Virtual sessions anywhere</p></div>
     </div>
   </div>
 </div></section>
+{voices_section()}
 {consult_section("Schedule your free consultation", "A free, no-obligation consultation to explore your options and see if coaching is a good fit for you.")}
 <section class="section tight" data-same><div class="wrap"><div class="vision reveal" style="background:#fff">
   <span class="eyebrow">A helpful local reminder</span>
