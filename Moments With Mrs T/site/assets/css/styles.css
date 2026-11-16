@@ -5,7 +5,7 @@
   --sage:#d7ded5; --mint:#e4f2ec; --mint-light:#f1f8f5; --mist:#e6ebee;
   --ink:#141a1f; --muted:#4d5a63; --line:rgba(13,60,94,.14); --white:#fff;
   --radius:20px; --radius-lg:32px;
-  --font-head:"Encode Sans",system-ui,sans-serif; --font-body:"Karla",system-ui,sans-serif; --font-sig:"Style Script",cursive;
+  --font-head:"Encode Sans",system-ui,sans-serif; --font-body:"Karla",system-ui,sans-serif; --font-sig:"Dancing Script",cursive;
   --wrap:1200px; --gutter:clamp(16px,4vw,40px);
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -54,7 +54,8 @@ p{margin:0 0 1em}
 .topbar a:hover{text-decoration:underline}
 .site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
-.brand img{height:64px;width:auto}
+.brand{flex:none}
+.brand img{height:64px;width:auto;max-width:none}
 .nav{display:flex;align-items:center;gap:6px}
 .nav a.link{font-family:var(--font-head);font-weight:500;color:var(--navy);text-decoration:none;padding:10px 14px;border-radius:40px}
 .nav a.link:hover,.nav a.link[aria-current="page"]{background:var(--mint)}
@@ -160,7 +161,7 @@ p{margin:0 0 1em}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step;margin-top:48px}
 .step{background:#fff;border-radius:var(--radius);padding:28px 24px;border:1px solid var(--line);position:relative}
 .step img{width:56px;height:56px;object-fit:contain;margin-bottom:14px}
-.step h3{font-size:1.05rem;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.step h3{font-size:1.05rem;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .step p{margin:0;color:#2b3640}
 
 /* pillars */
@@ -237,7 +238,7 @@ p{margin:0 0 1em}
 .prose sub,.prose sup{font-size:inherit;vertical-align:baseline}
 .prose ul,.prose ol{padding-left:1.3em}
 .prose li{margin-bottom:.4em}
-.prose a{color:var(--teal-dark);font-weight:600}
+.prose a{color:var(--navy);font-weight:600;text-decoration:underline}
 .prose blockquote{border-left:4px solid var(--teal);margin:1.5em 0;padding:.5em 0 .5em 1.2em;color:var(--navy);font-style:italic}
 .prose img{border-radius:var(--radius);margin:1.5em 0}
 .prose p:empty{display:none}

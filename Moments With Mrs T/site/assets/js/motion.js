@@ -4,12 +4,15 @@
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+const phone = matchMedia("(max-width: 760px), (pointer: coarse)").matches; // on phones, content is simply there
 const root = document.documentElement;
 const SHOT = /[?&]shot/.test(location.search); // full-page screenshots: show everything
 
 if (reduce) {
   root.classList.add("reduced");
   document.querySelectorAll("video[autoplay]").forEach((v) => { v.removeAttribute("autoplay"); v.pause(); });
+} else if (phone) {
+  initStepsProgress();
 } else {
   initReveals();
   initSplitHeadings();
