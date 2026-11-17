@@ -174,3 +174,19 @@ function initStepsProgress() {
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   update();
 }
+
+// ---------- letters: the reading bar is full at the last line of the sign-off, not the bottom of the page ----------
+(function initLetterProgress() {
+  const bar = document.querySelector(".lx-progress"), letter = document.querySelector("[data-letter]"), header = document.querySelector(".site-header");
+  if (!bar || !letter || !header) return;
+  header.append(bar);
+  const update = () => {
+    const end = letter.getBoundingClientRect().bottom + scrollY - innerHeight;
+    bar.style.transform = `scaleX(${end > 0 ? Math.min(1, Math.max(0, scrollY / end)) : 1})`;
+  };
+  addEventListener("scroll", update, { passive: true }); // scroll events already fire once per frame
+  addEventListener("resize", update);
+  addEventListener("load", update);
+  update();
+})();
+

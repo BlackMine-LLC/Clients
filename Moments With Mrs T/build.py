@@ -78,8 +78,12 @@ for p in posts:
     p["body"] = clean_rich(p["post-body"])
     p["mins"] = read_time(p["body"])
 
+# Letters to Jay have their own home at /letters; the blog keeps the articles. With no letters, none of it builds.
+letters = [p for p in posts if p.get("eyebrow")]
+posts = [p for p in posts if not p.get("eyebrow")]
+
 # ---------------------------------------------------------------- chrome
-NAV = [("About", "/about"), ("Services", "/services"), ("FAQs", "/faq"), ("Blog", "/blog")]
+NAV = [("About", "/about"), ("Services", "/services")] + ([("Letters to Jay", "/letters")] if letters else []) + [("FAQs", "/faq"), ("Blog", "/blog")]
 
 def header(active):
     links = "".join(f'<a class="link" href="{h}"{" aria-current=page" if active == h else ""}>{t}</a>' for t, h in NAV)
@@ -109,7 +113,7 @@ def footer():
       {btn("Book your session", "/contact", "light")}
       <div class="social"><a href="{FACEBOOK}" target="_blank" rel="noopener" aria-label="Tieshia Henry on Facebook">{FB_ICON}</a></div>
     </div>
-    <div><h3>Explore</h3><ul><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/services">Services</a></li><li><a href="/blog">Blog</a></li><li><a href="/faq">FAQs</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    <div><h3>Explore</h3><ul><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/services">Services</a></li>{'<li><a href="/letters">Letters to Jay</a></li>' if letters else ""}<li><a href="/blog">Blog</a></li><li><a href="/faq">FAQs</a></li><li><a href="/contact">Contact</a></li></ul></div>
     <div><h3>Services</h3><ul>{svc_links}</ul>
       <h3 style="margin-top:28px">Contact</h3><ul><li><a href="tel:{PHONE_TEL}">{PHONE}</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li></ul></div>
   </div>
@@ -242,6 +246,7 @@ FAQ_SHORT = [
     ("Can life coaching sessions be virtual?", "Yes, I offer both in-person and virtual coaching sessions for your convenience."),
     ("What ages do you serve?", "I work with children starting in the 4th grade up to adults seeking guidance, healing, and empowerment."),
 ]
+FAQ_GRIEF = [("Do you work with people who are grieving?", "<p>Yes. Grief and resilience support are part of my coaching, and I know this road personally. I lost my husband, Jay, and I still write to him in my <a href=\"/letters\">letters to Jay</a>. You don't need the right words to start.</p>")] if letters else []
 FAQ_LONG = [
     ("What makes Moments With Mrs. T different from other life coaching services?", "<p>A blend of genuine empathy and professional certification. I bring lived experience to every session, which creates a supportive environment for real personal growth and transformation.</p>"),
     ("How long are your programs?", "<p>Programs range from 3 to 12 months, designed around your goals, challenges, and strengths.</p>"),
@@ -345,12 +350,32 @@ VOICES = [("My time working with Tieshia Henry has given me faith that there are
           ("Her door was always open, and she made me feel heard, valued, and understood. … Her advice was thoughtful, empowering, and often life-changing.", "Amanda", "Former client"),
           ("Tieshia helped me learn to love myself, embrace my imperfections, and understand that my past mistakes do not define who I am. … Her faith, encouragement, and uplifting spirit are contagious.", "Kristina", "Former client")]
 
-def voices_section(tone=None):
+def voices_section(tone=None, to=None, kind="wave"):
     cards = "".join(f'<figure class="voice reveal"><blockquote>{q}</blockquote><figcaption><b>{n}</b><span>{r}</span></figcaption></figure>' for q, n, r in VOICES)
-    return f"""<section class="section{(" tone-" + tone) if tone else ""}" style="overflow:hidden"><div class="wrap">
+    e = edge(to, kind, sprig="r") if to else ""
+    return f"""<section class="section{(" tone-" + tone) if tone else ""}{" edged" if to else ""}" style="overflow:hidden"><div class="wrap">
   <div class="center reveal" style="margin-bottom:36px"><span class="eyebrow">Real people. Real experiences. Real impact.</span><h2 data-split>What people say about Mrs. T</h2><p class="lead">Compassion, accountability, practical support, and the ability to help people feel seen: these themes appear throughout the feedback shared by clients and colleagues.</p></div>
   <div class="voices">{cards}</div>
-</div></section>"""
+</div>{e}</section>"""
+
+
+def long_date(iso):
+    d = date.fromisoformat(iso[:10])
+    return f"{d:%B} {d.day}, {d.year}"
+
+
+def letters_band():
+    if not letters:
+        return ""
+    p = letters[0]
+    return f"""<section class="section bg-navy edged letters-band">{navy_layers()}<div class="wrap lb-grid">
+  <div class="reveal">
+    <h2 class="lx-script">Letters to Jay</h2>
+    <p class="lead">After losing her husband, Mrs. T kept talking to him. Every day, she writes him a letter, and people walking through their own grief keep asking her not to stop.</p>
+    {btn("Read the letters", "/letters", "light")}
+  </div>
+  <a class="lb-quote reveal" href="/letters/{p["slug"]}"><blockquote>{esc(p["post-summary"])}</blockquote><span>{long_date(p["_published"])} · Read this letter <i aria-hidden="true">→</i></span></a>
+</div>{edge("cream", "wave", sprig="l")}</section>"""
 
 def why_section(tone=None, to=None, kind="hill"):
     items = "".join(f'<div class="why-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{p}</svg><h3>{t}</h3><p>{d}</p></div>' for t, d, p in WHY)
@@ -679,6 +704,15 @@ def build_home():
          body, ld=[LD_BUSINESS, faq_ld(FAQ_SHORT)])
 
 # ---------------------------------------------------------------- ABOUT
+def grief_note():
+    if not letters:
+        return ""
+    return """<section class="section tight" data-same><div class="wrap"><div class="vision reveal" style="background:#fff">
+  <span class="eyebrow">Why grief is part of this work</span>
+  <p>Losing my husband, Jay, didn't change what I do. It made the message richer. I know how to sit with grief now because I'm walking through it myself. <a href="/letters">Read my letters to Jay.</a></p>
+</div></div></section>"""
+
+
 CREDENTIALS = [("Professional Life Coach", "Transformation Academy · February 2023"), ("Life Purpose Life Coach", "Transformation Academy · February 2023"),
                ("Goal Success Life Coach", "Transformation Academy · February 2023"), ("Happiness Life Coach", "Transformation Academy · February 2023"),
                ("Trauma-Informed Coach", "The Centre for Healing · March 2023")]
@@ -843,6 +877,7 @@ def build_blog():
 </article>""" for p in posts)
     body = f"""
 {banner("Mrs. T's Chair | Blog", "Real talk on mental wellness, family communication, and coping skills — from a certified life coach in Lorain & Cuyahoga County.")}
+{'<div class="wrap lx-pointer"><p>Looking for Tieshia’s letters to her husband? They have their own place.</p><a href="/letters">Letters to Jay <i aria-hidden="true">→</i></a></div>' if letters else ""}
 <section class="section" style="overflow:hidden"><div class="motif tr" aria-hidden="true"></div><div class="wrap">{feats}</div></section>
 {consult_section()}
 {faq_section()}
@@ -857,7 +892,7 @@ def build_blog():
 <section class="section" style="padding-bottom:0"><div class="wrap">
   <div class="article-head reveal">
     <p class="crumbs" style="color:var(--muted)"><a href="/blog" style="color:var(--navy)">← All posts</a></p>
-    <span class="eyebrow">{esc(p.get("eyebrow") or "Becoming aware is the first step")}</span>
+    <span class="eyebrow">Becoming aware is the first step</span>
     <h1>{esc(p["name"])}</h1>
     <p class="lead" style="margin:0 auto 14px">{esc(p["post-summary"])}</p>
     <div class="meta"><span>By {esc(p.get("author-name") or "Tieshia Henry")}</span><span>·</span><span>{p["mins"]} min read</span></div>
@@ -878,6 +913,124 @@ def build_blog():
                "mainEntityOfPage": f"{SITE_URL}/blog/{p['slug']}"}]
         page(f"/blog/{p['slug']}", p.get("meta-title") or p["name"], p.get("meta-description") or p["post-summary"], body,
              active="/blog", ld=ld, og_image="/assets/img/" + IMGS[p["main-image"]["fileId"]]["f"])
+
+# ---------------------------------------------------------------- LETTERS TO JAY
+FACEBOOK = "https://www.facebook.com/tieshia.henry"
+CAPS_RUN = re.compile(r"(?<![\w’])((?:I\s+)?[A-Z][A-Z’]+(?:[\s,]+[A-Z][A-Z’]*)*[!?]*)")
+
+def _caps_share(s):
+    letters_only = [c for c in s if c.isalpha()]
+    return (sum(c.isupper() for c in letters_only) / len(letters_only), len(letters_only)) if letters_only else (0, 0)
+
+def _key(s):
+    return re.sub(r"[^a-z]", "", s.lower())
+
+def _emphasize(html_text):
+    """Bold the words she already shouted. Her wording never changes."""
+    def mark(m):
+        run = m.group(1)
+        trail = re.search(r"[\s,]+I$", run)
+        core = run[:trail.start()] if trail else run
+        if sum(c.isalpha() for c in core) < 5:
+            return run
+        return f"<strong>{core}</strong>{run[len(core):]}"
+    return CAPS_RUN.sub(mark, html_text)
+
+def _keep_emoji(h):
+    """A run of emoji at the end of a line stays together instead of breaking onto its own row."""
+    return re.sub("\\s*([\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200D]+)$", r' <span class="l-nb">\1</span>', h)
+
+def letter_body(p):
+    """Her letter, word for word, set so its own rhythm carries you: shouted lines become beats, her chosen line a pull."""
+    paras = re.findall(r"<p>(.*?)</p>", p["body"], re.S)
+    sign_at = next((i for i, x in enumerate(paras) if x.startswith("Love you and miss you")), len(paras))
+    pull = _key(p["post-summary"])
+    out = []
+    for i, x in enumerate(paras[:sign_at]):
+        plain = html.unescape(x)
+        share, n = _caps_share(plain)
+        if i == 0:
+            who, _, hearts = x.partition(" ")
+            out.append(f'<p class="l-salute">{who} <span class="l-nb">{hearts}</span></p>')
+        elif _key(plain) == pull:
+            out.append(f'<p class="l-pull reveal">{x}</p>')
+        elif share > .9 and n >= 26:
+            out.append(f'<p class="l-beat reveal">{x}</p>')
+        elif share > .9 and n >= 6:
+            out.append(f'<p class="l-shout">{x}</p>')
+        else:
+            out.append(f"<p>{_keep_emoji(_emphasize(x))}</p>")
+    sign = paras[sign_at:]
+    if sign:
+        lines = [f'<p class="l-love">{_keep_emoji(sign[0])}</p>'] + [f'<p class="l-names">{x}</p>' for x in sign[1:-1]] + ([f'<p class="l-cyllyb">{sign[-1]}</p>'] if len(sign) > 1 else [])
+        out.append('<div class="l-sign reveal">' + "".join(lines) + "</div>")
+    return "".join(out)
+
+GRIEF_CONSULT = dict(title="You don't have to carry this by yourself.",
+                     text="If these letters found you in your own grief, Tieshia would be honored to sit with you. In crisis right now? Call or text 988 any time.",
+                     eyebrow="Walking through grief?")
+
+def build_letters():
+    if not letters:
+        return
+    def stamp(p):
+        return date.fromisoformat(p["_published"][:10])
+    first = letters[0]
+    months, rows = [], {}
+    for p in letters[1:]:
+        m = f"{stamp(p):%B %Y}"
+        if m not in rows:
+            months.append(m)
+            rows[m] = []
+        rows[m].append(f"""<li class="reveal"><a href="/letters/{p["slug"]}"><time datetime="{p["_published"][:10]}">{stamp(p):%b} {stamp(p).day}</time><span class="lx-line">{esc(p["post-summary"])}</span><span class="lx-name">{esc(p["name"])} <i aria-hidden="true">→</i></span></a></li>""")
+    groups = "".join(f'<h2 class="lx-month">{m}</h2><ol class="lx-rows">{"".join(rows[m])}</ol>' for m in months)
+    body = f"""
+<section class="lx-hero"><div class="lx-hero-copy reveal">
+  <h1 class="lx-script">Letters to Jay</h1>
+  <p class="lx-world">“I really believe that our world is grieving.”</p>
+  <p>Tieshia Henry lost her husband, Jay, after almost 30 years together. She has written to him every day since. These are those letters, in her own words: the tears, the jokes, the faith, and a love that didn't end.</p>
+</div><div class="lx-hero-photo">{img("tieshia-portrait-red", "Tieshia Henry smiling, in a red lace dress", eager=True)}</div></section>
+<section class="section tone-cream lx-index"><div class="wrap">
+  <a class="lx-feature reveal" href="/letters/{first["slug"]}">
+    <time datetime="{first["_published"][:10]}">The latest letter · {long_date(first["_published"])}</time>
+    <blockquote>{esc(first["post-summary"])}</blockquote>
+    <span>{esc(first["name"])} <i aria-hidden="true">→</i></span>
+  </a>
+  {groups}
+  <p class="lx-follow">Tieshia shares each new letter on Facebook first. <a href="{FACEBOOK}" target="_blank" rel="noopener">Follow along</a></p>
+</div></section>
+{consult_section(**GRIEF_CONSULT)}
+"""
+    page("/letters", "Letters to Jay | A Journey Through Grief | Moments With Mrs. T",
+         "Tieshia Henry lost her husband, Jay, and writes to him every day. Read her letters on grief, faith, love, and learning to keep going.",
+         body, active="/letters", ld=[LD_BUSINESS])
+
+    for i, p in enumerate(letters):
+        newer, older = letters[i - 1] if i else None, letters[i + 1] if i + 1 < len(letters) else None
+        def pager(q, label):
+            return f'<a href="/letters/{q["slug"]}"><small>{label}</small><span>{esc(q["name"])} <i aria-hidden="true">→</i></span></a>' if q else ""
+        published = p["_published"][:10]
+        body = f"""
+<div class="lx-progress" aria-hidden="true"></div>
+<section class="lx-letter"><div class="wrap">
+  <p class="crumbs"><a href="/letters">← All letters to Jay</a></p>
+  <header class="lx-head reveal">
+    <time datetime="{published}">{long_date(published)}</time>
+    <h1>{esc(p["name"])}</h1>
+    <p>A letter from Tieshia Henry to her husband, Jay · {p["mins"]} min read</p>
+  </header>
+  <article class="lx-body" data-letter>{letter_body(p)}</article>
+  <div class="lx-share"><button class="btn ghost small" type="button" data-copy>Copy link</button><a class="btn ghost small" href="https://www.facebook.com/sharer/sharer.php?u={SITE_URL}/letters/{p['slug']}" target="_blank" rel="noopener">Share on Facebook</a></div>
+  <nav class="lx-pager" aria-label="More letters">{pager(newer, "The next letter")}{pager(older, "The letter before")}</nav>
+</div></section>
+{consult_section(**GRIEF_CONSULT)}
+"""
+        ld = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": p["name"], "description": p.get("meta-description") or p["post-summary"],
+               "image": SITE_URL + "/assets/img/" + IMGS[p["main-image"]["fileId"]]["f"], "datePublished": published,
+               "author": {"@type": "Person", "name": "Tieshia Henry"}, "publisher": {"@type": "Organization", "name": "Moments With Mrs. T"},
+               "mainEntityOfPage": f"{SITE_URL}/letters/{p['slug']}"}]
+        page(f"/letters/{p['slug']}", p.get("meta-title") or p["name"], p.get("meta-description") or p["post-summary"], body,
+             active="/letters", ld=ld, og_image="/assets/img/" + IMGS[p["main-image"]["fileId"]]["f"])
 
 # ---------------------------------------------------------------- FAQ / CONTACT / LEGAL / 404
 def build_faq():
@@ -1044,7 +1197,7 @@ def build_404():
 
 # ---------------------------------------------------------------- run
 if __name__ == "__main__":
-    build_home(); build_about(); build_services(); build_blog(); build_faq(); build_contact(); build_privacy(); build_404()
+    build_home(); build_about(); build_services(); build_blog(); build_letters(); build_faq(); build_contact(); build_privacy(); build_404()
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{u}</loc></url>\n" for u in SITEMAP) + "</urlset>\n", encoding="utf-8")
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
