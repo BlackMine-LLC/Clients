@@ -86,7 +86,7 @@ def header(active):
     return f"""<a class="skip" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap"><a href="tel:{PHONE_TEL}">{PHONE}</a><a href="mailto:{EMAIL}">{EMAIL}</a><span>Serving Lorain &amp; Cuyahoga County + virtual</span></div></div>
 <header class="site-header"><div class="wrap">
-  <a class="brand" href="/" aria-label="Moments With Mrs. T home">{img("68267156818e6f818f09be5c", "Moments With Mrs. T", eager=True)}</a>
+  <a class="brand" href="/" aria-label="Moments With Mrs. T home"><img src="/assets/brand/mrst-lockup-horizontal.svg" width="678" height="211" alt="Moments With Mrs. T" fetchpriority="high"></a>
   <button class="menu-toggle" data-menu aria-controls="nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <nav class="nav" id="nav" aria-label="Main">
     <button class="menu-toggle nav-close" data-menu aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -102,7 +102,7 @@ def footer():
     return f"""<footer class="site-footer"><div class="wrap">
   <div class="footer-grid">
     <div>
-      {img("68267156818e6f818f09be5c", "Moments With Mrs. T", cls="logo")}
+      <img class="logo" src="/assets/brand/mrst-lockup-horizontal-reverse.svg" width="678" height="211" alt="Moments With Mrs. T" loading="lazy">
       <p class="footer-tag">It's not just a moment. It's a movement.</p>
       <h2>Start your path to mental wellness</h2>
       <p>Even thinking about looking for guidance means you're in the right place. I'm ready when you are.</p>
@@ -146,7 +146,7 @@ def page(path, title, desc, body, active=None, ld=None, og_image="/assets/og-ima
 <meta property="og:url" content="{canon}"><meta property="og:image" content="{SITE_URL}{og_image}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/assets/brand/mrst-favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/EncodeSans-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/Karla-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/fonts.css">
@@ -422,11 +422,8 @@ def chair_section(tone="sand", to="cream", kind="arch"):
   <div class="blob mint" style="width:420px;height:420px;left:-140px;bottom:0" data-depth="0.2" aria-hidden="true"></div>
   <div class="motif tr" aria-hidden="true"></div>
   <div class="wrap split">
-  <div class="chair-frame reveal">
-    <div class="ring" data-depth="0.25"></div>
-    <div class="arch-img"><img src="/assets/layers/chair-scene.webp" alt="An illustrated armchair in a calm, sunlit room — Mrs. T's Chair" loading="lazy"></div>
-    {img("6826713a4d81fd6d0725b0f7", cls="leaf-a")}{img("6826713b4b223a3a25c3cfa7", cls="leaf-b")}
-    {chip("", "free", "Pull up a chair", "0").replace(' data-pointer="0"', '')}
+  <div class="chair-frame logo-full reveal">
+    <img src="/assets/brand/mrst-logo-full.webp" width="960" height="963" alt="The Moments With Mrs. T logo: a woman drawn as a tree, white orchids, and Mrs. T's chair with a pillow that reads A Safe Space, Real People, Real Conversations, Real Impact" loading="lazy" decoding="async">
   </div>
   <div class="reveal">
     <span class="eyebrow" style="background:#fff">Where healing begins</span>
