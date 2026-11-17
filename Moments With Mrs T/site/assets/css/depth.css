@@ -476,13 +476,13 @@ html{background:#fff;scroll-padding-top:calc(90px + env(safe-area-inset-top))}
   @view-transition{navigation:none}
 }
 
-/* New logo system (Nov 2026): lockup in header, reverse lockup in footer, her full round logo in the chair section */
-.brand img{height:68px;width:auto}
-.site-footer .logo{width:260px;height:auto;background:none;border-radius:0;padding:0;margin-bottom:22px}
+/* New logo (Nov 2026): her tree-woman mark + the site's Encode Sans wordmark; her full round logo in the chair section */
+.brand img{height:60px;width:auto}
+.site-footer .logo{width:250px;height:auto;background:none;border-radius:0;padding:0;margin-bottom:22px}
 .chair-frame.logo-full{max-width:480px;margin-inline:auto}
 .chair-frame.logo-full img{width:100%;height:auto;filter:drop-shadow(0 18px 34px rgba(30,58,61,.18))}
 @media (max-width:600px){
-  .brand img{height:52px}
+  .brand img{height:48px}
   .site-footer .logo{width:220px}
   .chair-frame.logo-full{max-width:340px}
 }
