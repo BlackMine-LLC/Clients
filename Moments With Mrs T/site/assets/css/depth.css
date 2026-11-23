@@ -446,7 +446,7 @@ html{background:#fff;scroll-padding-top:calc(90px + env(safe-area-inset-top))}
 .voice figcaption span{color:var(--muted)}
 @media (max-width:720px){.voices{grid-template-columns:minmax(0,1fr);gap:16px}}
 
-/* Letters to Jay: her words are the design, so no image cards */
+/* Letters to J: her words are the design, so no image cards */
 .lx-script{font-family:var(--font-sig);font-weight:400;letter-spacing:0;line-height:1}
 .lx-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(32px,5vw,72px);background:var(--navy);color:#e8f0f5;padding:clamp(40px,5vw,72px) max(24px,calc((100vw - 1200px)/2))}
 .lx-hero h1{color:#fff;font-size:clamp(3.6rem,6.6vw,6rem);margin:0 0 .3em}

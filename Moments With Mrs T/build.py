@@ -78,12 +78,12 @@ for p in posts:
     p["body"] = clean_rich(p["post-body"])
     p["mins"] = read_time(p["body"])
 
-# Letters to Jay have their own home at /letters; the blog keeps the articles. With no letters, none of it builds.
+# Letters to J have their own home at /letters; the blog keeps the articles. With no letters, none of it builds.
 letters = [p for p in posts if p.get("eyebrow")]
 posts = [p for p in posts if not p.get("eyebrow")]
 
 # ---------------------------------------------------------------- chrome
-NAV = [("About", "/about"), ("Services", "/services")] + ([("Letters to Jay", "/letters")] if letters else []) + [("FAQs", "/faq"), ("Blog", "/blog")]
+NAV = [("About", "/about"), ("Services", "/services")] + ([("Letters to J", "/letters")] if letters else []) + [("FAQs", "/faq"), ("Blog", "/blog")]
 
 def header(active):
     links = "".join(f'<a class="link" href="{h}"{" aria-current=page" if active == h else ""}>{t}</a>' for t, h in NAV)
@@ -113,7 +113,7 @@ def footer():
       {btn("Book your session", "/contact", "light")}
       <div class="social"><a href="{FACEBOOK}" target="_blank" rel="noopener" aria-label="Tieshia Henry on Facebook">{FB_ICON}</a></div>
     </div>
-    <div><h3>Explore</h3><ul><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/services">Services</a></li>{'<li><a href="/letters">Letters to Jay</a></li>' if letters else ""}<li><a href="/blog">Blog</a></li><li><a href="/faq">FAQs</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    <div><h3>Explore</h3><ul><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/services">Services</a></li>{'<li><a href="/letters">Letters to J</a></li>' if letters else ""}<li><a href="/blog">Blog</a></li><li><a href="/faq">FAQs</a></li><li><a href="/contact">Contact</a></li></ul></div>
     <div><h3>Services</h3><ul>{svc_links}</ul>
       <h3 style="margin-top:28px">Contact</h3><ul><li><a href="tel:{PHONE_TEL}">{PHONE}</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li></ul></div>
   </div>
@@ -246,7 +246,7 @@ FAQ_SHORT = [
     ("Can life coaching sessions be virtual?", "Yes, I offer both in-person and virtual coaching sessions for your convenience."),
     ("What ages do you serve?", "I work with children starting in the 4th grade up to adults seeking guidance, healing, and empowerment."),
 ]
-FAQ_GRIEF = [("Do you work with people who are grieving?", "<p>Yes. Grief and resilience support are part of my coaching, and I know this road personally. I lost my husband, Jay, and I still write to him in my <a href=\"/letters\">letters to Jay</a>. You don't need the right words to start.</p>")] if letters else []
+FAQ_GRIEF = [("Do you work with people who are grieving?", "<p>Yes. Grief and resilience support are part of my coaching, and I know this road personally. I lost my husband, J, and I still write to him in my <a href=\"/letters\">letters to J</a>. You don't need the right words to start.</p>")] if letters else []
 FAQ_LONG = [
     ("What makes Moments With Mrs. T different from other life coaching services?", "<p>A blend of genuine empathy and professional certification. I bring lived experience to every session, which creates a supportive environment for real personal growth and transformation.</p>"),
     ("How long are your programs?", "<p>Programs range from 3 to 12 months, designed around your goals, challenges, and strengths.</p>"),
@@ -370,7 +370,7 @@ def letters_band():
     p = letters[0]
     return f"""<section class="section bg-navy edged letters-band">{navy_layers()}<div class="wrap lb-grid">
   <div class="reveal">
-    <h2 class="lx-script">Letters to Jay</h2>
+    <h2 class="lx-script">Letters to J</h2>
     <p class="lead">After losing her husband, Mrs. T kept talking to him. Every day, she writes him a letter, and people walking through their own grief keep asking her not to stop.</p>
     {btn("Read the letters", "/letters", "light")}
   </div>
@@ -709,7 +709,7 @@ def grief_note():
         return ""
     return """<section class="section tight" data-same><div class="wrap"><div class="vision reveal" style="background:#fff">
   <span class="eyebrow">Why grief is part of this work</span>
-  <p>Losing my husband, Jay, didn't change what I do. It made the message richer. I know how to sit with grief now because I'm walking through it myself. <a href="/letters">Read my letters to Jay.</a></p>
+  <p>Losing my husband, J, didn't change what I do. It made the message richer. I know how to sit with grief now because I'm walking through it myself. <a href="/letters">Read my letters to J.</a></p>
 </div></div></section>"""
 
 
@@ -877,7 +877,7 @@ def build_blog():
 </article>""" for p in posts)
     body = f"""
 {banner("Mrs. T's Chair | Blog", "Real talk on mental wellness, family communication, and coping skills — from a certified life coach in Lorain & Cuyahoga County.")}
-{'<div class="wrap lx-pointer"><p>Looking for Tieshia’s letters to her husband? They have their own place.</p><a href="/letters">Letters to Jay <i aria-hidden="true">→</i></a></div>' if letters else ""}
+{'<div class="wrap lx-pointer"><p>Looking for Tieshia’s letters to her husband? They have their own place.</p><a href="/letters">Letters to J <i aria-hidden="true">→</i></a></div>' if letters else ""}
 <section class="section" style="overflow:hidden"><div class="motif tr" aria-hidden="true"></div><div class="wrap">{feats}</div></section>
 {consult_section()}
 {faq_section()}
@@ -986,9 +986,9 @@ def build_letters():
     groups = "".join(f'<h2 class="lx-month">{m}</h2><ol class="lx-rows">{"".join(rows[m])}</ol>' for m in months)
     body = f"""
 <section class="lx-hero"><div class="lx-hero-copy reveal">
-  <h1 class="lx-script">Letters to Jay</h1>
+  <h1 class="lx-script">Letters to J</h1>
   <p class="lx-world">“I really believe that our world is grieving.”</p>
-  <p>Tieshia Henry lost her husband, Jay, after almost 30 years together. She has written to him every day since. These are those letters, in her own words: the tears, the jokes, the faith, and a love that didn't end.</p>
+  <p>Tieshia Henry lost her husband, J, after almost 30 years together. She has written to him every day since. These are those letters, in her own words: the tears, the jokes, the faith, and a love that didn't end.</p>
 </div><div class="lx-hero-photo">{img("tieshia-portrait-red", "Tieshia Henry smiling, in a red lace dress", eager=True)}</div></section>
 <section class="section tone-cream lx-index"><div class="wrap">
   <a class="lx-feature reveal" href="/letters/{first["slug"]}">
@@ -1001,8 +1001,8 @@ def build_letters():
 </div></section>
 {consult_section(**GRIEF_CONSULT)}
 """
-    page("/letters", "Letters to Jay | A Journey Through Grief | Moments With Mrs. T",
-         "Tieshia Henry lost her husband, Jay, and writes to him every day. Read her letters on grief, faith, love, and learning to keep going.",
+    page("/letters", "Letters to J | A Journey Through Grief | Moments With Mrs. T",
+         "Tieshia Henry lost her husband, J, and writes to him every day. Read her letters on grief, faith, love, and learning to keep going.",
          body, active="/letters", ld=[LD_BUSINESS])
 
     for i, p in enumerate(letters):
@@ -1013,11 +1013,11 @@ def build_letters():
         body = f"""
 <div class="lx-progress" aria-hidden="true"></div>
 <section class="lx-letter"><div class="wrap">
-  <p class="crumbs"><a href="/letters">← All letters to Jay</a></p>
+  <p class="crumbs"><a href="/letters">← All letters to J</a></p>
   <header class="lx-head reveal">
     <time datetime="{published}">{long_date(published)}</time>
     <h1>{esc(p["name"])}</h1>
-    <p>A letter from Tieshia Henry to her husband, Jay · {p["mins"]} min read</p>
+    <p>A letter from Tieshia Henry to her husband, J · {p["mins"]} min read</p>
   </header>
   <article class="lx-body" data-letter>{letter_body(p)}</article>
   <div class="lx-share"><button class="btn ghost small" type="button" data-copy>Copy link</button><a class="btn ghost small" href="https://www.facebook.com/sharer/sharer.php?u={SITE_URL}/letters/{p['slug']}" target="_blank" rel="noopener">Share on Facebook</a></div>
